@@ -1,0 +1,29 @@
+[user]
+	name = PeakyHell
+	email = contact@peakyhell.com
+
+[core]
+	compression = 9
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[diff]
+	algorithm = histogram
+	tool = nvimdiff
+
+[merge]
+	conflictstyle = diff3
+	tool = nvimdiff
+
+[difftool "nvimdiff"]
+	cmd = nvim -d "$LOCAL" "$REMOTE"
+
+[mergetool "nvimdiff"]
+	cmd = nvim -d "$LOCAL" "$BASE" "$REMOTE" "$MERGED" -c 'wincmd J'
+
+[url "git@github.com"]
+	insteadOf = "https://github.com/"
