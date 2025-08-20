@@ -1,0 +1,11 @@
+gcc
+git
+jdk-openjdk
+neovim
+nodejs
+python
+
+discord
+docker
+firefox
+konsole
