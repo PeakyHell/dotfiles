@@ -24,3 +24,6 @@
 
 [mergetool "nvimdiff"]
 	cmd = nvim -d "$LOCAL" "$BASE" "$REMOTE" "$MERGED" -c 'wincmd J'
+
+[url "git@github.com:"]
+	insteadOf = "https://github.com/"
