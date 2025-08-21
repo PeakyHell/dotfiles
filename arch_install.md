@@ -2,7 +2,7 @@
 
 ## Keyboard layout
 
-Set french keyboard layout
+Set belgian keyboard layout
 
 ```
 loadkeys be-latin1
@@ -108,8 +108,23 @@ Finally, use `lsblk` again to check if partition are correctly mounted.
 
 Install the base packages to run the system properly.
 
+- base, linux, linux-firmware : Kernel
+- amd-ucode : Microcode updates for amd CPU
+- sof-firmware : Firmware for audio cards
+- man-db, man-pages, texinfo : Man pages and GNU documentation
+- git : Version control
+- openssh : Ssh usage and key management
+- base-devel : Base development packages
+- grub : Bootloader
+- efibootmgr : Used by grub to write boot entries to NVRAM
+- neovim : NeoVim text editor
+- networkmanager : Provides configuration for network interfaces
+- zsh : The zsh shell
+- zsh-completions : Zsh tab completion
+- zsh-autosuggestions : Automatically suggest commands for zsh
+
 ```
-pacstrap -K /mnt base linux linux-firmware amd-ucode sof-firmware man-db man-pages texinfo base-devel grub efibootmgr neovim networkmanager
+pacstrap -K /mnt base linux linux-firmware amd-ucode sof-firmware man-db man-pages texinfo git openssh base-devel grub efibootmgr neovim networkmanager zsh zsh-completions zsh-autosuggestions
 ```
 
 # Configure the system
@@ -239,7 +254,7 @@ systemctl enable NetworkManager
 Enable the boot loader. Replace X with the disk name.
 
 ```
-grub-install /dev/sdX
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 ```
 
 And configure it.
@@ -259,7 +274,7 @@ exit
 And unmount all drives
 
 ```
-umount -a
+umount -R /mnt
 ```
 
 And FINALLY reboot.
@@ -303,10 +318,6 @@ Start sddm.
 sudo systemctl enable --now sddm
 ```
 
-## Import and setup the dotfiles
+## Configuration
 
-Import and setup the dotfiles :
-- `.zshrc`
-- `init.lua` and `lazy-conf.json`
-- `.gitconfig`
-- Install the Pacman and Yay packages
+Import and setup the dotfiles and install the Pacman and Yay packages
