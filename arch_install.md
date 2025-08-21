@@ -109,7 +109,7 @@ Finally, use `lsblk` again to check if partition are correctly mounted.
 Install the base packages to run the system properly.
 
 ```
-pacstrap -K /mnt base linux linux-firmware amd-ucode sof-firmware man-db man-pages texinfo git openssh base-devel grub efibootmgr neovim networkmanager zsh zsh-completions zsh-autosuggestions
+pacstrap -K /mnt base linux linux-firmware grub efibootmgr networkmanager nvim zsh
 ```
 
 # Configure the system
@@ -284,7 +284,7 @@ ping -c 5 archlinux.org
 Install additional packages.
 
 ```
-sudo pacman -S konsole firefox fastfetch nvidia-open nvidia-utils
+sudo pacman -S amd-ucode base-devel fastfetch firefox git konsole man-db man-pages nvidia-open nvidia-utils openssh sof-firmware texinfo zsh-autosuggestions zsh-completions
 ```
 
 ## Install the Graphical Environment
@@ -312,23 +312,26 @@ Import and setup the dotfiles and install the Pacman and Yay packages
 ## Installed packages
 
 - base, linux, linux-firmware : Kernel
-- amd-ucode : Microcode updates for amd CPU
-- sof-firmware : Firmware for audio cards
-- man-db, man-pages, texinfo : Man pages and GNU documentation
-- git : Version control
-- openssh : Ssh usage and key management
-- base-devel : Base development packages
 - grub : Bootloader
 - efibootmgr : Used by grub to write boot entries to NVRAM
-- neovim : NeoVim text editor
 - networkmanager : Provides configuration for network interfaces
+- neovim : NeoVim text editor
 - zsh : The zsh shell
-- zsh-completions : Zsh tab completion
-- zsh-autosuggestions : Automatically suggest commands for zsh
-- plasma : The desktop environment
-- sddm : The display manager
-- konsole : Terminal emulator
-- fireforx : Web Browser
+
+- amd-ucode : Microcode updates for amd CPU
+- base-devel : Base development packages
 - fastfetch : Terminal tool to show system informations
+- fireforx : Web Browser
+- git : Version control
+- konsole : Terminal emulator
+- man-db, man-pages : Man pages
 - nvidia-open : Nvidia driver
 - nvidia-utils : Nvidia drivers utilities
+- openssh : Ssh usage and key management
+- sof-firmware : Firmware for audio cards
+- texinfo : GNU documentation
+- zsh-autosuggestions : Automatically suggest commands for zsh
+- zsh-completions : Zsh tab completion
+
+- plasma : The desktop environment
+- sddm : The display manager
