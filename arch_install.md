@@ -108,21 +108,6 @@ Finally, use `lsblk` again to check if partition are correctly mounted.
 
 Install the base packages to run the system properly.
 
-- base, linux, linux-firmware : Kernel
-- amd-ucode : Microcode updates for amd CPU
-- sof-firmware : Firmware for audio cards
-- man-db, man-pages, texinfo : Man pages and GNU documentation
-- git : Version control
-- openssh : Ssh usage and key management
-- base-devel : Base development packages
-- grub : Bootloader
-- efibootmgr : Used by grub to write boot entries to NVRAM
-- neovim : NeoVim text editor
-- networkmanager : Provides configuration for network interfaces
-- zsh : The zsh shell
-- zsh-completions : Zsh tab completion
-- zsh-autosuggestions : Automatically suggest commands for zsh
-
 ```
 pacstrap -K /mnt base linux linux-firmware amd-ucode sof-firmware man-db man-pages texinfo git openssh base-devel grub efibootmgr neovim networkmanager zsh zsh-completions zsh-autosuggestions
 ```
@@ -294,20 +279,20 @@ Verify the connection.
 ping -c 5 archlinux.org
 ```
 
-## Install the Graphical Environnment
+## Install additional packages
+
+Install additional packages.
+
+```
+sudo pacman -S konsole firefox fastfetch nvidia-open nvidia-utils
+```
+
+## Install the Graphical Environment
 
 Install KDE Plasma and the sddm display manager.
 
 ```
 sudo pacman -S plasma sddm
-```
-
-## Install additional packages
-
-Install the packages.
-
-```
-sudo pacman -S konsole firefox fastfetch
 ```
 
 ## Start the Display Manager
@@ -321,3 +306,29 @@ sudo systemctl enable --now sddm
 ## Configuration
 
 Import and setup the dotfiles and install the Pacman and Yay packages
+
+# Informations
+
+## Installed packages
+
+- base, linux, linux-firmware : Kernel
+- amd-ucode : Microcode updates for amd CPU
+- sof-firmware : Firmware for audio cards
+- man-db, man-pages, texinfo : Man pages and GNU documentation
+- git : Version control
+- openssh : Ssh usage and key management
+- base-devel : Base development packages
+- grub : Bootloader
+- efibootmgr : Used by grub to write boot entries to NVRAM
+- neovim : NeoVim text editor
+- networkmanager : Provides configuration for network interfaces
+- zsh : The zsh shell
+- zsh-completions : Zsh tab completion
+- zsh-autosuggestions : Automatically suggest commands for zsh
+- plasma : The desktop environment
+- sddm : The display manager
+- konsole : Terminal emulator
+- fireforx : Web Browser
+- fastfetch : Terminal tool to show system informations
+- nvidia-open : Nvidia driver
+- nvidia-utils : Nvidia drivers utilities
