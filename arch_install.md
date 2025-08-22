@@ -64,40 +64,40 @@ List all the partitions for easier formatting.
 lsblk
 ```
 
-Then format the partitions as follow (replace X with the disk name and Y with the partition number) :
+Then format the partitions as follow (replace X with the disk name) :
 
 ### Formatting
 
 - root partition
     ```
-    mkfs.ext4 /dev/sdXY
+    mkfs.ext4 /dev/sdX3
     ```
 
 - boot partition
     ```
-    mkfs.fat -F 32 /dev/sdXY
+    mkfs.fat -F 32 /dev/sdX1
     ```
 
 - swap partition
     ```
-    mkswap /dev/sdXY
+    mkswap /dev/sdX2
     ```
 
 ### Mounting
 
 - root partition
     ```
-    mount /dev/sdXY /mnt
+    mount /dev/sdX3 /mnt
     ```
 
 - boot partition
     ```
-    mount --mkdir /dev/sdXY /mnt/boot
+    mount --mkdir /dev/sdX1 /mnt/boot
     ```
 
 - swap partition
     ```
-    swapon /dev/sdXY
+    swapon /dev/sdX2
     ```
 
 Finally, use `lsblk` again to check if partition are correctly mounted.
@@ -109,7 +109,7 @@ Finally, use `lsblk` again to check if partition are correctly mounted.
 Install the base packages to run the system properly.
 
 ```
-pacstrap -K /mnt base linux linux-firmware amd-ucode grub efibootmgr networkmanager nvim zsh
+pacstrap -K /mnt base linux linux-firmware amd-ucode grub efibootmgr networkmanager nvim sudo zsh
 ```
 
 # Configure the system
@@ -239,7 +239,7 @@ systemctl enable NetworkManager
 Enable the boot loader. Replace X with the disk name.
 
 ```
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB /dev/sdX
 ```
 
 And configure it.
@@ -294,7 +294,7 @@ sudo pacman -S base-devel fastfetch firefox git kitty man-db man-pages nvidia-op
 Install Hyprland and the required packages.
 
 ```
-sudo pacman -S hyprland sddm lib32-nvidia-utils egl-wayland libva-nvidia-driver xorg-xwayland wayland-protocols dunst pipewire wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent qt5-wayland qt6-wayland noto-fonts
+sudo pacman -S hyprland sddm egl-wayland libva-nvidia-driver xorg-xwayland wayland-protocols dunst pipewire wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent qt5-wayland qt6-wayland noto-fonts
 
 ```
 
@@ -381,6 +381,7 @@ sudo pacman -Syu
 - efibootmgr : Used by grub to write boot entries to NVRAM
 - networkmanager : Provides configuration for network interfaces
 - neovim : NeoVim text editor
+- sudo : 
 - zsh : The zsh shell
 
 - base-devel : Base development packages
@@ -399,7 +400,7 @@ sudo pacman -Syu
 
 - hyprland :
 - sddm : The display manager
-- lib32-nvidia-utils : Utilities for games
+- (Removed) lib32-nvidia-utils : Utilities for games
 - egl-wayland : Enables compatibility between the EGL API and the Wayland protocol
 - libva-nvidia-driver : Driver for Hardware Acceleration
 - xorg-xwayland : Allows to run X apps in Wayland
