@@ -64,40 +64,40 @@ List all the partitions for easier formatting.
 lsblk
 ```
 
-Then format the partitions as follow (replace X with the disk name and Y with the partition number) :
+Then format the partitions as follow (replace X with the disk name) :
 
 ### Formatting
 
 - root partition
     ```
-    mkfs.ext4 /dev/sdXY
+    mkfs.ext4 /dev/sdX3
     ```
 
 - boot partition
     ```
-    mkfs.fat -F 32 /dev/sdXY
+    mkfs.fat -F 32 /dev/sdX1
     ```
 
 - swap partition
     ```
-    mkswap /dev/sdXY
+    mkswap /dev/sdX2
     ```
 
 ### Mounting
 
 - root partition
     ```
-    mount /dev/sdXY /mnt
+    mount /dev/sdX3 /mnt
     ```
 
 - boot partition
     ```
-    mount --mkdir /dev/sdXY /mnt/boot
+    mount --mkdir /dev/sdX1 /mnt/boot
     ```
 
 - swap partition
     ```
-    swapon /dev/sdXY
+    swapon /dev/sdX2
     ```
 
 Finally, use `lsblk` again to check if partition are correctly mounted.
@@ -109,7 +109,7 @@ Finally, use `lsblk` again to check if partition are correctly mounted.
 Install the base packages to run the system properly.
 
 ```
-pacstrap -K /mnt base linux linux-firmware grub efibootmgr networkmanager nvim zsh
+pacstrap -K /mnt base linux linux-firmware amd-ucode grub efibootmgr networkmanager nvim sudo zsh
 ```
 
 # Configure the system
@@ -239,7 +239,7 @@ systemctl enable NetworkManager
 Enable the boot loader. Replace X with the disk name.
 
 ```
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB /dev/sdX
 ```
 
 And configure it.
@@ -272,7 +272,6 @@ reboot
 
 ## Check internet connection
 
-
 Verify the connection.
 
 ```
@@ -284,46 +283,35 @@ ping -c 5 archlinux.org
 Install additional packages.
 
 ```
-sudo pacman -S amd-ucode base-devel fastfetch firefox git konsole man-db man-pages nvidia-open nvidia-utils openssh sof-firmware texinfo zsh-autosuggestions zsh-completions
+sudo pacman -S base-devel fastfetch firefox git kitty man-db man-pages nvidia-open nvidia-utils openssh sof-firmware texinfo zsh-autosuggestions zsh-completions
 ```
 
-## Install the Graphical Environment
+# Hyprland installation
 
-Install KDE Plasma and the sddm display manager.
+See hyprland_install.md for the Hyprland installation guide
 
-```
-sudo pacman -S plasma sddm
-```
+# Final configuration
 
-## Start the Display Manager
-
-Start sddm.
-
-```
-sudo systemctl enable --now sddm
-```
-
-## Configuration
-
-Import and setup the dotfiles and install the Pacman and Yay packages
+See configuration.md for the final configuration
 
 # Informations
 
 ## Installed packages
 
 - base, linux, linux-firmware : Kernel
+- amd-ucode : Microcode updates for amd CPU
 - grub : Bootloader
 - efibootmgr : Used by grub to write boot entries to NVRAM
 - networkmanager : Provides configuration for network interfaces
 - neovim : NeoVim text editor
+- sudo : 
 - zsh : The zsh shell
 
-- amd-ucode : Microcode updates for amd CPU
 - base-devel : Base development packages
 - fastfetch : Terminal tool to show system informations
-- fireforx : Web Browser
+- firefox : Web Browser
 - git : Version control
-- konsole : Terminal emulator
+- kitty : Terminal emulator
 - man-db, man-pages : Man pages
 - nvidia-open : Nvidia driver
 - nvidia-utils : Nvidia drivers utilities
@@ -332,6 +320,3 @@ Import and setup the dotfiles and install the Pacman and Yay packages
 - texinfo : GNU documentation
 - zsh-autosuggestions : Automatically suggest commands for zsh
 - zsh-completions : Zsh tab completion
-
-- plasma : The desktop environment
-- sddm : The display manager
