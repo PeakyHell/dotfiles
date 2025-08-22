@@ -109,7 +109,7 @@ Finally, use `lsblk` again to check if partition are correctly mounted.
 Install the base packages to run the system properly.
 
 ```
-pacstrap -K /mnt base linux linux-firmware grub efibootmgr networkmanager nvim zsh
+pacstrap -K /mnt base linux linux-firmware amd-ucode grub efibootmgr networkmanager nvim zsh
 ```
 
 # Configure the system
@@ -284,17 +284,18 @@ ping -c 5 archlinux.org
 Install additional packages.
 
 ```
-sudo pacman -S amd-ucode base-devel fastfetch firefox git kitty man-db man-pages nvidia-open nvidia-utils openssh sof-firmware texinfo zsh-autosuggestions zsh-completions
+sudo pacman -S base-devel fastfetch firefox git kitty man-db man-pages nvidia-open nvidia-utils openssh sof-firmware texinfo zsh-autosuggestions zsh-completions
 ```
 
 # Hyprland installation
 
 ## Install the required packages
 
-Install Hyprland and the sddm display manager.
+Install Hyprland and the required packages.
 
 ```
-sudo pacman -S hyprland sddm egl-wayland
+sudo pacman -S hyprland sddm lib32-nvidia-utils egl-wayland libva-nvidia-driver xorg-xwayland wayland-protocols dunst pipewire wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent qt5-wayland qt6-wayland noto-fonts
+
 ```
 
 ## Modeset and Early KMS configuration
@@ -327,13 +328,14 @@ cat /sys/module/nvidia_drm/parameters/modeset
 
 Verify it returns `Y`
 
-## Set environment variables
+## Last checks
 
-Add the following environment variables to the Hyprland config.
+Verify that the following services are enabled
 
 ```
-env = LIBVA_DRIVER_NAME,nvidia
-env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+nvidia-suspend.service
+nvidia-hibernate.service
+nvidia-resume.service
 ```
 
 ## Start the Display Manager
@@ -348,8 +350,7 @@ Hyprland is now accessible from sddm login.
 
 ## Configure wayland
 
-TODO later...
-For now, use the Hyprland wiki.
+Once in Hyprland replace the config file with the custom one.
 
 # Final configuration
 
@@ -357,21 +358,34 @@ For now, use the Hyprland wiki.
 
 Import and setup the dotfiles and install the Pacman and Yay packages
 
+## Packages configuration
+
+For `dunst` move the config file from `/etc/xdg/dunst/dunstrc` to `.config/dunst/dunstrc`
+
+
+## Update the system
+
+Once finished, update the system and all the packages.
+
+```
+sudo pacman -Syu
+```
+
 # Informations
 
 ## Installed packages
 
 - base, linux, linux-firmware : Kernel
+- amd-ucode : Microcode updates for amd CPU
 - grub : Bootloader
 - efibootmgr : Used by grub to write boot entries to NVRAM
 - networkmanager : Provides configuration for network interfaces
 - neovim : NeoVim text editor
 - zsh : The zsh shell
 
-- amd-ucode : Microcode updates for amd CPU
 - base-devel : Base development packages
 - fastfetch : Terminal tool to show system informations
-- fireforx : Web Browser
+- firefox : Web Browser
 - git : Version control
 - kitty : Terminal emulator
 - man-db, man-pages : Man pages
@@ -383,5 +397,23 @@ Import and setup the dotfiles and install the Pacman and Yay packages
 - zsh-autosuggestions : Automatically suggest commands for zsh
 - zsh-completions : Zsh tab completion
 
-- plasma : The desktop environment
+- hyprland :
 - sddm : The display manager
+- lib32-nvidia-utils : Utilities for games
+- egl-wayland : Enables compatibility between the EGL API and the Wayland protocol
+- libva-nvidia-driver : Driver for Hardware Acceleration
+- xorg-xwayland : Allows to run X apps in Wayland
+- wayland-protocols : Add Wayland protocols not included in the core protocol
+- dunst : Notification demon
+- pipewire : Multimedia framework. Required for screensharing
+- wireplumber : Session and policy manager for pipewire
+- xdg-desktop-portal-hyprland : Allow apps to communicate with the compositor through D-Bus
+- xdg-desktop-portal-gtk : File picker for XDPH
+- hyprpolkitagent : Authentication agent
+- qt5-wayland : Enables Wayland support in Qt
+- qt6-wayland : Enables Wayland support in Qt
+- noto-fonts : Nerd font
+
+# TODO
+
+- XDPH config inside Hyprland config
