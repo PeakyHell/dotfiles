@@ -9,7 +9,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 Then move the `.zshrc` file into the home directory and source it to configure Zsh.
 
 ```
-cat .zshrc > ~/.zshrc
+cat home/.zshrc > ~/.zshrc
 source ~/.zshrc
 ```
 
@@ -21,11 +21,16 @@ First generate the required ssh keys.
 ssh-keygen -t ed25519 -C "contact@peakyhell.com" -f "~/.ssh/id_ed25519_github"
 ```
 
-Then start the ssh-agent and add your keys to it.
+Then import the ssh config file
+
+```
+cat home/.ssh/config > ~/.ssh/config
+```
+
+Then start the ssh-agent.
 
 ```
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519_github
 ```
 
 And add the keys to Github/the ssh servers
@@ -49,7 +54,7 @@ ssh -T git@github.com
 Move the `.gitconfig` file into the home directory.
 
 ```
-cat .gitconfig > ~/.gitconfig
+cat home.gitconfig > ~/.gitconfig
 ```
 
 ## NeoVim configuration
@@ -57,8 +62,8 @@ cat .gitconfig > ~/.gitconfig
 Move `init.lua` and `lazy-lock.json` into the config directory.
 
 ```
-cat nvim/init.lua > ~/.config/nvim/init.lua
-cat nvim/lazy-lock.json > ~/.config/nvim/lazy-lock.json
+cat home/.config/nvim/init.lua > ~/.config/nvim/init.lua
+cat home/.confignvim/lazy-lock.json > ~/.config/nvim/lazy-lock.json
 ```
 
 ## Packages configuration
