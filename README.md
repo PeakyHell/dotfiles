@@ -51,21 +51,21 @@
 
 | Name | Description | Needs config |
 |------|-------------|--------------|
-| dunst | Notification daemon | ? |
+| dunst | Notification daemon | `exec-once` in Hyprland config |
 | egl-wayland | Enables compatibility between the EGL API and the Wayland protocol | No |
 | hyprland | Dynamic tiling Wayland compositor | Config file in repo and instructions in the [Hyprland installation guide](installation/hyprland_install.md) |
-| hyprpolkitagent | Authentication agent | No |
-| libva-nvidia-driver | Driver for Hardware Acceleration | No |
+| hyprpolkitagent | Authentication agent | `exec-once` in Hyprland config |
+| libva-nvidia-driver | Driver for Hardware Acceleration | `env` in Hyprland config |
 | noto-fonts | Noto fonts | No |
 | qt5-wayland | Enables Wayland support in Qt | No |
 | qt6-wayland | Enables Wayland support in Qt | No |
 | ttf-nerd-fonts-symbols-common | Extra symbol | No |
 | ttf-noto-nerd | Noto nerd font | No |
-| waybar | Wayland bar | Config file in repo |
+| waybar | Wayland bar | `exec-once` in Hyprland config and Config file in repo |
 | wayland-protocols | Add Wayland protocols not included in the core protocol | No |
 | wofi | Applications launcher | ? |
-| xdg-desktop-portal-gtk | File picker for XDPH | No |
-| xdg-desktop-portal-hyprland | Allow apps to communicate with the compositor through D-Bus | No |
+| xdg-desktop-portal-gtk | File picker for XDPH | TODO : With xdg-desktop-portal-hyprland |
+| xdg-desktop-portal-hyprland | Allow apps to communicate with the compositor through D-Bus | TODO: `exec-once` in Hyprland config |
 | xorg-xwayland | Allows to run X apps in Wayland | No |
 
 ## Apps / Utils (20)
