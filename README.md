@@ -87,7 +87,8 @@
 | reflector | Used to retrieve Pacman mirror list |
 | steam | Steam |
 | texinfo | GNU documentation |
-| xclip | Clipboard tool |
+| wl-clipboard | Clipboard tool for Wayland |
+| xclip | Clipboard tool for X11 |
 | yay | AUR Helper |
 | zsh-autosuggestions | Automatically suggest commands for zsh |
 | zsh-completions | Zsh tab completion |

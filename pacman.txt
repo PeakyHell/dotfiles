@@ -42,6 +42,7 @@ ufw
 waybar
 wayland-protocols
 wireplumber
+wl-clipboard
 wofi
 xclip
 xdg-desktop-portal-gtk
