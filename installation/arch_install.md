@@ -293,30 +293,3 @@ See hyprland_install.md for the Hyprland installation guide
 # Final configuration
 
 See configuration.md for the final configuration
-
-# Informations
-
-## Installed packages
-
-- base, linux, linux-firmware : Kernel
-- amd-ucode : Microcode updates for amd CPU
-- grub : Bootloader
-- efibootmgr : Used by grub to write boot entries to NVRAM
-- networkmanager : Provides configuration for network interfaces
-- neovim : NeoVim text editor
-- sudo : 
-- zsh : The zsh shell
-
-- base-devel : Base development packages
-- fastfetch : Terminal tool to show system informations
-- firefox : Web Browser
-- git : Version control
-- kitty : Terminal emulator
-- man-db, man-pages : Man pages
-- nvidia-open : Nvidia driver
-- nvidia-utils : Nvidia drivers utilities
-- openssh : Ssh usage and key management
-- sof-firmware : Firmware for audio cards
-- texinfo : GNU documentation
-- zsh-autosuggestions : Automatically suggest commands for zsh
-- zsh-completions : Zsh tab completion
