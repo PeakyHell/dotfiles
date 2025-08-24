@@ -70,8 +70,8 @@
 
 ## Apps / Utils (20)
 
-| Name | Description |
-|------|-------------|
+| Name | Description | Needs config |
+|------|-------------|--------------|
 | discord | Discord | No |
 | fastfetch | Terminal tool to show system informations | No |
 | firefox | Web Browser | No |
