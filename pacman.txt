@@ -13,6 +13,7 @@ grub
 hyprland
 hyprpolkitagent
 kitty
+lib32-nvidia-utils
 libva-nvidia-driver
 linux
 linux-firmware
@@ -32,6 +33,7 @@ qt6-wayland
 reflector
 sddm
 sof-firmware
+steam
 sudo
 texinfo
 ttf-nerd-fonts-symbols-common

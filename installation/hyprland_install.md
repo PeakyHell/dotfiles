@@ -63,9 +63,6 @@ Hyprland is now accessible from sddm login.
 
 Once in Hyprland replace the config file with the custom one.
 
-# Informations
-- (Removed) lib32-nvidia-utils : Utilities for games
-
 # TODO
 
 - XDPH config inside Hyprland config

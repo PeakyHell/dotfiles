@@ -33,6 +33,7 @@
 | base-devel | Base development packages  |
 | efibootmgr | Used by grub to write boot entries to NVRAM |
 | grub | Bootloader |
+| lib32-nvidia-utils | Utilities for 32 bits games |
 | linux | Linux kernel |
 | linux-firmware | Linux firmware |
 | networkmanager | Provides configuration for network interfaces |
@@ -84,6 +85,7 @@
 | openssh | Ssh usage and key management |
 | pavucontrol | Audio control |
 | reflector | Used to retrieve Pacman mirror list |
+| steam | Steam |
 | texinfo | GNU documentation |
 | xclip | Clipboard tool |
 | yay | AUR Helper |
