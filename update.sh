@@ -16,4 +16,10 @@ cat home/.config/nvim/lazy-lock.json > ~/.config/nvim/lazy-lock.json
 # Hyprland config
 cat home/.config/hypr/hyprland.conf > ~/.config/hypr/hyprland.conf
 
+# Waybar config
+cat home/.config/waybar/config > ~/.config/waybar/config
+
+# Pacman config
+sudo cat etc/pacman.conf > /etc/pacman.conf
+
 echo "Don't forget to source ~/.zshrc !"

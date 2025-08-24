@@ -54,7 +54,7 @@ ssh -T git@github.com
 Move the `.gitconfig` file into the home directory.
 
 ```
-cat home.gitconfig > ~/.gitconfig
+cat home/.gitconfig > ~/.gitconfig
 ```
 
 ## NeoVim configuration
@@ -64,6 +64,34 @@ Move `init.lua` and `lazy-lock.json` into the config directory.
 ```
 cat home/.config/nvim/init.lua > ~/.config/nvim/init.lua
 cat home/.confignvim/lazy-lock.json > ~/.config/nvim/lazy-lock.json
+```
+
+## Waybar configuration
+
+Move the Waybar config file into the config directory.
+
+```
+cat home/.config/waybar/config > ~/.config/waybar/config
+```
+
+## Pacman configuration
+
+Move the Pacman config file into the etc directory
+
+```
+sudo cat etc/pacman.conf > /etc/pacman.conf
+```
+
+To improve Pacman download speed, first make a backup of the current mirrors list file.
+
+```
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+```
+
+Then fetch the top 10 fastest mirrors.
+
+```
+sudo reflector --verbose --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 ```
 
 ## Packages configuration

@@ -4,6 +4,7 @@ base-devel
 discord
 dunst
 efibootmgr
+egl-wayland
 fastfetch
 firefox
 git
@@ -28,6 +29,7 @@ pipewire
 pipewire-pulse
 qt5-wayland
 qt6-wayland
+reflector
 sddm
 sof-firmware
 sudo

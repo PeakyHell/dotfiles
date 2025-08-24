@@ -83,6 +83,7 @@
 | neovim | NeoVim text editor |
 | openssh | Ssh usage and key management |
 | pavucontrol | Audio control |
+| reflector | Used to retrieve Pacman mirror list |
 | texinfo | GNU documentation |
 | xclip | Clipboard tool |
 | yay | AUR Helper |
