@@ -32,7 +32,7 @@ qt5-wayland
 qt6-wayland
 reflector
 sddm
-sof-firmware
+spotify-launcher
 steam
 sudo
 texinfo

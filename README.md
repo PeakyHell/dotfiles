@@ -22,9 +22,9 @@
 2. Read the [Hyprland installation guide](installation/hyprland_install.md)
 3. Read the [Environment configuration guide](installation/configuration.md)
 
-# Packages
+# Packages (54)
 
-## System packages
+## System packages (18)
 
 | Name | Description |
 |------|-------------|
@@ -42,13 +42,12 @@
 | pipewire | Multimedia framework. Required for screensharing |
 | pipewire-pulse | Audio/Video router and processor |
 | sddm | The display manager |
-| sof-firmware | Firmware for audio cards |
 | sudo | Give permissions to users |
 | ufw | Uncomplicated firewall |
 | wireplumber | Session and policy manager for pipewire |
 | zsh | The zsh shell |
 
-## Hyprland
+## Hyprland (16)
 
 | Name | Description |
 |------|-------------|
@@ -69,7 +68,7 @@
 | xdg-desktop-portal-hyprland | Allow apps to communicate with the compositor through D-Bus |
 | xorg-xwayland | Allows to run X apps in Wayland |
 
-## Apps / Utils
+## Apps / Utils (20)
 
 | Name | Description |
 |------|-------------|
@@ -85,6 +84,7 @@
 | openssh | Ssh usage and key management |
 | pavucontrol | Audio control |
 | reflector | Used to retrieve Pacman mirror list |
+| spotify-launcher | Spotify |
 | steam | Steam |
 | texinfo | GNU documentation |
 | wl-clipboard | Clipboard tool for Wayland |
