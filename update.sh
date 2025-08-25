@@ -37,6 +37,10 @@ cat home/.config/waybar/style.css > ~/.config/waybar/style.css
 mkdir -p ~/.config/wofi
 cat home/.config/wofi/style.css > ~/.config/wofi/style.css
 
+# Dunst config
+mkdir -p /etc/dunst
+cat etc/dunst/dunstrc > /etc/dunst/dunstrc
+
 # Pacman config
 #sudo cat etc/pacman.conf > /etc/pacman.conf
 
