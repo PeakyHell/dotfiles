@@ -25,6 +25,7 @@ cat home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
 
 # Waybar config
 cat home/.config/waybar/config > ~/.config/waybar/config
+cat home/.config/waybar/style.css > ~/.config/waybar/style.css
 
 # Pacman config
 #sudo cat etc/pacman.conf > /etc/pacman.conf
