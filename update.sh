@@ -20,6 +20,9 @@ cat home/.config/hypr/hypridle.conf > ~/.config/hypr/hypridle.conf
 cat home/.config/hypr/hyprpaper.conf > ~/.config/hypr/hyprpaper.conf
 cp -a home/.config/wallpapers/. ~/.config/wallpapers/
 
+# Kitty config
+cat home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
+
 # Waybar config
 cat home/.config/waybar/config > ~/.config/waybar/config
 
