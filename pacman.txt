@@ -11,6 +11,7 @@ git
 goxlr-utility
 grub
 hyprland
+hyprlock
 hyprpolkitagent
 kitty
 lib32-nvidia-utils

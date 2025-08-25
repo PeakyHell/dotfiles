@@ -22,7 +22,7 @@
 2. Read the [Hyprland installation guide](installation/hyprland_install.md)
 3. Read the [Environment configuration guide](installation/configuration.md)
 
-# Packages (54)
+# Packages (55)
 
 ## System packages (18)
 
@@ -47,13 +47,14 @@
 | wireplumber | Session and policy manager for pipewire | No |
 | zsh | The zsh shell | Config file in the repo |
 
-## Hyprland (16)
+## Hyprland (17)
 
 | Name | Description | Needs config |
 |------|-------------|--------------|
 | dunst | Notification daemon | `exec-once` in Hyprland config |
 | egl-wayland | Enables compatibility between the EGL API and the Wayland protocol | No |
 | hyprland | Dynamic tiling Wayland compositor | Config file in repo and instructions in the [Hyprland installation guide](installation/hyprland_install.md) |
+| hyprlock | Lock screen for Hyprland | `bind` in Hyprland config and Config file in repo |
 | hyprpolkitagent | Authentication agent | `exec-once` in Hyprland config |
 | libva-nvidia-driver | Driver for Hardware Acceleration | `env` in Hyprland config |
 | noto-fonts | Noto fonts | No |
