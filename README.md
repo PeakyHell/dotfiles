@@ -22,7 +22,7 @@
 2. Read the [Hyprland installation guide](installation/hyprland_install.md)
 3. Read the [Environment configuration guide](installation/configuration.md)
 
-# Packages (56)
+# Packages (57)
 
 ## System packages (18)
 
@@ -47,7 +47,7 @@
 | wireplumber | Session and policy manager for pipewire | No |
 | zsh | The zsh shell | Config file in the repo |
 
-## Hyprland (18)
+## Hyprland (19)
 
 | Name | Description | Needs config |
 |------|-------------|--------------|
@@ -56,6 +56,7 @@
 | hypridle | Idling in Hyprland | `exec-once` in Hyprland config and Config file in repo |
 | hyprland | Dynamic tiling Wayland compositor | Config file in repo and instructions in the [Hyprland installation guide](installation/hyprland_install.md) |
 | hyprlock | Lock screen for Hyprland | `bind` in Hyprland config and Config file in repo |
+| hyprpaper | Wallpaper manager | `exec-once` in Hyprland config and Config file in repo + wallpapers|
 | hyprpolkitagent | Authentication agent | `exec-once` in Hyprland config |
 | libva-nvidia-driver | Driver for Hardware Acceleration | `env` in Hyprland config |
 | noto-fonts | Noto fonts | No |

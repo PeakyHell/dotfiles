@@ -13,6 +13,7 @@ grub
 hypridle
 hyprland
 hyprlock
+hyprpaper
 hyprpolkitagent
 kitty
 lib32-nvidia-utils
