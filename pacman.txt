@@ -10,6 +10,7 @@ firefox
 git
 goxlr-utility
 grub
+hypridle
 hyprland
 hyprlock
 hyprpolkitagent
