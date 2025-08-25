@@ -1,0 +1,53 @@
+/* Entire window */
+window {
+    background: rgba(43, 48, 59, 0.9);
+    border: 3px solid rgba(51, 204, 255, 0.93);
+    border-radius: 10px;
+    color: white;
+}
+
+/* Box that everything else sits inside of */
+#outer-box {
+    padding: 20px;
+}
+
+/* Search bar */
+#input {
+    background: rgba(43, 48, 59, 1);
+    border: 3px solid rgba(51, 204, 255, 0.93);
+}
+
+/* Scroll window containing inner boxes */
+#scroll {
+    border: 3px solid rgba(51, 204, 255, 0.93);
+}
+
+/* Box containing all the entries */
+#inner-box {
+
+}
+
+/* Box contaning text (and images) */
+#entry {
+    padding: 5px;
+}
+
+/* Box containing the name of the app */
+#text {
+
+}
+
+/* Images displayed in entries */
+#img {
+
+}
+
+/* Currently focused entry in the list */
+#entry:selected {
+
+}
+
+/* Currently focused text inside of the entry in the list */
+#text:selected {
+
+}
