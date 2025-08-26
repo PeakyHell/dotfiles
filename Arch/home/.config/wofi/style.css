@@ -14,12 +14,11 @@ window {
 /* Search bar */
 #input {
     background: rgba(43, 48, 59, 1);
-    border: 3px solid rgba(51, 204, 255, 0.93);
 }
 
 /* Scroll window containing inner boxes */
 #scroll {
-    border: 3px solid rgba(51, 204, 255, 0.93);
+
 }
 
 /* Box containing all the entries */
@@ -44,7 +43,8 @@ window {
 
 /* Currently focused entry in the list */
 #entry:selected {
-
+    background: rgba(43, 48, 59, 0.9);
+    border: 3px solid rgba(51, 204, 255, 0.93);
 }
 
 /* Currently focused text inside of the entry in the list */

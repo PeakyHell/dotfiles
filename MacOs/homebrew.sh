@@ -1,10 +1,12 @@
 # Install packages
+brew install fastfetch
 brew install gcc
 brew install git
 brew install neovim
 brew install node
 brew install openjdk
 brew install python
+brew install xclip
 
 # Install casks
 brew install --cask --appdir="~/Applications" discord
