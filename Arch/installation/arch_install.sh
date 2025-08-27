@@ -1,19 +1,29 @@
 #!/bin/bash
 
+GREEN="\033[32m"
+RED="\033[31m"
+END="\033[0m"
+
+function print_border() {
+    printf "$1=======================================${END}\n"
+}
+
 function message() {
-    echo "======================================="
-    echo ""
-    echo "$1"
-    echo ""
-    echo "======================================="
+    print_border "$END"
+    printf "$1\n"
+    print_border "$END"
 }
 
 function success_message() {
-    message "DONE : $1"
+    print_border "$GREEN"
+    printf "${GREEN}SUCCESS : $1${END}\n"
+    print_border "$GREEN"
 }
 
 function error_message() {
-    message "ERROR : $1"
+    print_border "$RED"
+    printf "${RED}ERROR : $1${END}\n"
+    print_border "$RED"
 }
 
 
@@ -70,7 +80,11 @@ fi
 #
 # =======================================
 
-# TODO : Check if system clock is synced
+if [[  ]]; then
+    error_message "The system clock isn't synced."
+else
+    success_message "The system clock is synced."
+fi
 
 
 # =======================================
@@ -97,17 +111,17 @@ echo "Enter the name of the ROOT partition (Example : sda3) : "
 read root
 
 
-if [[ "$boot" == *"$(lsblk)"* ]]; then
+if [[ *"$(lsblk)"* == "$boot" ]]; then
     error_message "BOOT partition /dev/$boot doesn't exist."
     exit 1
 fi
 
-if [[ "$root" == *"$(lsblk)"* ]]; then
+if [[ *"$(lsblk)"* == "$root" ]]; then
     error_message "ROOT partition /dev/$root doesn't exist."
     exit 1
 fi
 
-if [[ "$swap" == *"$(lsblk)"* ]]; then
+if [[ *"$(lsblk)"* == "$swap" ]]; then
     error_message "SWAP partition /dev/$swap doesn't exist."
     exit 1
 fi
