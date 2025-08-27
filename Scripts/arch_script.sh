@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 
-packages=(
+pacman=(
     "amd-ucode"
     "base"
     "base-devel"
@@ -10,9 +10,7 @@ packages=(
     "efibootmgr"
     "egl-wayland"
     "fastfetch"
-    "firefox"
     "git"
-    "goxlr-utility"
     "grub"
     "hypridle"
     "hyprland"
@@ -35,6 +33,7 @@ packages=(
     "pavucontrol"
     "pipewire"
     "pipewire-pulse"
+    "prismlauncher"
     "qt5-wayland"
     "qt6-wayland"
     "reflector"
@@ -60,8 +59,10 @@ packages=(
     "zsh-autosuggestions"
     "zsh-completions"
 )
-yay=(
 
+yay=(
+    "goxlr-utility"
+    "librewolf-bin"
 )
 
 
@@ -90,11 +91,11 @@ case "$option" in
 # Install/Update Pacman packages
 "1")
     for package in "${pacman[@]}"; do
-	eval "sudo pacman -S $package"
+	eval "sudo pacman -S --needed --noconfirm $package"
     done
 
     for package in "${yay[@]}"; do
-	eval "yay pacman -S $package"
+	eval "yay -S --needed --noconfirm $package"
     done
 
     echo "Packages installed/updated successfully !"
@@ -143,10 +144,10 @@ case "$option" in
 
     # Dunst config
     mkdir -p /etc/dunst
-    cat Arch/etc/dunst/dunstrc > /etc/dunst/dunstrc
+    cat Arch/etc/dunst/dunstrc | sudo tee /etc/dunst/dunstrc > /dev/null
 
     # Pacman config
-    #sudo cat Arch/etc/pacman.conf > /etc/pacman.conf
+    cat Arch/etc/pacman.conf | sudo tee /etc/pacman.conf > /dev/null
 
     echo "Config files updated successfully"
     exit 0
