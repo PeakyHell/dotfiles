@@ -30,7 +30,7 @@ case "$option" in
 	exit 1
     fi
 
-    sh Arch/script.sh
+    sh Scripts/arch_script.sh
     ;;
 
 
@@ -41,7 +41,7 @@ case "$option" in
 	exit 1
     fi
 
-    sh MacOs/script.sh
+    sh Scripts/macos_script.sh
     ;;
 
 
