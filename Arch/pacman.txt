@@ -31,6 +31,7 @@ openssh
 pavucontrol
 pipewire
 pipewire-pulse
+prismlauncher
 qt5-wayland
 qt6-wayland
 reflector

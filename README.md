@@ -1,28 +1,21 @@
 # dotfiles
 
 # Files
-
-- installation/
-    - arch_install.md : Basic Arch installation tutorial with very basic configuration
-    - configuration.md : Packages and environment configuration
-    - hyprland_install.md : Hyprland installation and configuration
-- nvim/
-    - init.lua : Neovim configuration
-    - lazy-lock.json : LazyVim plugins
-- .gitconfig : Git global configuration
-- .zshrc : Zsh configuration
-- Brewfile : Homebrew packages for MacOs
-- hyprland.conf : Hyprland configuration
-- pacman.txt : Pacman packages
-- yay.txt : Yay packages
+- Arch/ : Config files for Arch Linux
+- Common/ : Config files both for Arch Linux and MacOs
+- Docs/ : Documentations, guides, ...
+- MacOs/ : Config files for MacOs
+- Scripts/ : Config scripts
 
 # Arch Linux Installation
+
+NEEDS UPDATE
 
 1. Read the [Arch installation guide](installation/arch_install.md)
 2. Read the [Hyprland installation guide](installation/hyprland_install.md)
 3. Read the [Environment configuration guide](installation/configuration.md)
 
-# Packages (57)
+# Packages (58)
 
 ## System packages (18)
 
@@ -71,21 +64,22 @@
 | xdg-desktop-portal-hyprland | Allow apps to communicate with the compositor through D-Bus | TODO: `exec-once` in Hyprland config |
 | xorg-xwayland | Allows to run X apps in Wayland | No |
 
-## Apps / Utils (20)
+## Apps / Utils (21)
 
 | Name | Description | Needs config |
 |------|-------------|--------------|
 | discord | Discord | No |
 | fastfetch | Terminal tool to show system informations | No |
-| firefox | Web Browser | No |
 | git | Version control | Config file in the repo |
 | goxlr-utility | GoXLR app for Linux | No |
 | kitty | Terminal emulator | No |
+| librewolf-bin | Web Browser | No |
 | man-db | Man pages reader | No |
 | man-pages | Linux man pages | No |
 | neovim | NeoVim text editor | Config file in the repo |
 | openssh | Ssh usage and key management | Config file in the repo |
 | pavucontrol | Audio control | No |
+| prismlauncher | Minecraft Launcher | No |
 | reflector | Used to retrieve Pacman mirror list | No |
 | spotify-launcher | Spotify | No |
 | steam | Steam | No |
