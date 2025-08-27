@@ -126,27 +126,27 @@ case "$option" in
     # Hyprland config
     mkdir -p ~/.config/hypr
     mkdir -p ~/.config/wallpapers
-    cat home/.config/hypr/hyprland.conf > ~/.config/hypr/hyprland.conf
-    cat home/.config/hypr/hyprlock.conf > ~/.config/hypr/hyprlock.conf
-    cat home/.config/hypr/hypridle.conf > ~/.config/hypr/hypridle.conf
-    cat home/.config/hypr/hyprpaper.conf > ~/.config/hypr/hyprpaper.conf
-    cp -a home/.config/wallpapers/. ~/.config/wallpapers/
+    cat Arch/home/.config/hypr/hyprland.conf > ~/.config/hypr/hyprland.conf
+    cat Arch/home/.config/hypr/hyprlock.conf > ~/.config/hypr/hyprlock.conf
+    cat Arch/home/.config/hypr/hypridle.conf > ~/.config/hypr/hypridle.conf
+    cat Arch/home/.config/hypr/hyprpaper.conf > ~/.config/hypr/hyprpaper.conf
+    cp -a Arch/home/.config/wallpapers/. ~/.config/wallpapers/
 
     # Waybar config
     mkdir -p ~/.config/waybar
-    cat home/.config/waybar/config > ~/.config/waybar/config
-    cat home/.config/waybar/style.css > ~/.config/waybar/style.css
+    cat Arch/home/.config/waybar/config > ~/.config/waybar/config
+    cat Arch/home/.config/waybar/style.css > ~/.config/waybar/style.css
 
     # Wofi config
     mkdir -p ~/.config/wofi
-    cat home/.config/wofi/style.css > ~/.config/wofi/style.css
+    cat Arch/home/.config/wofi/style.css > ~/.config/wofi/style.css
 
     # Dunst config
     mkdir -p /etc/dunst
-    cat etc/dunst/dunstrc > /etc/dunst/dunstrc
+    cat Arch/etc/dunst/dunstrc > /etc/dunst/dunstrc
 
     # Pacman config
-    #sudo cat etc/pacman.conf > /etc/pacman.conf
+    #sudo cat Arch/etc/pacman.conf > /etc/pacman.conf
 
     echo "Config files updated successfully"
     exit 0
