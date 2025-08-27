@@ -97,48 +97,49 @@ case "$os" in
     # Update config files
     "3")
         # Zsh config
-        cat ../Common/home/.zshrc > ~/.zshrc
+        cat Common/home/.zshrc > ~/.zshrc
 
         # Ssh config
         mkdir -p ~/.ssh
-        cat ../Common/home/.ssh/config > ~/.ssh/config
+        cat Common/home/.ssh/config > ~/.ssh/config
 
         # Git config
-        cat ../Common/home/.gitconfig > ~/.gitconfig
+        cat Common/home/.gitconfig > ~/.gitconfig
+	cat Common/home/.gitignore > ~/.gitignore
 
         # NeoVim config
         mkdir -p ~/.config/nvim
-        cat ../Common/home/.config/nvim/init.lua > ~/.config/nvim/init.lua
-        cat ../Common/home/.config/nvim/lazy-lock.json > ~/.config/nvim/lazy-lock.json
+        cat Common/home/.config/nvim/init.lua > ~/.config/nvim/init.lua
+        cat Common/home/.config/nvim/lazy-lock.json > ~/.config/nvim/lazy-lock.json
 
         # Kitty config
         mkdir -p ~/.config/kitty
-        cat ../Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
+        cat Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
 
         # Hyprland config
         mkdir -p ~/.config/hypr
         mkdir -p ~/.config/wallpapers
-        cat ../Arch/home/.config/hypr/hyprland.conf > ~/.config/hypr/hyprland.conf
-        cat ../Arch/home/.config/hypr/hyprlock.conf > ~/.config/hypr/hyprlock.conf
-        cat ../Arch/home/.config/hypr/hypridle.conf > ~/.config/hypr/hypridle.conf
-        cat ../Arch/home/.config/hypr/hyprpaper.conf > ~/.config/hypr/hyprpaper.conf
-        cp -a ../Arch/home/.config/wallpapers/. ~/.config/wallpapers/
+        cat Arch/home/.config/hypr/hyprland.conf > ~/.config/hypr/hyprland.conf
+        cat Arch/home/.config/hypr/hyprlock.conf > ~/.config/hypr/hyprlock.conf
+        cat Arch/home/.config/hypr/hypridle.conf > ~/.config/hypr/hypridle.conf
+        cat Arch/home/.config/hypr/hyprpaper.conf > ~/.config/hypr/hyprpaper.conf
+        cp -a Arch/home/.config/wallpapers/. ~/.config/wallpapers/
 
         # Waybar config
         mkdir -p ~/.config/waybar
-        cat ../Arch/home/.config/waybar/config > ~/.config/waybar/config
-        cat ../Arch/home/.config/waybar/style.css > ~/.config/waybar/style.css
+        cat Arch/home/.config/waybar/config > ~/.config/waybar/config
+        cat Arch/home/.config/waybar/style.css > ~/.config/waybar/style.css
 
         # Wofi config
         mkdir -p ~/.config/wofi
-        cat ../Arch/home/.config/wofi/style.css > ~/.config/wofi/style.css
+        cat Arch/home/.config/wofi/style.css > ~/.config/wofi/style.css
 
         # Dunst config
         mkdir -p /etc/dunst
-        cat ../Arch/etc/dunst/dunstrc | sudo tee /etc/dunst/dunstrc > /dev/null
+        cat Arch/etc/dunst/dunstrc | sudo tee /etc/dunst/dunstrc > /dev/null
 
         # Pacman config
-        cat ../Arch/etc/pacman.conf | sudo tee /etc/pacman.conf > /dev/null
+        cat Arch/etc/pacman.conf | sudo tee /etc/pacman.conf > /dev/null
 
         echo "Config files updated successfully"
         exit 0
@@ -151,7 +152,7 @@ case "$os" in
 
     esac
     done
-
+    ;;
 
 # ==================================
 #
@@ -206,23 +207,24 @@ case "$os" in
     # Update config files
     "3")
         # Zsh config
-        cat ../Common/home/.zshrc > ~/.zshrc
+        cat Common/home/.zshrc > ~/.zshrc
 
         # Ssh config
         mkdir -p ~/.ssh
-        cat ../Common/home/.ssh/config > ~/.ssh/config
+        cat Common/home/.ssh/config > ~/.ssh/config
 
         # Git config
-        cat ../Common/home/.gitconfig > ~/.gitconfig
+        cat Common/home/.gitconfig > ~/.gitconfig
+	cat Common/home/.gitignore > ~/.gitignore
 
         # NeoVim config
         mkdir -p ~/.config/nvim
-        cat ../Common/home/.config/nvim/init.lua > ~/.config/nvim/init.lua
-        cat ../Common/home/.config/nvim/lazy-lock.json > ~/.config/nvim/lazy-lock.json
+        cat Common/home/.config/nvim/init.lua > ~/.config/nvim/init.lua
+        cat Common/home/.config/nvim/lazy-lock.json > ~/.config/nvim/lazy-lock.json
 
         # Kitty config
         mkdir -p ~/.config/kitty
-        cat ../Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
+        cat Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
 
         echo "Config files updated successfully"
         exit 0
@@ -249,6 +251,7 @@ case "$os" in
 	;;
     esac
     done
+    ;;
 
 
 # ==================================
