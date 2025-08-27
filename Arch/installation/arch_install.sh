@@ -4,6 +4,8 @@ GREEN="\033[32m"
 RED="\033[31m"
 END="\033[0m"
 
+DISKS=(sda sdb)
+
 function print_border() {
     printf "$1=======================================${END}\n"
 }
@@ -63,8 +65,8 @@ fi
 #
 # =======================================
 
-ip link
-ping -c 5 archlinux.org
+ip link > /dev/null
+ping -c 5 google.com > /dev/null
 
 if [[ $? -ne 0 ]]; then
     error_message "Could not connect to the internet."
@@ -80,10 +82,11 @@ fi
 #
 # =======================================
 
-if [[  ]]; then
-    error_message "The system clock isn't synced."
+timedatectl set-ntp true; sleep 5
+if [[ "$(timedatectl status | grep 'System clock synchronized' | awk '{print $4}')" != "yes" ]]; then
+    error_message "The system clock isn't synchronized."
 else
-    success_message "The system clock is synced."
+    success_message "The system clock is synchronized."
 fi
 
 
@@ -93,35 +96,38 @@ fi
 #
 # =======================================
 
-message "Starting cfdisk for first disk partitionning. Press enter to continue."
-read
-cfdisk /dev/sda
+for disk in "${DISKS[@]}"; do
+    message "Starting cfdisk for ${disk} partitionning. Press enter to continue."
+    read
+    cfdisk /dev/$disk
+    if [[ $? -ne 0 ]]; then
+        error_message "Failed to partition disk /dev/$disk"
+	exit 1
+    fi
+done
 
-message "Starting cfdisk for second disk partitionning. Press enter to continue."
-read
-cfdisk /dev/sdb
 
-echo "Enter the name of the BOOT partition (Example : sda1) : "
+printf "Enter the name of the BOOT partition (Example : sda1) : "
 read boot
 
-echo "Enter the name of the SWAP partition (Example : sda2) : "
+printf "Enter the name of the SWAP partition (Example : sda2) : "
 read swap
 
-echo "Enter the name of the ROOT partition (Example : sda3) : "
+printf "Enter the name of the ROOT partition (Example : sda3) : "
 read root
 
 
-if [[ *"$(lsblk)"* == "$boot" ]]; then
+if ! lsblk -o NAME | grep -w "$boot"; then
     error_message "BOOT partition /dev/$boot doesn't exist."
     exit 1
 fi
 
-if [[ *"$(lsblk)"* == "$root" ]]; then
+if ! lsblk -o NAME | grep -w "$root"; then
     error_message "ROOT partition /dev/$root doesn't exist."
     exit 1
 fi
 
-if [[ *"$(lsblk)"* == "$swap" ]]; then
+if ! lsblk -o NAME | grep -w "$swap"; then
     error_message "SWAP partition /dev/$swap doesn't exist."
     exit 1
 fi
@@ -202,10 +208,23 @@ fi
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
-cat /mnt/etc/fstab
+if ! grep -w "/dev/$root" /mnt/etc/fstab; then
+    error_message "The configuration is missing the ROOT partition /dev/$root"
+    exit 1
+fi
 
-# TODO : Check result
+if ! grep -w "/dev/$boot" /mnt/etc/fstab; then
+    error_message "The configuration is missing the BOOT partition /dev/$boot"
+    exit 1
+fi
+
+if ! grep -w "/dev/$swap" /mnt/etc/fstab; then
+    error_message "The configuration is missing the SWAP partition /dev/$swap"
+    exit 1
+fi
+
+success_message "The partitions configuration has been set successfully."
 
 
 message "INSTALLATION SUCCESSUL. ENTER THE SYSTEM WITH THE FOLLOWING COMMAND THEN EXECUTE THE NEXT SCRIPT"
-echo "arch-chroot /mnt"
+printf "arch-chroot /mnt"
