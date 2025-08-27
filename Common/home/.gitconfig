@@ -4,6 +4,7 @@
 
 [core]
 	compression = 9
+	excludesFile = ~/.gitignore
 
 [init]
 	defaultBranch = main
