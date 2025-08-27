@@ -1,0 +1,8 @@
+fastfetch
+gcc
+git
+neovim
+node
+openjdk
+python
+xclip

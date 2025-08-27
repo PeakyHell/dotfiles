@@ -6,9 +6,7 @@ dunst
 efibootmgr
 egl-wayland
 fastfetch
-firefox
 git
-goxlr-utility
 grub
 hypridle
 hyprland
@@ -52,7 +50,6 @@ xclip
 xdg-desktop-portal-gtk
 xdg-desktop-portal-hyprland
 xorg-xwayland
-yay
 zsh
 zsh-autosuggestions
 zsh-completions

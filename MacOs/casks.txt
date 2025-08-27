@@ -1,0 +1,8 @@
+discord
+docker-desktop
+kitty
+librewolf
+obsidian
+protonvpn
+scroll-reverser
+spotify

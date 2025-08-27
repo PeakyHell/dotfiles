@@ -1,1 +1,3 @@
+goxlr-utility
 librewolf-bin
+yay
