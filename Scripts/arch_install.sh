@@ -34,7 +34,8 @@ echo "    Welcome to the Arch Linux Installation Script."
 echo "    Please choose an option :"
 echo "    [1] Install a fresh Arch Linux"
 echo "    [2] Configure services"
-echo "    [3] Install and configure Hyprland"
+echo "    [3] Install and configure Hyprland (before reboot)"
+echo "    [4] Install and configure Hyprland (after reboot)"
 echo "    [0] Exit"
 echo "======================================================"
 read option
@@ -305,13 +306,74 @@ case $option in
 
 # ==================================
 #
-# Install and configure Hyprland
+# Install and configure Hyprland (before reboot)
 #
 # ==================================
 "3")
+    # Install required packages
+    sudo pacman -S --needed --noconfirm hyprland sddm egl-wayland libva-nvidia-driver xorg-xwayland wayland-protocols dunst pipewire wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent qt5-wayland qt6-wayland noto-fonts
 
+
+    # Modeset and Rearly KMS configuration (Nvidia)
+    if ! "$(< /etc/modprobe.d/nvidia.conf)" | grep "options nvidia_drm modeset=1"; then
+        error_message "Modeset isn't enabled in the nvidia config."
+    else
+        success_message "Modeset enabled successfully."
+    fi
+
+    # TODO : Add MODULES to /etc/mkinitcpio.conf
+
+    sudo mkinitcpio -P
+    if [[ $? -ne 0 ]]; then
+        error_message "Failed to rebuild the initramfs."
+	exit 1
+    else
+	success_message "initramfs rebuilt successfully."
+    fi
+
+    success_message "Rebooting..."
+
+    reboot
     ;;
 
+
+# ==================================
+#
+# Install and configure Hyprland (after reboot)
+#
+# ==================================
+"4")
+    # Ensure DRM is enabled
+    if [[ "$(< /sys/module/nvidia_drm/parameters/modeset)" != "Y" ]]; then
+        error_message "DRM wasn't enabled correctly"
+	exit 1
+    else
+	success_message "DRM was enabled successfully"
+    fi
+
+    # Verify nvidia services are enabled
+    systemctl enable --now nvidia-suspend.service
+    if ! systemctl is-enabled nvidia-suspend.service | grep -q "enabled"; then
+        error_message "Couldn't enable nvidia-suspend.service"
+	exit 1
+    fi
+
+    systemctl enable --now nvidia-hibernate.service
+    if ! systemctl is-enabled nvidia-hibernate.service | grep -q "enabled"; then
+        error_message "Couldn't enable nvidia-hibernate.service"
+	exit 1
+    fi
+
+    systemctl enable --now nvidia-resume.service
+    if ! systemctl is-enabled nvidia-resume.service | grep -q "enabled"; then
+        error_message "Couldn't enable nvidia-resume.service"
+	exit 1
+    fi
+
+    # Start sddm
+    sudo systemctl enable --now sddm
+
+    ;;
 
 esac
 done
