@@ -73,7 +73,7 @@ case "$os" in
 "1")
     if [[ $(uname) != "Linux" ]]; then
         printf "Can't execute Arch Linux scripts on your platform !\n"
-	exit 1
+	continue
     fi
 
     while true; do
@@ -109,13 +109,15 @@ case "$os" in
         done
 
         printf "Packages installed/updated successfully !\n"
-        break
+	printf "Press any key to exit..."
+	read
 	;;
 
     # Update config files
     "3")
         # Zsh config
         cat Common/home/.zshrc > ~/.zshrc
+	/bin/zsh -c "source ~/.zshrc"
 
         # Ssh config
         mkdir -p ~/.ssh
@@ -160,7 +162,8 @@ case "$os" in
         cat Arch/etc/pacman.conf | sudo tee /etc/pacman.conf > /dev/null
 
         printf "Config files updated successfully\n"
-        break
+	printf "Press any key to exit..."
+	read
 	;;
 
     # Default
@@ -180,7 +183,7 @@ case "$os" in
 "2")
     if [[ $(uname) != "Darwin" ]]; then
         printf "Can't execute MacOs scripts on your platform !\n"
-	exit 1
+	continue
     fi
 
     while true; do
@@ -203,9 +206,10 @@ case "$os" in
 
     # Install Homebrew
     "1")
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         printf "Homebrew installed successfully !\n"
-        break
+	printf "Press any key to exit..."
+	read
 	;;
 
     # Install/Update Homebrew packages
@@ -219,13 +223,15 @@ case "$os" in
         done
 
         printf "Packages installed/updated successfully !\n"
-        break
+	printf "Press any key to exit..."
+	read
 	;;
 
     # Update config files
     "3")
         # Zsh config
         cat Common/home/.zshrc > ~/.zshrc
+	/bin/zsh -c "source ~/.zshrc"
 
         # Ssh config
         mkdir -p ~/.ssh
@@ -245,7 +251,8 @@ case "$os" in
         cat Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
 
         printf "Config files updated successfully\n"
-        break
+	printf "Press any key to exit..."
+	read
         ;;
 
     # Apply MacOs settings
@@ -260,7 +267,8 @@ case "$os" in
         defaults write com.apple.dock "autohide" -bool "true"
 
 	printf "Settings applied successfully\n"
-        break
+	printf "Press any key to exit..."
+	read
 	;;
 
     # Default
