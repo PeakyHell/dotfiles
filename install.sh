@@ -1,22 +1,40 @@
-#!/bin/zsh
+#!/bin/bash
 
 # ==================================
 #
 # Variables
 #
 # ==================================
+ls
+if [[ ! -f Arch/pacman.txt ]]; then
+    printf "Arch/pacman.txt not found !\n"
+    exit 1
+fi
+if [[ ! -f Arch/yay.txt ]]; then
+    printf "Arch/yay.txt not found !\n"
+    exit 1
+fi
+if [[ ! -f MacOs/formulaes.txt ]]; then
+    printf "MacOs/formulaes.txt not found !\n"
+    exit 1
+fi
+if [[ ! -f MacOs/casks.txt ]]; then
+    printf "MacOs/casks.txt not found !\n"
+    exit 1
+fi
+
 
 pacman=()
-while IFS= read -r line; do pacman+=("$line"); done < ../Arch/pacman.txt
+while IFS= read -r line; do pacman+=("$line"); done < Arch/pacman.txt
 
 yay=()
-while IFS= read -r line; do yay+=("$line"); done < ../Arch/yay.txt
+while IFS= read -r line; do yay+=("$line"); done < Arch/yay.txt
 
 formulaes=()
-while IFS= read -r line; do formulaes+=("$line"); done < ../MacOs/formulaes.txt
+while IFS= read -r line; do formulaes+=("$line"); done < MacOs/formulaes.txt
 
 casks=()
-while IFS= read -r line; do casks+=("$line"); done < ../MacOs/casks.txt
+while IFS= read -r line; do casks+=("$line"); done < MacOs/casks.txt
 
 
 # ==================================
@@ -27,12 +45,12 @@ while IFS= read -r line; do casks+=("$line"); done < ../MacOs/casks.txt
 
 while true; do
 clear
-echo "=================================="
-echo "    Select your platform :"
-echo "    [1] Arch Linux"
-echo "    [2] MacOs"
-echo "    [0] Exit"
-echo "=================================="
+printf "==================================\n"
+printf "    Select your platform :\n"
+printf "    [1] Arch Linux\n"
+printf "    [2] MacOs\n"
+printf "    [0] Exit\n"
+printf "==================================\n"
 read os
 case "$os" in
 
@@ -54,44 +72,44 @@ case "$os" in
 # ==================================
 "1")
     if [[ $(uname) != "Linux" ]]; then
-        echo "Can't execute Arch Linux scripts on your platform !"
+        printf "Can't execute Arch Linux scripts on your platform !\n"
 	exit 1
     fi
 
     while true; do
     clear
-    echo "=========================================="
-    echo "    Choose an option :"
-    echo "    [1] Install Arch Linux"
-    echo "    [2] Install/Update Pacman packages"
-    echo "    [3] Update config files"
-    echo "    [0] Exit"
-    echo "=========================================="
+    printf "==========================================\n"
+    printf "    Choose an option :\n"
+    printf "    [1] Install Arch Linux\n"
+    printf "    [2] Install/Update Pacman packages\n"
+    printf "    [3] Update config files\n"
+    printf "    [0] Go back\n"
+    printf "==========================================\n"
     read option
     case "$option" in
 
     # Exit
     "0")
-        exit 0
+        break
 	;;
 
     # Install Arch Linux
     "1")
-
+	# Scripts/arch_install.sh
 	;;
 
     # Install/Update Pacman packages
     "2")
         for package in "${pacman[@]}"; do
-	    eval "sudo pacman -S --needed --noconfirm $package"
+	    sudo pacman -S --needed --noconfirm "$package"
         done
 
         for package in "${yay[@]}"; do
-	    eval "yay -S --needed --noconfirm $package"
+	    yay -S --needed --noconfirm "$package"
         done
 
-        echo "Packages installed/updated successfully !"
-        exit 0
+        printf "Packages installed/updated successfully !\n"
+        break
 	;;
 
     # Update config files
@@ -141,13 +159,13 @@ case "$os" in
         # Pacman config
         cat Arch/etc/pacman.conf | sudo tee /etc/pacman.conf > /dev/null
 
-        echo "Config files updated successfully"
-        exit 0
+        printf "Config files updated successfully\n"
+        break
 	;;
 
     # Default
     *)
-        echo "Please enter a valid value !"
+        printf "Please enter a valid value !\n"
 	;;
 
     esac
@@ -161,33 +179,33 @@ case "$os" in
 # ==================================
 "2")
     if [[ $(uname) != "Darwin" ]]; then
-        echo "Can't execute MacOs scripts on your platform !"
+        printf "Can't execute MacOs scripts on your platform !\n"
 	exit 1
     fi
 
     while true; do
     clear
-    echo "============================================"
-    echo "    Choose an option :"
-    echo "    [1] Install Homebrew"
-    echo "    [2] Install/Update Homebrew packages"
-    echo "    [3] Update config files"
-    echo "    [4] Apply MacOs settings"
-    echo "    [0] Exit"
-    echo "============================================"
+    printf "============================================\n"
+    printf "    Choose an option :\n"
+    printf "    [1] Install Homebrew\n"
+    printf "    [2] Install/Update Homebrew packages\n"
+    printf "    [3] Update config files\n"
+    printf "    [4] Apply MacOs settings\n"
+    printf "    [0] Go back\n"
+    printf "============================================\n"
     read option
     case "$option" in
 
     # Exit
     "0")
-        exit 0
+        break
 	;;
 
     # Install Homebrew
     "1")
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        echo "Homebrew installed successfully !"
-        exit 0
+        printf "Homebrew installed successfully !\n"
+        break
 	;;
 
     # Install/Update Homebrew packages
@@ -197,11 +215,11 @@ case "$os" in
         done
 
         for cask in "${casks[@]}"; do
-	    eval "brew install --cask --appdir=\"~/Applications\" $cask"
+	    brew install --cask --appdir=\"~/Applications\" "$cask"
         done
 
-        echo "Packages installed/updated successfully !"
-        exit 0
+        printf "Packages installed/updated successfully !\n"
+        break
 	;;
 
     # Update config files
@@ -226,8 +244,8 @@ case "$os" in
         mkdir -p ~/.config/kitty
         cat Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
 
-        echo "Config files updated successfully"
-        exit 0
+        printf "Config files updated successfully\n"
+        break
         ;;
 
     # Apply MacOs settings
@@ -241,13 +259,13 @@ case "$os" in
         # Auto hide dock
         defaults write com.apple.dock "autohide" -bool "true"
 
-	echo "Settings applied successfully"
-        exit 0
+	printf "Settings applied successfully\n"
+        break
 	;;
 
     # Default
     *)
-        echo "Please enter a valid value !"
+        printf "Please enter a valid value !\n"
 	;;
     esac
     done
@@ -260,7 +278,7 @@ case "$os" in
 #
 # ==================================
 *)
-    echo "Please enter a valid value !"
+    printf "Please enter a valid value !\n"
     ;;
 
 

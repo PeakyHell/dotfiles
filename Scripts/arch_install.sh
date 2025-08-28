@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# ==================================
+#
+# Variables and functiions
+#
+# ==================================
+
 GREEN="\033[32m"
 RED="\033[31m"
 END="\033[0m"
@@ -14,6 +20,31 @@ function error_message() {
     printf "${RED}ERROR :${END} $1\n"
 }
 
+
+# ==================================
+#
+# Script
+#
+# ==================================
+
+while true; do
+clear
+echo "======================================================"
+echo "    Welcome to the Arch Linux Installation Script."
+echo "    Please choose an option :"
+echo "    [1] Start the installation"
+echo "    [0] Exit"
+echo "======================================================"
+read option
+
+if [[ "$option" != "0" && "$option" != "1"]]; then
+    printf "Please enter a valid value !"
+    continue
+fi
+
+if [[ "$option" == "0" ]]; then
+    exit 0
+fi
 
 # =======================================
 #
@@ -248,3 +279,5 @@ else
 fi
 
 reboot
+
+done
