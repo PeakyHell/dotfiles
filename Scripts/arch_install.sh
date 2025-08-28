@@ -6,26 +6,12 @@ END="\033[0m"
 
 DISKS=(sda sdb)
 
-function print_border() {
-    printf "$1=======================================${END}\n"
-}
-
-function message() {
-    print_border "$END"
-    printf "$1\n"
-    print_border "$END"
-}
-
 function success_message() {
-    print_border "$GREEN"
-    printf "${GREEN}SUCCESS : $1${END}\n"
-    print_border "$GREEN"
+    printf "${GREEN}SUCCESS :${END} $1\n"
 }
 
 function error_message() {
-    print_border "$RED"
-    printf "${RED}ERROR : $1${END}\n"
-    print_border "$RED"
+    printf "${RED}ERROR :${END} $1\n"
 }
 
 
@@ -85,6 +71,7 @@ fi
 timedatectl set-ntp true; sleep 5
 if [[ "$(timedatectl status | grep 'System clock synchronized' | awk '{print $4}')" != "yes" ]]; then
     error_message "The system clock isn't synchronized."
+    exit 1
 else
     success_message "The system clock is synchronized."
 fi
@@ -97,7 +84,7 @@ fi
 # =======================================
 
 for disk in "${DISKS[@]}"; do
-    message "Starting cfdisk for ${disk} partitionning. Press enter to continue."
+    printf "Starting cfdisk for ${disk} partitionning. Press enter to continue."
     read
     cfdisk /dev/$disk
     if [[ $? -ne 0 ]]; then
@@ -195,6 +182,7 @@ pacstrap -K /mnt base linux linux-firmware amd-ucode grub efibootmgr networkmana
 
 if [[ $? -ne 0 ]]; then
     error_message "Failed to install base system packages."
+    exit 1
 else
     success_message "Base system packages installed successfully."
 fi
@@ -226,5 +214,37 @@ fi
 success_message "The partitions configuration has been set successfully."
 
 
-message "INSTALLATION SUCCESSUL. ENTER THE SYSTEM WITH THE FOLLOWING COMMAND THEN EXECUTE THE NEXT SCRIPT"
-printf "arch-chroot /mnt"
+success_message "FIRST PART OF INSTALLATION SUCCESSFULL. CONTINUING TO CHROOT."
+
+
+# =======================================
+#
+# Chroot
+#
+# =======================================
+
+arch-chroot /mnt ./chroot_script.sh
+
+if [[ $? -ne 0 ]]; then
+    error_message "Chroot configuration failed."
+    exit 1
+else
+    success_message "Chroot configuration completed successfully."
+fi
+
+# =======================================
+#
+# Reboot
+#
+# =======================================
+
+umount -R /mnt
+
+if [[ $? -ne 0 ]]; then
+    error_message "Failed to unmount the drives."
+    exit 1
+else
+    success_message "Drives unmounted successfully. Rebooting."
+fi
+
+reboot
