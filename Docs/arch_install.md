@@ -1,4 +1,4 @@
-# Pre-installation
+# Preliminary steps
 
 ## Keyboard layout
 
@@ -32,11 +32,19 @@ ping -c 5 archlinux.org
 
 ## Update the system clock
 
-Ensure the system clock is correctly synced
+Ensure the system clock is correctly synchronized
 
 ```
 timedatectl
 ```
+
+If not, synchronize it.
+
+```
+timedatectl set-ntp true
+```
+
+# Main Installation
 
 ## Partitioning the disk(s)
 
@@ -50,9 +58,27 @@ Select the `gpt` label.
 
 Free the necessary partitions then create the following partitions :
 
-- 1G boot partition
-- 16G swap partition
-- Left space root partition
+- SSD 1 (500GB) :
+    > [!WARNING]
+    > WINDOWS SHOULD BE INSTALLED **BEFORE** ARCH. DO NOT TOUCH TO THIS DISK DURING ARCH INSTALLATION.
+
+    | Number | Partition | Size |
+    |--------|-----------|------|
+    | 1 | Windows | 500GB |
+
+- SSD 2 (500GB) :
+    | Number | Partition | Type | Size |
+    |--------|-----------|------|------|
+    | 1 | Boot | EFI | 1GB |
+    | 2 | Swap | Linux Swap | 16GB |
+    | 3 | Root | Linux Filesystem | 483GB |
+
+- NVMe (2TB) :
+    | Number | Partition | Type | Size |
+    |--------|-----------|------|------|
+    | 1 | Home | Linux Filesystem | 2TB |
+
++ NAS for documents storage
 
 Then Write and Quit to go back to the terminal.
 
@@ -83,6 +109,11 @@ Then format the partitions as follow (replace X with the disk name) :
     mkswap /dev/sdX2
     ```
 
+- home partition
+    ```
+    mkfs.ext4 /dev/nvme0n1p1
+    ```
+
 ### Mounting
 
 - root partition
@@ -100,9 +131,12 @@ Then format the partitions as follow (replace X with the disk name) :
     swapon /dev/sdX2
     ```
 
-Finally, use `lsblk` again to check if partition are correctly mounted.
+- home partition
+    ```
+    mount --mkdir /dev/nvme0n1p1 /mnt/home
+    ```
 
-# Installation
+Finally, use `lsblk` again to check if partition are correctly mounted.
 
 ## Install the base system
 
@@ -148,13 +182,13 @@ Then check if the timezone was correctly updated.
 date
 ```
 
-Finally set the hardware clock.
+Finally sync the system time to the hardware clock.
 
 ```
 hwclock --systohc
 ```
 
-## Set the localization
+## Set the localization settings
 
 Set the localization by editing the file.
 
@@ -170,7 +204,7 @@ Then generate the locales.
 locale-gen
 ```
 
-Some program will check for the locale at another place.
+Now activate the locale.
 
 ```
 nvim /etc/locale.conf
@@ -208,10 +242,10 @@ And enter a password.
 
 ## Create a new user
 
-Create a new user to avoid using the root user.
+Then create a new user to avoid using the root user.
 
 ```
-useradd -m -G wheel -s /bin/zsh peakyhell
+useradd -mG wheel -s /bin/zsh peakyhell
 ```
 
 And set a password for the user
@@ -228,13 +262,15 @@ EDITOR=nvim visudo
 
 And uncomment the line `%wheel ALL=(ALL) ALL` and save the file.
 
-## Enable core services
+## Enable Network Manager
 
 Enable the network manager.
 
 ```
 systemctl enable NetworkManager
 ```
+
+## Configure Grub
 
 Enable the boot loader. Replace X with the disk name.
 
