@@ -320,7 +320,7 @@ ping -c 5 archlinux.org
 Install additional packages.
 
 ```
-sudo pacman -S base-devel fastfetch firefox git kitty man-db man-pages nvidia-open nvidia-utils openssh sof-firmware texinfo zsh-autosuggestions zsh-completions
+sudo pacman -S base-devel fastfetch git kitty man-db man-pages nvidia-open nvidia-utils openssh texinfo zsh-autosuggestions zsh-completions
 ```
 
 # Hyprland installation
@@ -330,7 +330,7 @@ sudo pacman -S base-devel fastfetch firefox git kitty man-db man-pages nvidia-op
 Install Hyprland and the required packages.
 
 ```
-sudo pacman -S hyprland sddm egl-wayland libva-nvidia-driver xorg-xwayland wayland-protocols dunst pipewire wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent qt5-wayland qt6-wayland noto-fonts
+sudo pacman -S hypridle hyprland hyprlock hyprpaper sddm egl-wayland libva-nvidia-driver xorg-xwayland wayland-protocols dunst pavucontrol pipewire wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent qt5-wayland qt6-wayland noto-fonts
 
 ```
 
