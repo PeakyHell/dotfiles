@@ -59,12 +59,13 @@ Select the `gpt` label.
 Free the necessary partitions then create the following partitions :
 
 - SSD 1 (500GB) :
-    > [!WARNING]
-    > WINDOWS SHOULD BE INSTALLED **BEFORE** ARCH. DO NOT TOUCH TO THIS DISK DURING ARCH INSTALLATION.
 
     | Number | Partition | Size |
     |--------|-----------|------|
     | 1 | Windows | 500GB |
+
+> [!WARNING]
+> WINDOWS SHOULD BE INSTALLED **BEFORE** ARCH. DO NOT TOUCH TO THIS DISK DURING ARCH INSTALLATION.
 
 - SSD 2 (500GB) :
     | Number | Partition | Type | Size |
@@ -304,7 +305,7 @@ And FINALLY reboot.
 reboot
 ```
 
-# Post-installaation
+# Post-installation
 
 ## Check internet connection
 
