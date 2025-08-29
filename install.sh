@@ -5,7 +5,6 @@
 # Variables
 #
 # ==================================
-ls
 if [[ ! -f Arch/pacman.txt ]]; then
     printf "Arch/pacman.txt not found !\n"
     exit 1
@@ -42,7 +41,6 @@ while IFS= read -r line; do casks+=("$line"); done < MacOs/casks.txt
 # Script
 #
 # ==================================
-
 while true; do
 clear
 printf "==================================\n"
@@ -73,7 +71,7 @@ case "$os" in
 "1")
     if [[ $(uname) != "Linux" ]]; then
         printf "Can't execute Arch Linux scripts on your platform !\n"
-	continue
+        continue
     fi
 
     while true; do
@@ -91,33 +89,33 @@ case "$os" in
     # Exit
     "0")
         break
-	;;
+        ;;
 
     # Install Arch Linux
     "1")
-	# Scripts/arch_install.sh
-	;;
+        # Scripts/arch_install.sh
+        ;;
 
     # Install/Update Pacman packages
     "2")
         for package in "${pacman[@]}"; do
-	    sudo pacman -S --needed --noconfirm "$package"
+            sudo pacman -S --needed --noconfirm "$package"
         done
 
         for package in "${yay[@]}"; do
-	    yay -S --needed --noconfirm "$package"
+            yay -S --needed --noconfirm "$package"
         done
 
         printf "Packages installed/updated successfully !\n"
-	printf "Press any key to exit..."
-	read
-	;;
+        printf "Press any key to exit..."
+        read
+        ;;
 
     # Update config files
     "3")
         # Zsh config
         cat Common/home/.zshrc > ~/.zshrc
-	/bin/zsh -c "source ~/.zshrc"
+        /bin/zsh -c "source ~/.zshrc"
 
         # Ssh config
         mkdir -p ~/.ssh
@@ -125,7 +123,7 @@ case "$os" in
 
         # Git config
         cat Common/home/.gitconfig > ~/.gitconfig
-	cat Common/home/.gitignore > ~/.gitignore
+        cat Common/home/.gitignore > ~/.gitignore
 
         # NeoVim config
         mkdir -p ~/.config/nvim
@@ -162,14 +160,14 @@ case "$os" in
         cat Arch/etc/pacman.conf | sudo tee /etc/pacman.conf > /dev/null
 
         printf "Config files updated successfully\n"
-	printf "Press any key to exit..."
-	read
-	;;
+        printf "Press any key to exit..."
+        read
+        ;;
 
     # Default
     *)
         printf "Please enter a valid value !\n"
-	;;
+        ;;
 
     esac
     done
@@ -183,7 +181,7 @@ case "$os" in
 "2")
     if [[ $(uname) != "Darwin" ]]; then
         printf "Can't execute MacOs scripts on your platform !\n"
-	continue
+        continue
     fi
 
     while true; do
@@ -202,36 +200,36 @@ case "$os" in
     # Exit
     "0")
         break
-	;;
+        ;;
 
     # Install Homebrew
     "1")
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         printf "Homebrew installed successfully !\n"
-	printf "Press any key to exit..."
-	read
-	;;
+        printf "Press any key to exit..."
+        read
+        ;;
 
     # Install/Update Homebrew packages
     "2")
         for formulae in "${formulaes[@]}"; do
-    	    brew install "$formulae"
+            brew install "$formulae"
         done
 
         for cask in "${casks[@]}"; do
-	    brew install --cask --appdir=\"~/Applications\" "$cask"
+            brew install --cask --appdir=\"~/Applications\" "$cask"
         done
 
         printf "Packages installed/updated successfully !\n"
-	printf "Press any key to exit..."
-	read
-	;;
+        printf "Press any key to exit..."
+        read
+        ;;
 
     # Update config files
     "3")
         # Zsh config
         cat Common/home/.zshrc > ~/.zshrc
-	/bin/zsh -c "source ~/.zshrc"
+        /bin/zsh -c "source ~/.zshrc"
 
         # Ssh config
         mkdir -p ~/.ssh
@@ -239,7 +237,7 @@ case "$os" in
 
         # Git config
         cat Common/home/.gitconfig > ~/.gitconfig
-	cat Common/home/.gitignore > ~/.gitignore
+        cat Common/home/.gitignore > ~/.gitignore
 
         # NeoVim config
         mkdir -p ~/.config/nvim
@@ -251,8 +249,8 @@ case "$os" in
         cat Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
 
         printf "Config files updated successfully\n"
-	printf "Press any key to exit..."
-	read
+        printf "Press any key to exit..."
+        read
         ;;
 
     # Apply MacOs settings
@@ -266,15 +264,19 @@ case "$os" in
         # Auto hide dock
         defaults write com.apple.dock "autohide" -bool "true"
 
-	printf "Settings applied successfully\n"
-	printf "Press any key to exit..."
-	read
-	;;
+        # Apply settings
+        killall Finder
+        killall Dock
+
+        printf "Settings applied successfully\n"
+        printf "Press any key to exit..."
+        read
+        ;;
 
     # Default
     *)
         printf "Please enter a valid value !\n"
-	;;
+        ;;
     esac
     done
     ;;

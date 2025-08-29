@@ -10,7 +10,7 @@
 
 Connect account
 
-Add a `bind` in `hyprland.conf`
+Add a `bind` in `hyprland.conf` (Done in dotfiles)
 
 ```
 bind = $mainMod, D, exec, discord
@@ -25,7 +25,7 @@ mkdir -p /etc/dunst
 cat Arch/etc/dunst/dunstrc | sudo tee /etc/dunst/dunstrc > /dev/null
 ```
 
-Add an `exec-once` in `hyprland.conf`
+Add an `exec-once` in `hyprland.conf` (Done in dotfiles)
 
 ```
 exec-once = dunst
@@ -37,7 +37,7 @@ exec-once = dunst
 
 ## fastfetch
 
-Add `fastfetch` at the end of the .zshrc file.
+Add `fastfetch` at the end of the .zshrc file. (Done in dotfiles)
 
 ```
 cat fastfetch >> ~/.zshrc
@@ -63,7 +63,7 @@ mkdir -p ~/.config/hypr
 cat Arch/home/.config/hypr/hypridle.conf > ~/.config/hypr/hypridle.conf
 ```
 
-Add an `exec-once` in `hyprland.conf`
+Add an `exec-once` in `hyprland.conf` (Done in dotfiles)
 
 ```
 exec-once = hypridle
@@ -89,7 +89,7 @@ mkdir -p ~/.config/hypr
 cat Arch/home/.config/hypr/hyprlock.conf > ~/.config/hypr/hyprlock.conf
 ```
 
-Add a `bind` in `hyprland.conf`
+Add a `bind` in `hyprland.conf` (Done in dotfiles)
 
 ```
 bind = $mainMod, escape, exec, hyprlock
@@ -105,7 +105,7 @@ cat Arch/home/.config/hypr/hyprpaper.conf > ~/.config/hypr/hyprpaper.conf
 cp -a Arch/home/.config/wallpapers/. ~/.config/wallpapers/
 ```
 
-Add an `exec-once` in `hyprland.conf`
+Add an `exec-once` in `hyprland.conf` (Done in dotfiles)
 
 ```
 exec-once = hyprpaper
@@ -113,7 +113,7 @@ exec-once = hyprpaper
 
 ## hyprpolkitagent
 
-Add an `exec-once` in `hyprland.conf`
+Add an `exec-once` in `hyprland.conf` (Done in dotfiles)
 
 ```
 exec-once = systemctl --user start hyprpolkitagent
@@ -132,7 +132,7 @@ cat Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
 
 ## libva-nvidia-driver
 
-Add an `env` in `hyprland.conf`
+Add an `env` in `hyprland.conf` (Done in dotfiles)
 
 ```
 env = NVD_BACKEND,direct
@@ -295,7 +295,7 @@ cat Arch/home/.config/waybar/config > ~/.config/waybar/config
 cat Arch/home/.config/waybar/style.css > ~/.config/waybar/style.css
 ```
 
-Add an `exec-once` in `hyprland.conf`
+Add an `exec-once` in `hyprland.conf` (Done in dotfiles)
 
 ```
 exec-once = waybar
@@ -348,7 +348,7 @@ source ~/.zshrc
 
 ## goxlr-utility
 
-Add an `exec-once` in `hyprland.conf`
+Add an `exec-once` in `hyprland.conf` (Done in dotfiles)
 
 ```
 exec-once = goxlr-utility
