@@ -10,6 +10,12 @@
 
 Connect account
 
+Add a `bind` in `hyprland.conf`
+
+```
+bind = $mainMod, D, exec, discord
+```
+
 ## dunst
 
 Import the configuration file.
@@ -60,7 +66,7 @@ cat Arch/home/.config/hypr/hypridle.conf > ~/.config/hypr/hypridle.conf
 Add an `exec-once` in `hyprland.conf`
 
 ```
-exec-once = hyprpaper
+exec-once = hypridle
 ```
 
 ## hyprland
@@ -81,6 +87,12 @@ Import the configuration file.
 ```
 mkdir -p ~/.config/hypr
 cat Arch/home/.config/hypr/hyprlock.conf > ~/.config/hypr/hyprlock.conf
+```
+
+Add a `bind` in `hyprland.conf`
+
+```
+bind = $mainMod, escape, exec, hyprlock
 ```
 
 ## hyprpaper
