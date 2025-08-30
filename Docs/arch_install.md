@@ -144,7 +144,7 @@ Finally, use `lsblk` again to check if partition are correctly mounted.
 Install the base packages to run the system properly.
 
 ```
-pacstrap -K /mnt base linux linux-firmware amd-ucode grub efibootmgr networkmanager nvim sudo zsh
+pacstrap -K /mnt base linux linux-firmware amd-ucode grub efibootmgr networkmanager neovim sudo zsh
 ```
 
 # Configure the system
@@ -336,13 +336,25 @@ sudo pacman -S hypridle hyprland hyprlock hyprpaper sddm egl-wayland libva-nvidi
 
 ## Modeset and Early KMS configuration
 
-Verify that the `/etc/modprobe.d/nvidia.conf` file contains the following line to ensure modeset is enabled.
+Open nvidia confifg file.
+
+```
+sudo nvim /etc/modprobe.d/nvidia.conf
+```
+
+And add the following line to ensure modeset is enabled.
 
 ```
 options nvidia_drm modeset=1
 ```
 
-Also enable Early KMS by editing `/etc/mkinitcpio.conf` and adding the following to the modules array:
+Open mkinitcpio config file.
+
+```
+sudo nvim /etc/mkinitcpio.conf
+```
+
+And add the following to the modules array to enable Early KMS
 
 ```
 MODULES=(... nvidia nvidia_modeset nvidia_uvm nvidia_drm ...)
@@ -359,7 +371,7 @@ Then reboot.
 After rebooting, ensure that DRM is enabled.
 
 ```
-cat /sys/module/nvidia_drm/parameters/modeset
+sudo cat /sys/module/nvidia_drm/parameters/modeset
 ```
 
 Verify it returns `Y`
@@ -389,3 +401,43 @@ Hyprland is now accessible from sddm login.
 Once in Hyprland replace the config file with the custom one.
 
 TODO : XDPH config inside Hyprland config
+
+# Dotfiles
+
+## Install yay
+
+Install Yay AUR Helper.
+
+```
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+
+## Install packages and dotfiles
+
+Clone the dotfiles repo and start the install script.
+
+```
+https://github.com/PeakyHell/dotfiles.git
+cd dotfiles
+sh install.sh
+```
+
+Use the script to install the packages then to import the configuration files.
+
+## Zsh config
+
+Install OhMyZsh.
+
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+## Packages configuration
+
+Read [Arch Linux Packages Config](Docs/arch_packages_config.md) to configure the packages.
+
+## Final reboot
+
+Reboot and DONE.

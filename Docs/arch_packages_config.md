@@ -252,23 +252,23 @@ Steam > Settings > Compatibility > Proton Experimental
 Enable ufw
 
 ```
-systemctl enable ufw.service
-ufw enable
+sudo systemctl enable ufw.service
+sudo ufw enable
 ```
 
 Configure it.
 
 ```
-ufw default deny
-ufw allow from 192.168.0.0
-ufw limit ssh
-ufw limit SSH
+sudo ufw default deny
+sudo ufw allow from 192.168.0.0
+sudo ufw limit ssh
+sudo ufw limit SSH
 ```
 
 Check configuration.
 
 ```
-ufw status
+sudo ufw status
 ```
 
 Expected :
