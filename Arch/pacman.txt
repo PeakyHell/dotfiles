@@ -1,6 +1,7 @@
 amd-ucode
 base
 base-devel
+conky
 discord
 dunst
 efibootmgr
