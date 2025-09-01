@@ -4,7 +4,6 @@ base-devel
 discord
 dunst
 efibootmgr
-egl-wayland
 fastfetch
 git
 grub
@@ -38,7 +37,7 @@ spotify-launcher
 steam
 sudo
 texinfo
-ttf-nerd-fonts-symbols-common
+ttf-nerd-fonts-symbols
 ttf-noto-nerd
 ufw
 waybar
