@@ -10,10 +10,10 @@
         "hyprland/window"
     ],
     "modules-right": [
-        "pulseaudio",
         "network",
         "cpu",
         "memory",
+        "pulseaudio",
         "clock",
     ],
 
@@ -24,28 +24,11 @@
         "warp-on-scroll": false,
         "format": "{name}",
     },
+
     "hyprland/window": {
 
     },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
+
     "network": {
         "format": " {bandwidthDownBits} | {bandwidthUpBits}",
         "format-disconnected": "󱘖 Disconnected",
@@ -53,11 +36,22 @@
 	"tooltip-format": "󰈀 {ipaddr}/{cidr}"
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "{usage}%  ",
         "tooltip": true,
     },
     "memory": {
-        "format": "{used:0.1f}G / {total:0.1f}G "
+        "format": "{used:0.1f}G / {total:0.1f}G  "
+    },
+    "pulseaudio": {
+        "scroll-step": 0,
+        "format": "{volume}% {icon} {format_source}",
+        "format-source": "{volume}%  ",
+        "format-source-muted": " ",
+        "format-icons": {
+            "headphone": " ",
+            "default": [" ", " ", " "]
+        },
+        "on-click": "pavucontrol"
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
