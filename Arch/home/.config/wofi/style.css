@@ -1,19 +1,31 @@
+/* CSS Reset */
+* {
+    border: none; /* Disable input white border */
+}
+
+:focus {
+    box-shadow: none; /* Disable input blue border */
+    border: none;
+    outline: 0; /* Disable selected entry dotted outline */
+}
+
 /* Entire window */
 window {
-    background: rgba(43, 48, 59, 0.9);
-    border: 3px solid rgba(51, 204, 255, 0.93);
-    border-radius: 10px;
+    font-size: 32px;
+    background-color: rgba(26, 27, 38, 0.9);
     color: white;
 }
 
 /* Box that everything else sits inside of */
 #outer-box {
-    padding: 20px;
+
 }
 
 /* Search bar */
 #input {
-    background: rgba(43, 48, 59, 1);
+    padding: 0.25em;
+    background-color: rgba(26, 27, 38, 0.9);
+    color: white;
 }
 
 /* Scroll window containing inner boxes */
@@ -28,7 +40,7 @@ window {
 
 /* Box contaning text (and images) */
 #entry {
-    padding: 5px;
+    padding: 0.25em;
 }
 
 /* Box containing the name of the app */
@@ -43,11 +55,10 @@ window {
 
 /* Currently focused entry in the list */
 #entry:selected {
-    background: rgba(43, 48, 59, 0.9);
-    border: 3px solid rgba(51, 204, 255, 0.93);
+    background-color: rgba(187, 225, 250, 1);
 }
 
 /* Currently focused text inside of the entry in the list */
 #text:selected {
-
+    color: rgba(26, 27, 38, 1);
 }
