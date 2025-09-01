@@ -1,7 +1,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-family: "NotoSans Nerd";
     font-size: 13px;
     min-height: 0;
 }
@@ -27,8 +27,7 @@ tooltip label {
     border-bottom: 3px solid transparent;
 }
 
-#workspaces button.focused {
-    background: #64727D;
+#workspaces button.active {
     border-bottom: 3px solid white;
 }
 
