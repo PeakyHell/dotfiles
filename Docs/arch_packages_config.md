@@ -221,6 +221,12 @@ sudo cat etc/pacman.conf > /etc/pacman.conf
 
 ## proton-vpn-gtk-app
 
+Add an `exec-once` in `hyprland.conf` (Done in dotfiles)
+
+```
+exec-once = protonvpn-app
+```
+
 Setup keyring on first start.
 Connect account.
 Choose a server.
