@@ -98,6 +98,8 @@ case "$os" in
 
     # Install/Update Pacman packages
     "2")
+        sudo pacman -Syu
+
         for package in "${pacman[@]}"; do
             sudo pacman -S --needed --noconfirm "$package"
         done
@@ -163,6 +165,9 @@ case "$os" in
 	mkdir -p ~/.config/conky
 	cat Arch/home/.config/conky/conky.conf > ~/.config/conky/conky.conf
 
+        # Sddm config
+        cat Arch/etc/sddm.conf | sudo tee /etc/sddm.conf
+
         printf "Config files updated successfully\n"
         printf "Press any key to exit..."
         read
@@ -216,6 +221,8 @@ case "$os" in
 
     # Install/Update Homebrew packages
     "2")
+        brew update
+
         for formulae in "${formulaes[@]}"; do
             brew install "$formulae"
         done
