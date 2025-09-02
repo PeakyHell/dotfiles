@@ -19,6 +19,12 @@ cat Arch/home/.config/conky/conky.conf > ~/.config/conky/conky.conf
 
 Connect account
 
+Add the following line to `~/.config/discord/settings.json` to be able to start it when new updates aren't available yet.
+
+```
+"SKIP_HOST_UPDATE": true
+```
+
 Add a `bind` in `hyprland.conf` (Done in dotfiles)
 
 ```
