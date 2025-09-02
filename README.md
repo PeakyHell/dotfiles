@@ -15,17 +15,18 @@ NEEDS UPDATE
 2. Read the [Hyprland installation guide](installation/hyprland_install.md)
 3. Read the [Environment configuration guide](installation/configuration.md)
 
-# Arch Linux Packages (58)
+# Arch Linux Packages (60)
 
 View [Arch Packages Config](Docs/arch_packages_config.md) for configuration instructions.
 
-## Pacman (55)
+## Pacman (57)
 
 | Name | Description |
 |------|-------------|
 | amd-ucode | Microcode updates for amd CPU |
 | base | Used to define a basic Arch Linux installation |
 | base-devel | Base development packages  |
+| conky | System Monitoring |
 | discord | Discord |
 | dunst | Notification daemon |
 | efibootmgr | Used by grub to write boot entries to NVRAM |
@@ -55,6 +56,7 @@ View [Arch Packages Config](Docs/arch_packages_config.md) for configuration inst
 | pipewire | Multimedia framework. Required for screensharing |
 | pipewire-pulse | Audio/Video router and processor |
 | prismlauncher | Minecraft Launcher |
+| proton-vpn-gtk-app | ProtonVPN |
 | qt5-wayland | Enables Wayland support in Qt |
 | qt6-wayland | Enables Wayland support in Qt |
 | reflector | Used to retrieve Pacman mirror list |
@@ -63,7 +65,7 @@ View [Arch Packages Config](Docs/arch_packages_config.md) for configuration inst
 | steam | Steam |
 | sudo | Give permissions to users |
 | texinfo | GNU documentation |
-| ttf-nerd-fonts-symbols-common | Extra symbol |
+| ttf-nerd-fonts-symbols| Extra symbols |
 | ttf-noto-nerd | Noto nerd font |
 | ufw | Uncomplicated firewall |
 | waybar | Wayland bar |

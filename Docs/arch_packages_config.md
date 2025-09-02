@@ -6,6 +6,15 @@
 
 ## base-devel
 
+## conky
+
+Import the configuration file.
+
+```
+mkdir -p ~/.config/conky
+cat Arch/home/.config/conky/conky.conf > ~/.config/conky/conky.conf
+```
+
 ## discord
 
 Connect account
@@ -209,6 +218,12 @@ sudo cat etc/pacman.conf > /etc/pacman.conf
 ## pipewire-pulse
 
 ## prismlauncher
+
+## proton-vpn-gtk-app
+
+Setup keyring on first start.
+Connect account.
+Choose a server.
 
 ## qt5-wayland
 

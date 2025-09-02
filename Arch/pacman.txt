@@ -30,6 +30,7 @@ pavucontrol
 pipewire
 pipewire-pulse
 prismlauncher
+proton-vpn-gtk-app
 qt5-wayland
 qt6-wayland
 reflector

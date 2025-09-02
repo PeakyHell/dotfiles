@@ -159,6 +159,10 @@ case "$os" in
         # Pacman config
         cat Arch/etc/pacman.conf | sudo tee /etc/pacman.conf > /dev/null
 
+	# Conky config
+	mkdir -p ~/.config/conky
+	cat Arch/home/.config/conky/conky.conf > ~/.config/conky/conky.conf
+
         printf "Config files updated successfully\n"
         printf "Press any key to exit..."
         read
