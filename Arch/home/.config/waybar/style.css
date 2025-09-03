@@ -1,3 +1,7 @@
+/* Variables */
+@define-color bg-color rgba(43, 48, 59, 0.5);
+@define-color border-color rgba(100, 114, 125, 0.5);
+
 * {
     border: none;
     border-radius: 0;
@@ -7,14 +11,14 @@
 }
 
 window#waybar {
-    background: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    background: @bg-color;
+    border-bottom: 3px solid @border-color;
     color: white;
 }
 
 tooltip {
-  background: rgba(43, 48, 59, 0.5);
-  border: 1px solid rgba(100, 114, 125, 0.5);
+  background: @bg-color;
+  border: 1px solid @border-color
 }
 tooltip label {
   color: white;

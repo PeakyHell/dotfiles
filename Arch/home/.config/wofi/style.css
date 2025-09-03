@@ -1,3 +1,8 @@
+/* Variables */
+@define-color bg-color rgba(26, 27, 38, 0.9);
+@define-color selected-color rgba(51, 204, 255, 0.93);
+@define-color gradient-color rgba(0, 255, 153, 0.93);
+
 /* CSS Reset */
 * {
     border: none; /* Disable input white border */
@@ -5,14 +10,13 @@
 
 :focus {
     box-shadow: none; /* Disable input blue border */
-    border: none;
     outline: 0; /* Disable selected entry dotted outline */
 }
 
 /* Entire window */
 window {
     font-size: 32px;
-    background-color: rgba(26, 27, 38, 0.9);
+    background-color: @bg-color;
     color: white;
 }
 
@@ -24,7 +28,7 @@ window {
 /* Search bar */
 #input {
     padding: 0.25em;
-    background-color: rgba(26, 27, 38, 0.9);
+    background-color: @bg-color;
     color: white;
 }
 
@@ -55,10 +59,11 @@ window {
 
 /* Currently focused entry in the list */
 #entry:selected {
-    background-color: rgba(187, 225, 250, 1);
+    background-color: @selected-color;
+    background: linear-gradient(45deg, @selected-color, @gradient-color);
 }
 
 /* Currently focused text inside of the entry in the list */
 #text:selected {
-    color: rgba(26, 27, 38, 1);
+    color: @bg-color;
 }
