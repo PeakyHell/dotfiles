@@ -166,7 +166,7 @@ case "$os" in
 	cat Arch/home/.config/conky/conky.conf > ~/.config/conky/conky.conf
 
         # Sddm config
-        cat Arch/etc/sddm.conf | sudo tee /etc/sddm.conf
+        cat Arch/etc/sddm.conf | sudo tee /etc/sddm.conf > /dev/null
 
         printf "Config files updated successfully\n"
         printf "Press any key to exit..."
