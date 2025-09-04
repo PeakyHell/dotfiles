@@ -1,7 +1,7 @@
 /* Variables */
-@define-color bg-color rgba(26, 27, 38, 0.9);
-@define-color selected-color rgba(51, 204, 255, 0.93);
-@define-color gradient-color rgba(0, 255, 153, 0.93);
+@define-color background-color rgba(26, 27, 38, 0.9);
+@define-color primary-color rgba(51, 204, 255, 0.93);
+@define-color secondary-color rgba(0, 255, 153, 0.93);
 
 /* CSS Reset */
 * {
@@ -16,7 +16,7 @@
 /* Entire window */
 window {
     font-size: 32px;
-    background-color: @bg-color;
+    background-color: @background-color;
     color: white;
 }
 
@@ -28,7 +28,7 @@ window {
 /* Search bar */
 #input {
     padding: 0.25em;
-    background-color: @bg-color;
+    background-color: @background-color;
     color: white;
 }
 
@@ -59,11 +59,11 @@ window {
 
 /* Currently focused entry in the list */
 #entry:selected {
-    background-color: @selected-color;
-    background: linear-gradient(45deg, @selected-color, @gradient-color);
+    background-color: @primary-color;
+    background: linear-gradient(45deg, @primary-color, @secondary-color);
 }
 
 /* Currently focused text inside of the entry in the list */
 #text:selected {
-    color: @bg-color;
+    color: @background-color;
 }

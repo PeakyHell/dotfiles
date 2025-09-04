@@ -1,0 +1,14 @@
+Background Color :
+@define-color background-color rgba(26, 27, 38, 0.9);
+#1a1b26e6
+rgba(26, 27, 38, 0.9)
+
+Primary Color :
+@define-color primary-color rgba(51, 204, 255, 0.93)
+#33ccffee
+rgba(51, 204, 255, 0.93)
+
+Secondary Color :
+@define-color secondary-color rgba(0, 255, 153, 0.93)
+#00ff99ee
+rgba(0, 255, 153, 0.93)
