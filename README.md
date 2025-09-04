@@ -2,18 +2,30 @@
 
 # Files
 - Arch/ : Config files for Arch Linux
+    - etc/
+        - Dunst
+        - Pacman
+        - Sddm
+    - home/.config/
+        - Conky
+        - Hypr*
+        - Wallpapers
+        - Waybar
+        - Wofi
 - Common/ : Config files both for Arch Linux and MacOs
+    - home/
+        - Kitty
+        - Neovim
+        - Ssh
+        - Git
+        - Zsh
 - Docs/ : Documentations, guides, ...
 - MacOs/ : Config files for MacOs
 - Scripts/ : Config scripts
 
 # Arch Linux Installation
 
-NEEDS UPDATE
-
-1. Read the [Arch installation guide](installation/arch_install.md)
-2. Read the [Hyprland installation guide](installation/hyprland_install.md)
-3. Read the [Environment configuration guide](installation/configuration.md)
+1. Read the [Arch installation guide](Docs/arch_install.md)
 
 # Arch Linux Packages (60)
 
