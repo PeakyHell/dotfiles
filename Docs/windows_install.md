@@ -31,6 +31,20 @@ wsl --install
 wsl.exe --install archlinux
 ```
 
+4. Update pacman :
+
+```
+pacman -Syu
+```
+
+5. Install the minimum packages needed :
+
+```
+pacman -S git nvim gcc
+```
+
+And import the Neovim config
+
 # Install chocolatey
 
 ```
