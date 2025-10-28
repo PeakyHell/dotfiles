@@ -54,7 +54,7 @@ printf "==================================\n"
 printf "    Select your platform :\n"
 printf "    [1] Arch Linux\n"
 printf "    [2] MacOs\n"
-printf "    [3] Windows\n"
+printf "    [3] Windows (WSL)\n"
 printf "    [0] Exit\n"
 printf "==================================\n"
 read os
@@ -307,10 +307,10 @@ case "$os" in
 #
 # ==================================
 "3")
-	#if [[ $(uname) != "Windows" ]]; then
-	#	printf "Can't execute Windows scripts on your platform !\n"
-	#	continue
-	#fi
+	if [[ $(uname) != "Linux" ]]; then
+		printf "Windows scripts must be executed from WSL !\n"
+		continue
+	fi
 
 	while true; do
 	clear
@@ -357,7 +357,30 @@ case "$os" in
 
 	# Apply Windows settings
 	"4")
+		REG="/mnt/c/Windows/System32/reg.exe"
+
+		# Show hidden files
+		"$REG" ADD "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v Hidden /t REG_DWORD /d 1 /f
+		"$REG" ADD "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowSuperHidden /t REG_DWORD /d 1 /f
+
+		# Disable mouse acceleration
+		"$REG" ADD "HKCU\Control Panel\Mouse" /v MouseSensitivity /t REG_SZ /d 10 /f
+		"$REG" ADD "HKCU\Control Panel\Mouse" /v MouseSpeed /t REG_SZ /d 0 /f
+		"$REG" ADD "HKCU\Control Panel\Mouse" /v MouseThreshold1 /t REG_SZ /d 0 /f
+		"$REG" ADD "HKCU\Control Panel\Mouse" /v MouseThreshold2 /t REG_SZ /d 0 /f
+		printf "Settings applied successfully\n"
+        printf "Press any key to exit..."
+		read
 		;;
+	
+	# Default
+    *)
+        printf "Please enter a valid value !\n"
+        ;;
+
+	esac
+	done
+	;;
 
 
 # ==================================
