@@ -332,7 +332,7 @@ case "$os" in
 
 	# Install Chocolatey
 	"1")
-		Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+		cmd.exe /c "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
 		printf "Chocolatey installed successfully !\n"
 		printf "Press any key to exit..."
 		read
@@ -376,6 +376,10 @@ case "$os" in
 
 		# Pacman config
 		cat Arch/etc/pacman.conf | sudo tee /etc/pacman.conf > /dev/null
+
+		printf "Config files updated successfully\n"
+		printf "Press any key to exit..."
+		read
 		;;
 
 	# Apply Windows settings
@@ -391,8 +395,9 @@ case "$os" in
 		"$REG" ADD "HKCU\Control Panel\Mouse" /v MouseSpeed /t REG_SZ /d 0 /f
 		"$REG" ADD "HKCU\Control Panel\Mouse" /v MouseThreshold1 /t REG_SZ /d 0 /f
 		"$REG" ADD "HKCU\Control Panel\Mouse" /v MouseThreshold2 /t REG_SZ /d 0 /f
+
 		printf "Settings applied successfully\n"
-        printf "Press any key to exit..."
+		printf "Press any key to exit..."
 		read
 		;;
 	
