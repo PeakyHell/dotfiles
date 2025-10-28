@@ -54,22 +54,13 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 # Install the necessary packages/softwares
 
-## With chocolatey
-
-- LibreWolf
-- Nvidia App
-- Logitech GHUB
-
-## Without chocolatey
-
-- Discord
-- GoXLR App + Driver
-- Steam
-- Riot Games Client
-- Rockstar Games Launcher
+Listed in [Chocolatey Packages](Windows/chocolatey.txt) and [Windows Apps](Windows/apps.txt)
 
 # Verifications
 
 - Open Nvidia Control Panel and ensure monitors have the correct refresh rate.
 - Install Nvidia Drivers with Nvidia App
 - Disable Mouse Acceleration and ensure speed is at the middle
+- Disable unecessary apps from Start on boot (OneDrive, ...)
+- Update PowerShell
+- Set Power Mode to "Best Performance" and disable Sleep mode after X minutes
