@@ -318,7 +318,7 @@ case "$os" in
 	printf "    Choose an option :\n"
 	printf "    [1] Install Chocolatey\n"
 	printf "    [2] Install/Update Chocolatey packages\n"
-	printf "    [3] Update config files\n"
+	printf "    [3] Update config files (WSL)\n"
 	printf "    [4] Apply Windows settings\n"
 	printf "    [0] Go back\n"
 	printf "============================================\n"
@@ -351,8 +351,31 @@ case "$os" in
 		read
 		;;
 
-	# Update config files
+	# Update config files (WSL)
 	"3")
+		# Zsh config
+		cat Common/home/.zshrc > ~/.zshrc
+		/bin/zsh -c "source ~/.zshrc"
+
+		# Ssh config
+		mkdir -p ~/.ssh
+		cat Common/home/.ssh/config > ~/.ssh/config
+
+		# Git config
+		cat Common/home/.gitconfig > ~/.gitconfig
+		cat Common/home/.gitignore > ~/.gitignore
+
+		# NeoVim config
+		mkdir -p ~/.config/nvim
+		cat Common/home/.config/nvim/init.lua > ~/.config/nvim/init.lua
+		cat Common/home/.config/nvim/lazy-lock.json > ~/.config/nvim/lazy-lock.json
+
+		# Kitty config
+		# mkdir -p ~/.config/kitty
+		# cat Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
+
+		# Pacman config
+		cat Arch/etc/pacman.conf | sudo tee /etc/pacman.conf > /dev/null
 		;;
 
 	# Apply Windows settings

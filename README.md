@@ -22,6 +22,7 @@
 - Docs/ : Documentations, guides, ...
 - MacOs/ : Config files for MacOs
 - Scripts/ : Config scripts
+- Windows/ : Config files for Windows
 
 # Arch Linux Installation
 
@@ -130,3 +131,24 @@ View [MacOs Packages Config](Docs/macos_packages_config.md) for configuration in
 | protonvpn       | VPN                                         |
 | scroll-reverser | Reverse trackpad and mouse scroll direction |
 | spotify         | Spotify                                     |
+
+# Windows Packages (9)
+
+## Chocolatey (3)
+
+| Name       | Description                           |
+|------------|---------------------------------------|
+| librewolf  | Web Browser                           |
+| nvidia-app | Nvidia Drivers and Games optimization |
+| spotify    | Spotify                               |
+
+## Apps (6)
+
+| Name                    | Description                        |
+|-------------------------|------------------------------------|
+| Discord                 | Discord                            |
+| GoXLR App + Driver      | GoXLR Mini's App + Drivers         |
+| Logitech GHUB           | Logitech Peripherals Customization |
+| Riot Games Client       | Riot Games Client                  |
+| Rockstar Games Launcher | Rockstar Games Launcher            |
+| Steam                   | Steam                              |

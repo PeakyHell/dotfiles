@@ -37,7 +37,36 @@ cat Common/home/.gitignore > ~/.gitignore
 
 ## GoXLR App
 
-TODO : Settings
+Set the following settings.
+
+#### Mic Setup
+
+- Dynamic
+- 62dB
+
+#### Gate
+
+- Threshold : -40db
+- Attenuation : 50%
+- Attack : 10ms
+- Release : 200ms
+
+#### Equalizer
+
+- 50Hz : -7
+- 200Hz : 0
+- 500Hz : -2
+- 1.5kHz : 1
+- 3.5kHz : 1
+- 10.0kHz : -3
+
+#### Compressor
+
+- Threshold : -15dB
+- Ratio : 3.2:1
+- Attack : 2ms
+- Release : 100ms
+- Make-up Gain : 5dB
 
 ### Arch Linux Specific
 

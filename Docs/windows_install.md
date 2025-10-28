@@ -63,4 +63,5 @@ Listed in [Chocolatey Packages](Windows/chocolatey.txt) and [Windows Apps](Windo
 - Disable Mouse Acceleration and ensure speed is at the middle
 - Disable unecessary apps from Start on boot (OneDrive, ...)
 - Update PowerShell
+- CMD settings > Defaults > Bell notification style = none
 - Set Power Mode to "Best Performance" and disable Sleep mode after X minutes
