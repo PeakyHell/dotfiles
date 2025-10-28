@@ -21,6 +21,10 @@ if [[ ! -f MacOs/casks.txt ]]; then
     printf "MacOs/casks.txt not found !\n"
     exit 1
 fi
+if [[ ! -f Windows/chocolatey.txt ]]; then
+    printf "Windows/chocolatey.txt not found !\n"
+    exit 1
+fi
 
 
 pacman=()
@@ -35,6 +39,9 @@ while IFS= read -r line; do formulaes+=("$line"); done < MacOs/formulaes.txt
 casks=()
 while IFS= read -r line; do casks+=("$line"); done < MacOs/casks.txt
 
+chocolatey=()
+while IFS= read -r line; do chocolatey+=("$line"); done < Windows/chocolatey.txt
+
 
 # ==================================
 #
@@ -47,6 +54,7 @@ printf "==================================\n"
 printf "    Select your platform :\n"
 printf "    [1] Arch Linux\n"
 printf "    [2] MacOs\n"
+printf "    [3] Windows\n"
 printf "    [0] Exit\n"
 printf "==================================\n"
 read os
@@ -291,6 +299,65 @@ case "$os" in
     esac
     done
     ;;
+
+
+# ==================================
+#
+# Windows
+#
+# ==================================
+"3")
+	#if [[ $(uname) != "Windows" ]]; then
+	#	printf "Can't execute Windows scripts on your platform !\n"
+	#	continue
+	#fi
+
+	while true; do
+	clear
+	printf "============================================\n"
+	printf "    Choose an option :\n"
+	printf "    [1] Install Chocolatey\n"
+	printf "    [2] Install/Update Chocolatey packages\n"
+	printf "    [3] Update config files\n"
+	printf "    [4] Apply Windows settings\n"
+	printf "    [0] Go back\n"
+	printf "============================================\n"
+	read option
+	case "$option" in
+
+	# Exit
+	"0")
+		break
+		;;
+
+	# Install Chocolatey
+	"1")
+		Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+		printf "Chocolatey installed successfully !\n"
+		printf "Press any key to exit..."
+		read
+		;;
+	
+	# Install/Update Chocolatey packages
+	"2")
+		choco upgrade chocolatey
+
+		for formulae in "${formulaes[@]}"; do
+			choco install "$formulae"
+		done
+
+		printf "Packages installed/updated successfully !\n"
+		printf "Press any key to exit..."
+		read
+		;;
+
+	# Update config files
+	"3")
+		;;
+
+	# Apply Windows settings
+	"4")
+		;;
 
 
 # ==================================
