@@ -236,7 +236,11 @@ case "$os" in
 		done
 
 		for cask in "${casks[@]}"; do
-			brew install --cask --appdir=\"~/Applications\" "$cask"
+			if [[ "$cask" == "librewolf" ]]; then
+				brew install --cask --appdir=\"~/Applications\" "$cask" --no-quarantine
+			else
+				brew install --cask --appdir=\"~/Applications\" "$cask"
+			fi
 		done
 
 		printf "Packages installed/updated successfully !\n"
