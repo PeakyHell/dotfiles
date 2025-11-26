@@ -287,6 +287,9 @@ case "$os" in
 		# Auto hide dock
 		defaults write com.apple.dock "autohide" -bool "true"
 
+		# Merge minimized applications to their icon
+		defaults write com.apple.dock minimize-to-application 1
+
 		# Apply settings
 		killall Finder
 		killall Dock
