@@ -40,7 +40,7 @@ pacman -Syu
 5. Install the minimum packages needed :
 
 ```
-pacman -S git nvim gcc
+pacman -S git nvim gcc openssh
 ```
 
 And import the Neovim config
@@ -65,3 +65,4 @@ Listed in [Chocolatey Packages](Windows/chocolatey.txt) and [Windows Apps](Windo
 - Update PowerShell
 - CMD settings > Defaults > Bell notification style = none
 - Set Power Mode to "Best Performance" and disable Sleep mode after X minutes
+- Settings > System > Storage > Advanced Storage Settings > Where new content is saved > New apps will save to : Set to HDD

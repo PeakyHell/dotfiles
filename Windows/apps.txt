@@ -1,6 +1,7 @@
 Discord
 GoXLR App + Driver
 Logitech GHUB
+Minecraft Launcher **LEGACY**
 Riot Games Client
 Rockstar Games Launcher
 Steam
