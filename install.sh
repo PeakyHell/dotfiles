@@ -221,29 +221,66 @@ case "$os" in
 
 	# Install Homebrew
 	"1")
-		sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-		printf "Homebrew installed successfully !\n"
+		if ! brew --version &>/dev/null; then
+			sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+			printf "Homebrew installed successfully !\n"
+		else
+			printf "Homebrew is already installed !\nUpdating...\n"
+			brew update
+			printf "Homebrew updated successfully ! \n"
+		fi
+
 		printf "Press any key to exit..."
 		read
 		;;
 
 	# Install/Update Homebrew packages
 	"2")
-		brew update
+		# Ensure Homebrew is installed and/or up to date
+		if ! brew --version &>/dev/null; then
+			printf "Homebrew not installed !\n Installing...\n"
+			sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+			printf "Homebrew installed successfully !\n"
+		else
+			printf "Updating Homebrew...\n"
+			brew update
+			printf "Hombrew updated successfully !\n"
+		fi
 
+
+		# Upgrade already installed packages
+		printf "Upgrading packages...\n"
+		brew upgrade
+		printf "Packages upgraded successfully !\n"
+
+
+		# Find missing packages
+		installed_formulaes="$(brew list --formula)"
+		installed_casks="$(brew list --cask)"
+
+
+		# Install missing packages
+		printf "Installing missing packages...\n"
 		for formulae in "${formulaes[@]}"; do
-			brew install "$formulae"
-		done
-
-		for cask in "${casks[@]}"; do
-			if [[ "$cask" == "librewolf" ]]; then
-				brew install --cask --appdir=\"~/Applications\" "$cask" --no-quarantine
-			else
-				brew install --cask --appdir=\"~/Applications\" "$cask"
+			if ! echo "$installed_formulaes" | grep -q "^$formulae$"; then
+				brew install --formula "$formulae"
 			fi
 		done
 
-		printf "Packages installed/updated successfully !\n"
+		for cask in "${casks[@]}"; do
+			if ! echo "$installed_casks" | grep -q "^$cask$"; then
+				brew install --cask --appdir=\"~/Applications\" "$cask"
+			fi
+		done
+		printf "Missing packages installed successfully !\n"
+
+
+		# Remove Librewolf from quarantine
+		if xattr -l ~/Applications/LibreWolf.app/ | grep -q "^com.apple.quarantine$"; then
+			xattr -d com.apple.quarantine ~/Applications/LibreWolf.app
+		fi
+
+
 		printf "Press any key to exit..."
 		read
 		;;
@@ -288,7 +325,7 @@ case "$os" in
 		defaults write com.apple.dock "autohide" -bool "true"
 
 		# Merge minimized applications to their icon
-		defaults write com.apple.dock minimize-to-application 1
+		defaults write com.apple.dock minimize-to-application -bool "true"
 
 		# Apply settings
 		killall Finder
