@@ -48,6 +48,9 @@ timedatectl set-ntp true
 
 ## Partitioning the disk(s)
 
+> [!WARNING]
+> IF YOU WANT TO DUAL BOOT, WINDOWS SHOULD BE INSTALLED **BEFORE** ARCH. DO NOT TOUCH TO THIS DISK DURING ARCH INSTALLATION.
+
 Use the `cfdisk` tool for a better experience.
 
 ```
@@ -58,28 +61,63 @@ Select the `gpt` label.
 
 Free the necessary partitions then create the following partitions :
 
-- SSD 1 (500GB) :
+### Only ArchLinux (1 Drive)
 
-    | Number | Partition | Size |
-    |--------|-----------|------|
-    | 1 | Windows | 500GB |
+- Drive 1 :
 
-> [!WARNING]
-> WINDOWS SHOULD BE INSTALLED **BEFORE** ARCH. DO NOT TOUCH TO THIS DISK DURING ARCH INSTALLATION.
+| Number | Partition | Type | Size |
+|--------|-----------|------|------|
+| 1 | Boot | EFI | 1GB |
+| 2 | Swap | Linux Swap | RAM size |
+| 3 | Root | Linux Filesystem | Rest of drive |
 
-- SSD 2 (500GB) :
-    | Number | Partition | Type | Size |
-    |--------|-----------|------|------|
-    | 1 | Boot | EFI | 1GB |
-    | 2 | Swap | Linux Swap | 16GB |
-    | 3 | Root | Linux Filesystem | 483GB |
+Then Write and Quit to go back to the terminal.
 
-- NVMe (2TB) :
-    | Number | Partition | Type | Size |
-    |--------|-----------|------|------|
-    | 1 | Home | Linux Filesystem | 2TB |
+### Only ArchLinux (2 Drives)
 
-+ NAS for documents storage
+- Drive 1 :
+
+| Number | Partition | Type | Size |
+|--------|-----------|------|------|
+| 1 | Boot | EFI | 1GB |
+| 2 | Swap | Linux Swap | RAM size |
+| 3 | Root | Linux Filesystem | Rest of drive |
+
+
+- Drive 2 :
+
+| Number | Partition | Type | Size |
+|--------|-----------|------|------|
+| 1 | Home | Linux Filesystem | Whole drive |
+
+Then Write and Quit to go back to the terminal.
+
+### Dual Boot with Windows (1 Drive)
+
+
+| Number | Partition | Size |
+|--------|-----------|------|
+| 1 | Windows | X |
+
+TODO
+
+Then Write and Quit to go back to the terminal.
+
+### Dual Boot with Windows (2 Drives)
+
+- Drive 1 :
+
+| Number | Partition | Size |
+|--------|-----------|------|
+| 1 | Windows | Whole drive |
+
+- Drive 2 :
+
+| Number | Partition | Type | Size |
+|--------|-----------|------|------|
+| 1 | Boot | EFI | 1GB |
+| 2 | Swap | Linux Swap | RAM size |
+| 3 | Root | Linux Filesystem | Rest of drive |
 
 Then Write and Quit to go back to the terminal.
 
@@ -91,50 +129,50 @@ List all the partitions for easier formatting.
 lsblk
 ```
 
-Then format the partitions as follow (replace X with the disk name) :
+Then format the partitions as follow (replace XY with the disk name and number) :
 
 ### Formatting
 
 - root partition
     ```
-    mkfs.ext4 /dev/sdX3
+    mkfs.ext4 /dev/sdXY
     ```
 
 - boot partition
     ```
-    mkfs.fat -F 32 /dev/sdX1
+    mkfs.fat -F 32 /dev/sdXY
     ```
 
 - swap partition
     ```
-    mkswap /dev/sdX2
+    mkswap /dev/sdXY
     ```
 
-- home partition
+- home partition (if separate)
     ```
-    mkfs.ext4 /dev/nvme0n1p1
+    mkfs.ext4 /dev/sdXY
     ```
 
 ### Mounting
 
 - root partition
     ```
-    mount /dev/sdX3 /mnt
+    mount /dev/sdXY /mnt
     ```
 
 - boot partition
     ```
-    mount --mkdir /dev/sdX1 /mnt/boot
+    mount --mkdir /dev/sdXY /mnt/boot
     ```
 
 - swap partition
     ```
-    swapon /dev/sdX2
+    swapon /dev/sdXY
     ```
 
-- home partition
+- home partition (if separate)
     ```
-    mount --mkdir /dev/nvme0n1p1 /mnt/home
+    mount --mkdir /dev/sdXY /mnt/home
     ```
 
 Finally, use `lsblk` again to check if partition are correctly mounted.
