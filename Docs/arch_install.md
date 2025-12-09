@@ -1,12 +1,39 @@
-# Preliminary steps
+[Source](https://wiki.archlinux.org/title/Installation_guide)
 
-## Keyboard layout
 
-Set belgian keyboard layout
+
+
+# Table of Contents
+
+1. [Pre-installation](#pre-installation)
+2. [Installation](#installation)
+3. [Configure the system](#configure-the-system)
+4. [Reboot](#reboot)
+5. [Post-installation](#post-installation)
+
+
+
+
+# Pre-installation
+
+[Source](https://wiki.archlinux.org/title/Installation_guide#Pre-installation)
+
+
+## Set the console keyboard layout
+
+Check the list of available keymaps.
+
+```
+localectl list-keymaps
+```
+
+
+Set the keyboard layout of your choice.
 
 ```
 loadkeys be-latin1
 ```
+
 
 ## Verify the boot mode
 
@@ -14,7 +41,7 @@ loadkeys be-latin1
 cat /sys/firmware/efi/fw_platform_size
 ```
 
-Verify it returns `64`
+Verify it returns `64`. If it returns `No such file or directory`, the system maybe booted in BIOS or CSM mode.
 
 ## Connect to internet
 
@@ -24,11 +51,16 @@ Ensure the network interface is listed and enabled.
 ip link
 ```
 
+
+If you use Wi-Fi, check [iwctl](https://wiki.archlinux.org/title/Iwctl) to connect.
+
+
 Verify the connection.
 
 ```
 ping -c 5 archlinux.org
 ```
+
 
 ## Update the system clock
 
@@ -38,13 +70,19 @@ Ensure the system clock is correctly synchronized
 timedatectl
 ```
 
+
 If not, synchronize it.
 
 ```
 timedatectl set-ntp true
 ```
 
-# Main Installation
+
+
+
+# Installation
+
+[Source](https://wiki.archlinux.org/title/Installation_guide#Installation)
 
 ## Partitioning the disk(s)
 
@@ -191,7 +229,12 @@ If you're dual booting, also install :
 pacstrap -K dosfstools mtools
 ```
 
+
+
+
 # Configure the system
+
+[Source](https://wiki.archlinux.org/title/Installation_guide#Configure_the_system)
 
 ## Define partitions
 
@@ -373,6 +416,13 @@ Update the Grub configuration.
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
+
+
+
+# Reboot
+
+[Source](https://wiki.archlinux.org/title/Installation_guide#Reboot)
+
 And finally reboot.
 
 ```
@@ -383,7 +433,12 @@ reboot
 
 If your system doesn't boot on Grub, ensure it is selected as the Boot Manager in the BIOS.
 
+
+
+
 # Post-installation
+
+[Source](https://wiki.archlinux.org/title/Installation_guide#Post-installation)
 
 ## Check internet connection
 
@@ -400,6 +455,9 @@ Install additional packages.
 ```
 sudo pacman -S base-devel fastfetch git kitty man-db man-pages nvidia-open nvidia-utils openssh texinfo zsh-autosuggestions zsh-completions
 ```
+
+
+
 
 # Hyprland installation
 
@@ -479,6 +537,9 @@ Hyprland is now accessible from sddm login.
 Once in Hyprland replace the config file with the custom one.
 
 TODO : XDPH config inside Hyprland config
+
+
+
 
 # Dotfiles
 
