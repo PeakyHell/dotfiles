@@ -185,6 +185,12 @@ Install the base packages to run the system properly.
 pacstrap -K /mnt base linux linux-firmware amd-ucode grub efibootmgr networkmanager neovim sudo zsh
 ```
 
+If you're dual booting, also install :
+
+```
+pacstrap -K dosfstools mtools
+```
+
 # Configure the system
 
 ## Define partitions
@@ -342,6 +348,40 @@ And FINALLY reboot.
 ```
 reboot
 ```
+
+## Dual Boot - Add Windows to Grub
+
+Edit the Grub configuration.
+
+```
+nvim /etc/default/grub
+```
+
+Increase the `GRUB_TIMEOUT` to 30 seconds for example to have the time to choose your OS.
+
+Then uncomment the line `#GRUB_DISABLE_OS_PROBER=false` and save the file.
+
+Install the following package.
+
+```
+sudo pacman -S os-prober
+```
+
+Update the Grub configuration.
+
+```
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+And finally reboot.
+
+```
+reboot
+```
+
+### Note
+
+If your system doesn't boot on Grub, ensure it is selected as the Boot Manager in the BIOS.
 
 # Post-installation
 
