@@ -78,12 +78,6 @@ timedatectl set-ntp true
 ```
 
 
-
-
-# Installation
-
-[Source](https://wiki.archlinux.org/title/Installation_guide#Installation)
-
 ## Partitioning the disk(s)
 
 > [!WARNING]
@@ -159,7 +153,7 @@ Then Write and Quit to go back to the terminal.
 
 Then Write and Quit to go back to the terminal.
 
-## Formatting and mounting the partitions
+## Formatting the partitions
 
 List all the partitions for easier formatting.
 
@@ -169,64 +163,84 @@ lsblk
 
 Then format the partitions as follow (replace XY with the disk name and number) :
 
-### Formatting
-
 - root partition
     ```
     mkfs.ext4 /dev/sdXY
     ```
+
 
 - boot partition
     ```
     mkfs.fat -F 32 /dev/sdXY
     ```
 
+
 - swap partition
     ```
     mkswap /dev/sdXY
     ```
+
 
 - home partition (if separate)
     ```
     mkfs.ext4 /dev/sdXY
     ```
 
-### Mounting
+
+## Mount the partitions
 
 - root partition
     ```
     mount /dev/sdXY /mnt
     ```
 
+
 - boot partition
     ```
     mount --mkdir /dev/sdXY /mnt/boot
     ```
+
 
 - swap partition
     ```
     swapon /dev/sdXY
     ```
 
+
 - home partition (if separate)
     ```
     mount --mkdir /dev/sdXY /mnt/home
     ```
 
+
 Finally, use `lsblk` again to check if partition are correctly mounted.
+
+
+
+
+# Installation
+
+[Source](https://wiki.archlinux.org/title/Installation_guide#Installation)
 
 ## Install the base system
 
 Install the base packages to run the system properly.
 
+- If you have an Intel CPU, use `intel-ucode` instead of `amd-ucode`.
+
+- If you want to use an other text editor than Neovim you can also replace it.
+
+- Zsh is optional, you can remove it if Bash is enough for you.
+
 ```
 pacstrap -K /mnt base linux linux-firmware amd-ucode grub efibootmgr networkmanager neovim sudo zsh
 ```
 
+
 If you're dual booting, also install :
 
 ```
-pacstrap -K dosfstools mtools
+pacstrap -K /mnt dosfstools mtools
 ```
 
 
@@ -244,17 +258,20 @@ Define how the partition have been mounted.
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
+
 Then check the result.
 
 ```
 cat /mnt/etc/fstab
 ```
 
+
 ## Enter the system
 
 ```
 arch-chroot /mnt
 ```
+
 
 ## Set the timezone
 
@@ -264,17 +281,20 @@ Set the timezone.
 ln -sf /usr/share/zoneinfo/Europe/Brussels /etc/localtime
 ```
 
+
 Then check if the timezone was correctly updated.
 
 ```
 date
 ```
 
+
 Finally sync the system time to the hardware clock.
 
 ```
 hwclock --systohc
 ```
+
 
 ## Set the localization settings
 
@@ -284,6 +304,7 @@ Set the localization by editing the file.
 nvim /etc/locale.gen
 ```
 
+
 And uncomment the `fr_BE.UTF-8 UTF-8` localization.
 
 Then generate the locales.
@@ -292,11 +313,13 @@ Then generate the locales.
 locale-gen
 ```
 
+
 Now activate the locale.
 
 ```
 nvim /etc/locale.conf
 ```
+
 
 And write `LANG=fr_BE.UTF-8` and save the file.
 
@@ -306,7 +329,9 @@ To make the keyboard layout change persistent, edit the file.
 nvim /etc/vconsole.conf
 ```
 
+
 And write `KEYMAP=be-latin1`
+
 
 ## Network configuration
 
@@ -316,7 +341,9 @@ Set the hostname of the system
 nvim /etc/hostname
 ```
 
+
 And write the name of the system and save the file.
+
 
 ## Set the root password
 
@@ -326,7 +353,9 @@ Set the root password.
 passwd
 ```
 
+
 And enter a password.
+
 
 ## Create a new user
 
@@ -336,11 +365,13 @@ Then create a new user to avoid using the root user.
 useradd -mG wheel -s /bin/zsh peakyhell
 ```
 
+
 And set a password for the user
 
 ```
 passwd peakyhell
 ```
+
 
 Finally give sudo permission to the user.
 
@@ -348,7 +379,9 @@ Finally give sudo permission to the user.
 EDITOR=nvim visudo
 ```
 
+
 And uncomment the line `%wheel ALL=(ALL) ALL` and save the file.
+
 
 ## Enable Network Manager
 
@@ -358,6 +391,7 @@ Enable the network manager.
 systemctl enable NetworkManager
 ```
 
+
 ## Configure Grub
 
 Enable the boot loader. Replace X with the disk name.
@@ -366,11 +400,13 @@ Enable the boot loader. Replace X with the disk name.
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB /dev/sdX
 ```
 
+
 And configure it.
 
 ```
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
 
 ## Exit and reboot
 
@@ -380,17 +416,15 @@ Exit the system.
 exit
 ```
 
+
 And unmount all drives
 
 ```
 umount -R /mnt
 ```
 
-And FINALLY reboot.
 
-```
-reboot
-```
+
 
 ## Dual Boot - Add Windows to Grub
 
@@ -399,6 +433,7 @@ Edit the Grub configuration.
 ```
 nvim /etc/default/grub
 ```
+
 
 Increase the `GRUB_TIMEOUT` to 30 seconds for example to have the time to choose your OS.
 
@@ -409,6 +444,7 @@ Install the following package.
 ```
 sudo pacman -S os-prober
 ```
+
 
 Update the Grub configuration.
 
@@ -429,6 +465,7 @@ And finally reboot.
 reboot
 ```
 
+
 ### Note
 
 If your system doesn't boot on Grub, ensure it is selected as the Boot Manager in the BIOS.
@@ -447,6 +484,7 @@ Verify the connection.
 ```
 ping -c 5 archlinux.org
 ```
+
 
 ## Install additional packages
 
