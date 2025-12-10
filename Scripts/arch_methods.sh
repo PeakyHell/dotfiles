@@ -90,6 +90,10 @@ arch_config_files() {
 	mkdir -p ~/.config/kitty
 	cat Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
 
+	# Fastfetch config
+	mkdir -p ~/.config/fastfetch
+	cat Common/home/.config/fastfetch/config.jsonc > ~/.config/fastfetch/config.jsonc
+
 	# Hyprland config
 	mkdir -p ~/.config/hypr
 	mkdir -p ~/.config/wallpapers
