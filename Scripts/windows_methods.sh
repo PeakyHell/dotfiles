@@ -96,7 +96,10 @@ windows_config_files() {
 	# Kitty config
 	# mkdir -p ~/.config/kitty
 	# cat Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
-	
+
+	# OhMyZsh
+	# git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 	# Fastfetch config
 	# mkdir -p ~/.config/fastfetch
 	# cat Common/home/.config/fastfetch/config.jsonc > ~/.config/fastfetch/config.jsonc
