@@ -91,9 +91,14 @@ arch_config_files() {
 	cat Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
 
 	# OhMyZsh
-	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-	git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
+	DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+	[-d "$DIR"/.git ] && git -C "$DIR" pull || git clone https://github.com/zsh-users/zsh-autosuggestions "$DIR"
+
+	DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+	[-d "$DIR"/.git ] && git -C "$DIR" pull || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$DIR"
+
+	DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-you-should-use
+	[-d "$DIR"/.git ] && git -C "$DIR" pull || git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$DIR"
 
 	# Fastfetch config
 	mkdir -p ~/.config/fastfetch
