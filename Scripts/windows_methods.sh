@@ -77,25 +77,25 @@ windows_packages() {
 
 windows_config_files() {
 	# Zsh config
-	cat Common/home/.zshrc > ~/.zshrc
-	/bin/zsh -c "source ~/.zshrc"
+	cat "$DOTFILES/Common/home/.zshrc" > "$HOME/.zshrc"
+	/bin/zsh -c "source "$HOME/.zshrc""
 
 	# Ssh config
-	mkdir -p ~/.ssh
-	cat Common/home/.ssh/config > ~/.ssh/config
+	mkdir -p "$HOME/.ssh"
+	cat "$DOTFILES/Common/home/.ssh/config" > "$HOME/.ssh/config"
 
 	# Git config
-	cat Common/home/.gitconfig > ~/.gitconfig
-	cat Common/home/.gitignore > ~/.gitignore
+	cat "$DOTFILES/Common/home/.gitconfig" > "$HOME/.gitconfig"
+	cat "$DOTFILES/Common/home/.gitignore" > "$HOME/.gitignore"
 
 	# NeoVim config
-	mkdir -p ~/.config/nvim
-	cat Common/home/.config/nvim/init.lua > ~/.config/nvim/init.lua
-	cat Common/home/.config/nvim/lazy-lock.json > ~/.config/nvim/lazy-lock.json
+	mkdir -p "$HOME/.config/nvim"
+	cat "$DOTFILES/Common/home/.config/nvim/init.lua" > "$HOME/.config/nvim/init.lua"
+	cat "$DOTFILES/Common/home/.config/nvim/lazy-lock.json" > "$HOME/.config/nvim/lazy-lock.json"
 
 	# Kitty config
-	# mkdir -p ~/.config/kitty
-	# cat Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
+	# mkdir -p "$HOME/.config/kitty"
+	# cat "$DOTFILES/Common/home/.config/kitty/kitty.conf" > "$HOME/.config/kitty/kitty.conf"
 
 	# OhMyZsh
 	# DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -108,11 +108,11 @@ windows_config_files() {
 	# [ -d "$DIR"/.git ] && git -C "$DIR" pull || git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$DIR"
 
 	# Fastfetch config
-	# mkdir -p ~/.config/fastfetch
-	# cat Common/home/.config/fastfetch/config.jsonc > ~/.config/fastfetch/config.jsonc
+	# mkdir -p "$HOME/.config/fastfetch"
+	# cat "$DOTFILES/Common/home/.config/fastfetch/config.jsonc" > "$HOME/.config/fastfetch/config.jsonc"
 
 	# Pacman config
-	cat Arch/etc/pacman.conf | sudo tee /etc/pacman.conf > /dev/null
+	cat "$DOTFILES/Arch/etc/pacman.conf" | sudo tee /etc/pacman.conf > /dev/null
 
 	printf "Config files updated successfully\n"
 }

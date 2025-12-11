@@ -70,25 +70,25 @@ arch_packages() {
 
 arch_config_files() {
 	# Zsh config
-	cat Common/home/.zshrc > ~/.zshrc
-	/bin/zsh -c "source ~/.zshrc"
+	cat "$DOTFILES/Common/home/.zshrc" > "$HOME/.zshrc"
+	/bin/zsh -c "source $HOME/.zshrc"
 
 	# Ssh config
-	mkdir -p ~/.ssh
-	cat Common/home/.ssh/config > ~/.ssh/config
+	mkdir -p "$HOME/.ssh"
+	cat "$DOTFILES/Common/home/.ssh/config" > "$HOME/.ssh/config"
 
 	# Git config
-	cat Common/home/.gitconfig > ~/.gitconfig
-	cat Common/home/.gitignore > ~/.gitignore
+	cat "$DOTFILES/Common/home/.gitconfig" > "$HOME/.gitconfig"
+	cat "$DOTFILES/Common/home/.gitignore" > "$HOME/.gitignore"
 
 	# NeoVim config
-	mkdir -p ~/.config/nvim
-	cat Common/home/.config/nvim/init.lua > ~/.config/nvim/init.lua
-	cat Common/home/.config/nvim/lazy-lock.json > ~/.config/nvim/lazy-lock.json
+	mkdir -p "$HOME/.config/nvim"
+	cat "$DOTFILES/Common/home/.config/nvim/init.lua" > "$HOME/.config/nvim/init.lua"
+	cat "$DOTFILES/Common/home/.config/nvim/lazy-lock.json" > "$HOME/.config/nvim/lazy-lock.json"
 
 	# Kitty config
-	mkdir -p ~/.config/kitty
-	cat Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
+	mkdir -p "$HOME/.config/kitty"
+	cat "$DOTFILES/Common/home/.config/kitty/kitty.conf" > "$HOME/.config/kitty/kitty.conf"
 
 	# OhMyZsh
 	DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -101,40 +101,40 @@ arch_config_files() {
 	[ -d "$DIR"/.git ] && git -C "$DIR" pull || git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$DIR"
 
 	# Fastfetch config
-	mkdir -p ~/.config/fastfetch
-	cat Common/home/.config/fastfetch/config.jsonc > ~/.config/fastfetch/config.jsonc
+	mkdir -p "$HOME/.config/fastfetch"
+	cat "$DOTFILES/Common/home/.config/fastfetch/config.jsonc" > "$HOME/.config/fastfetch/config.jsonc"
 
 	# Hyprland config
-	mkdir -p ~/.config/hypr
-	mkdir -p ~/.config/wallpapers
-	cat Arch/home/.config/hypr/hyprland.conf > ~/.config/hypr/hyprland.conf
-	cat Arch/home/.config/hypr/hyprlock.conf > ~/.config/hypr/hyprlock.conf
-	cat Arch/home/.config/hypr/hypridle.conf > ~/.config/hypr/hypridle.conf
-	cat Arch/home/.config/hypr/hyprpaper.conf > ~/.config/hypr/hyprpaper.conf
-	cp -a Arch/home/.config/wallpapers/. ~/.config/wallpapers/
+	mkdir -p "$HOME/.config/hypr"
+	mkdir -p "$HOME/.config/wallpapers"
+	cat "$DOTFILES/Arch/home/.config/hypr/hyprland.conf" > "$HOME/.config/hypr/hyprland.conf"
+	cat "$DOTFILES/Arch/home/.config/hypr/hyprlock.conf" > "$HOME/.config/hypr/hyprlock.conf"
+	cat "$DOTFILES/Arch/home/.config/hypr/hypridle.conf" > "$HOME/.config/hypr/hypridle.conf"
+	cat "$DOTFILES/Arch/home/.config/hypr/hyprpaper.conf" > "$HOME/.config/hypr/hyprpaper.conf"
+	cp -a "$DOTFILES/Arch/home/.config/wallpapers/." "$HOME/.config/wallpapers/"
 
 	# Waybar config
-	mkdir -p ~/.config/waybar
-	cat Arch/home/.config/waybar/config > ~/.config/waybar/config
-	cat Arch/home/.config/waybar/style.css > ~/.config/waybar/style.css
+	mkdir -p "$HOME/.config/waybar"
+	cat "$DOTFILES/Arch/home/.config/waybar/config" > "$HOME/.config/waybar/config"
+	cat "$DOTFILES/Arch/home/.config/waybar/style.css" > "$HOME/.config/waybar/style.css"
 
 	# Wofi config
-	mkdir -p ~/.config/wofi
-	cat Arch/home/.config/wofi/style.css > ~/.config/wofi/style.css
+	mkdir -p "$HOME/.config/wofi"
+	cat "$DOTFILES/Arch/home/.config/wofi/style.css" > "$HOME/.config/wofi/style.css"
 
 	# Dunst config
 	mkdir -p /etc/dunst
-	cat Arch/etc/dunst/dunstrc | sudo tee /etc/dunst/dunstrc > /dev/null
+	cat "$DOTFILES/Arch/etc/dunst/dunstrc" | sudo tee /etc/dunst/dunstrc > /dev/null
 
 	# Pacman config
-	cat Arch/etc/pacman.conf | sudo tee /etc/pacman.conf > /dev/null
+	cat "$DOTFILES/Arch/etc/pacman.conf" | sudo tee /etc/pacman.conf > /dev/null
 
 	# Conky config
-	mkdir -p ~/.config/conky
-	cat Arch/home/.config/conky/conky.conf > ~/.config/conky/conky.conf
+	mkdir -p "$HOME/.config/conky"
+	cat "$DOTFILES/Arch/home/.config/conky/conky.conf" > "$HOME/.config/conky/conky.conf"
 
 	# Sddm config
-	cat Arch/etc/sddm.conf | sudo tee /etc/sddm.conf > /dev/null
+	cat "$DOTFILES/Arch/etc/sddm.conf" | sudo tee /etc/sddm.conf > /dev/null
 
 	printf "Config files updated successfully\n"
 }

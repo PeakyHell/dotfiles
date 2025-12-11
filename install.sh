@@ -16,42 +16,44 @@
 # Variables
 #
 # ==================================
-if [[ ! -f Arch/pacman.txt ]]; then
-	printf "Arch/pacman.txt not found !\n"
+DOTFILES="$(cd "$(dirname "$0")" && pwd)"
+
+if [[ ! -f "$DOTFILES/Arch/pacman.txt" ]]; then
+	printf "$DOTFILES/Arch/pacman.txt not found !\n"
 	exit 1
 fi
-if [[ ! -f Arch/yay.txt ]]; then
-	printf "Arch/yay.txt not found !\n"
+if [[ ! -f "$DOTFILES/Arch/yay.txt" ]]; then
+	printf "$DOTFILES/Arch/yay.txt not found !\n"
 	exit 1
 fi
-if [[ ! -f MacOs/formulaes.txt ]]; then
-	printf "MacOs/formulaes.txt not found !\n"
+if [[ ! -f "$DOTFILES/MacOs/formulaes.txt" ]]; then
+	printf "$DOTFILES/MacOs/formulaes.txt not found !\n"
 	exit 1
 fi
-if [[ ! -f MacOs/casks.txt ]]; then
-	printf "MacOs/casks.txt not found !\n"
+if [[ ! -f "$DOTFILES/MacOs/casks.txt" ]]; then
+	printf "$DOTFILES/MacOs/casks.txt not found !\n"
 	exit 1
 fi
-if [[ ! -f Windows/chocolatey.txt ]]; then
-	printf "Windows/chocolatey.txt not found !\n"
+if [[ ! -f "$DOTFILES/Windows/chocolatey.txt" ]]; then
+	printf "$DOTFILES/Windows/chocolatey.txt not found !\n"
 	exit 1
 fi
 
 
 pacman=()
-while IFS= read -r line; do pacman+=("$line"); done < Arch/pacman.txt
+while IFS= read -r line; do pacman+=("$line"); done < "$DOTFILES/Arch/pacman.txt"
 
 yay=()
-while IFS= read -r line; do yay+=("$line"); done < Arch/yay.txt
+while IFS= read -r line; do yay+=("$line"); done < "$DOTFILES/Arch/yay.txt"
 
 formulaes=()
-while IFS= read -r line; do formulaes+=("$line"); done < MacOs/formulaes.txt
+while IFS= read -r line; do formulaes+=("$line"); done < "$DOTFILES/MacOs/formulaes.txt"
 
 casks=()
-while IFS= read -r line; do casks+=("$line"); done < MacOs/casks.txt
+while IFS= read -r line; do casks+=("$line"); done < "$DOTFILES/MacOs/casks.txt"
 
 chocolatey=()
-while IFS= read -r line; do chocolatey+=("$line"); done < Windows/chocolatey.txt
+while IFS= read -r line; do chocolatey+=("$line"); done < "$DOTFILES/Windows/chocolatey.txt"
 
 
 # ==================================
