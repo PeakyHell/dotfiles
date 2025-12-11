@@ -124,6 +124,10 @@ macos_config_files() {
 	clone_or_pull "https://github.com/MichaelAquilina/zsh-you-should-use.git" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/you-should-use"
 
 	# Stow
+	cd "$DOTFILES"
+	stow -t "$HOME/.config/nvim/" --adopt kickstart.nvim
+	git restore .
+
 	cd "$DOTFILES/Common"
 	stow -t "$HOME" --adopt home
 	git restore .
