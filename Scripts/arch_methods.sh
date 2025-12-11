@@ -1,5 +1,6 @@
 #!/bin/bash
 
+. ./Scripts/helper.sh
 
 arch_prompt() {
 	while true; do
@@ -69,72 +70,21 @@ arch_packages() {
 
 
 arch_config_files() {
-	# Zsh config
-	cat "$DOTFILES/Common/home/.zshrc" > "$HOME/.zshrc"
-	/bin/zsh -c "source $HOME/.zshrc"
+	# Install OhMyZsh plugins
+	clone_or_pull "https://github.com/zsh-users/zsh-autosuggestions" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+	clone_or_pull "https://github.com/zsh-users/zsh-syntax-highlighting.git" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+	clone_or_pull "https://github.com/MichaelAquilina/zsh-you-should-use.git" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/you-should-use"
 
-	# Ssh config
-	mkdir -p "$HOME/.ssh"
-	cat "$DOTFILES/Common/home/.ssh/config" > "$HOME/.ssh/config"
+	# Stow
+	cd "$DOTFILES/Common"
+	stow -t "$HOME" --adopt home
+	git restore .
 
-	# Git config
-	cat "$DOTFILES/Common/home/.gitconfig" > "$HOME/.gitconfig"
-	cat "$DOTFILES/Common/home/.gitignore" > "$HOME/.gitignore"
-
-	# NeoVim config
-	mkdir -p "$HOME/.config/nvim"
-	cat "$DOTFILES/Common/home/.config/nvim/init.lua" > "$HOME/.config/nvim/init.lua"
-	cat "$DOTFILES/Common/home/.config/nvim/lazy-lock.json" > "$HOME/.config/nvim/lazy-lock.json"
-
-	# Kitty config
-	mkdir -p "$HOME/.config/kitty"
-	cat "$DOTFILES/Common/home/.config/kitty/kitty.conf" > "$HOME/.config/kitty/kitty.conf"
-
-	# OhMyZsh
-	DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-	[ -d "$DIR"/.git ] && git -C "$DIR" pull || git clone https://github.com/zsh-users/zsh-autosuggestions "$DIR"
-
-	DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-	[ -d "$DIR"/.git ] && git -C "$DIR" pull || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$DIR"
-
-	DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
-	[ -d "$DIR"/.git ] && git -C "$DIR" pull || git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$DIR"
-
-	# Fastfetch config
-	mkdir -p "$HOME/.config/fastfetch"
-	cat "$DOTFILES/Common/home/.config/fastfetch/config.jsonc" > "$HOME/.config/fastfetch/config.jsonc"
-
-	# Hyprland config
-	mkdir -p "$HOME/.config/hypr"
-	mkdir -p "$HOME/.config/wallpapers"
-	cat "$DOTFILES/Arch/home/.config/hypr/hyprland.conf" > "$HOME/.config/hypr/hyprland.conf"
-	cat "$DOTFILES/Arch/home/.config/hypr/hyprlock.conf" > "$HOME/.config/hypr/hyprlock.conf"
-	cat "$DOTFILES/Arch/home/.config/hypr/hypridle.conf" > "$HOME/.config/hypr/hypridle.conf"
-	cat "$DOTFILES/Arch/home/.config/hypr/hyprpaper.conf" > "$HOME/.config/hypr/hyprpaper.conf"
-	cp -a "$DOTFILES/Arch/home/.config/wallpapers/." "$HOME/.config/wallpapers/"
-
-	# Waybar config
-	mkdir -p "$HOME/.config/waybar"
-	cat "$DOTFILES/Arch/home/.config/waybar/config" > "$HOME/.config/waybar/config"
-	cat "$DOTFILES/Arch/home/.config/waybar/style.css" > "$HOME/.config/waybar/style.css"
-
-	# Wofi config
-	mkdir -p "$HOME/.config/wofi"
-	cat "$DOTFILES/Arch/home/.config/wofi/style.css" > "$HOME/.config/wofi/style.css"
-
-	# Dunst config
-	mkdir -p /etc/dunst
-	cat "$DOTFILES/Arch/etc/dunst/dunstrc" | sudo tee /etc/dunst/dunstrc > /dev/null
-
-	# Pacman config
-	cat "$DOTFILES/Arch/etc/pacman.conf" | sudo tee /etc/pacman.conf > /dev/null
-
-	# Conky config
-	mkdir -p "$HOME/.config/conky"
-	cat "$DOTFILES/Arch/home/.config/conky/conky.conf" > "$HOME/.config/conky/conky.conf"
-
-	# Sddm config
-	cat "$DOTFILES/Arch/etc/sddm.conf" | sudo tee /etc/sddm.conf > /dev/null
+	cd "$DOTFILES/Arch"
+	sudo stow -t --adopt /etc etc
+	stow -t "$HOME" --adopt home
+	git restore .
+	
 
 	printf "Config files updated successfully\n"
 }

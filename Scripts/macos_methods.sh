@@ -1,5 +1,6 @@
 #!/bin/bash
 
+. ./Scripts/helper.sh
 
 macos_prompt() {
 	while true; do
@@ -117,40 +118,15 @@ macos_packages() {
 
 
 macos_config_files() {
-	# Zsh config
-	cat "$DOTFILES/Common/home/.zshrc" > "$HOME/.zshrc"
-	/bin/zsh -c "source $HOME/.zshrc"
+	# Install OhMyZsh plugins
+	clone_or_pull "https://github.com/zsh-users/zsh-autosuggestions" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+	clone_or_pull "https://github.com/zsh-users/zsh-syntax-highlighting.git" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+	clone_or_pull "https://github.com/MichaelAquilina/zsh-you-should-use.git" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/you-should-use"
 
-	# Ssh config
-	mkdir -p "$HOME/.ssh"
-	cat "$DOTFILES/Common/home/.ssh/config" > "$HOME/.ssh/config"
-
-	# Git config
-	cat "$DOTFILES/Common/home/.gitconfig" > "$HOME/.gitconfig"
-	cat "$DOTFILES/Common/home/.gitignore" > "$HOME/.gitignore"
-
-	# NeoVim config
-	mkdir -p "$HOME/.config/nvim"
-	cat "$DOTFILES/Common/home/.config/nvim/init.lua" > "$HOME/.config/nvim/init.lua"
-	cat "$DOTFILES/Common/home/.config/nvim/lazy-lock.json" > "$HOME/.config/nvim/lazy-lock.json"
-
-	# Kitty config
-	mkdir -p "$HOME/.config/kitty"
-	cat "$DOTFILES/Common/home/.config/kitty/kitty.conf" > "$HOME/.config/kitty/kitty.conf"
-
-	# OhMyZsh
-	DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-	[ -d "$DIR"/.git ] && git -C "$DIR" pull || git clone https://github.com/zsh-users/zsh-autosuggestions "$DIR"
-
-	DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-	[ -d "$DIR"/.git ] && git -C "$DIR" pull || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$DIR"
-
-	DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
-	[ -d "$DIR"/.git ] && git -C "$DIR" pull || git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$DIR"
-
-	# Fastfetch config
-	mkdir -p "$HOME/.config/fastfetch"
-	cat "$DOTFILES/Common/home/.config/fastfetch/config.jsonc" > "$HOME/.config/fastfetch/config.jsonc"
+	# Stow
+	cd "$DOTFILES/Common"
+	stow -t "$HOME" --adopt home
+	git restore .
 
 	printf "Config files updated successfully\n"
 }
