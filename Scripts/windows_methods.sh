@@ -86,10 +86,6 @@ windows_config_files() {
 	cat "$DOTFILES/Arch/etc/pacman.conf" | sudo tee /etc/pacman.conf > /dev/null
 
 	# Stow
-	cd "$DOTFILES"
-	stow -t "$HOME/.config/nvim/" --adopt kickstart.nvim
-	git restore .
-
 	cd "$DOTFILES/Common"
 	stow -t "$HOME" --adopt home
 	git restore .
