@@ -1,7 +1,24 @@
-#!/bin/bash
+#!/bin/zsh
+set -euo pipefail
 
-. ./Scripts/helper.sh
 
+# ==================================
+#
+# Requirements
+#
+# ==================================
+if [[ ! -f "$DOTFILES/Scripts/helper.sh" ]]; then
+	printf '%s not found !\n' "$DOTFILES/Scripts/helper.sh" >&2
+	exit 1
+fi
+. "$DOTFILES/Scripts/helper.sh"
+
+
+# ==================================
+#
+# Methods
+#
+# ==================================
 macos_prompt() {
 	while true; do
 	clear
@@ -11,9 +28,9 @@ macos_prompt() {
 	printf "    [2] Install/Update Homebrew packages\n"
 	printf "    [3] Update config files\n"
 	printf "    [4] Apply MacOs settings\n"
-	printf "    [0] Go back\n"
+	printf "    [0] Exit\n"
 	printf "============================================\n"
-	read option
+	read -r option
 	case "$option" in
 
 		# Exit
@@ -24,29 +41,25 @@ macos_prompt() {
 		# Install Homebrew
 		"1")
 			macos_manager
-			printf "Press any key to exit..."
-			read
+			press_any_key
 			;;
 
 		# Install/Update Homebrew packages
 		"2")
 			macos_packages
-			printf "Press any key to exit..."
-			read
+			press_any_key
 			;;
 
 		# Update config files
 		"3")
 			macos_config_files
-			printf "Press any key to exit..."
-			read
+			press_any_key
 			;;
 
 		# Apply MacOs settings
 		"4")
 			macos_settings
-			printf "Press any key to exit..."
-			read
+			press_any_key
 			;;
 
 		# Default
@@ -59,7 +72,8 @@ macos_prompt() {
 
 
 macos_manager() {
-	if ! brew --version &>/dev/null; then
+	if ! command -v brew &>/dev/null; then
+		printf "Homebrew not installed !\n Installing...\n"
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 		printf "Homebrew installed successfully !\n"
 	else
@@ -72,16 +86,7 @@ macos_manager() {
 
 macos_packages() {
 	# Ensure Homebrew is installed and/or up to date
-	if ! brew --version &>/dev/null; then
-		printf "Homebrew not installed !\n Installing...\n"
-		sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-		printf "Homebrew installed successfully !\n"
-	else
-		printf "Updating Homebrew...\n"
-		brew update
-		printf "Hombrew updated successfully !\n"
-	fi
-
+	macos_manager
 
 	# Upgrade already installed packages
 	printf "Upgrading packages...\n"
@@ -104,15 +109,16 @@ macos_packages() {
 
 	for cask in "${casks[@]}"; do
 		if ! echo "$installed_casks" | grep -q "^$cask$"; then
-			brew install --cask --appdir=\"~/Applications\" "$cask"
+			brew install --cask --appdir="$HOME/Applications" "$cask"
 		fi
 	done
 	printf "Missing packages installed successfully !\n"
 
 
 	# Remove Librewolf from quarantine
-	if xattr -l "$HOME/Applications/LibreWolf.app/" | grep -q "^com.apple.quarantine$"; then
-		xattr -d com.apple.quarantine "$HOME/Applications/LibreWolf.app"
+	local librewolf_app="$HOME/Applications/LibreWolf.app"
+	if [[ -d "$librewolf_app" ]] && xattr "$librewolf_app" 2>/dev/null | grep -q "com.apple.quarantine"; then
+		xattr -d com.apple.quarantine "$librewolf_app"
 	fi
 }
 

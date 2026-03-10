@@ -47,3 +47,10 @@ clone_or_pull() {
 		git clone "$repo" "$dir"
 	fi
 }
+
+
+press_any_key() {
+	printf "Press any key to continue..."
+	read -k 1
+	printf "\n"
+}
