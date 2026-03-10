@@ -145,6 +145,12 @@ macos_settings() {
 	# Merge minimized applications to their icon
 	defaults write com.apple.dock minimize-to-application -bool "true"
 
+	# Don't create .DS_Store on network drives
+	defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool "true"
+
+	# Don't create .DS_Store on external drives
+	defaults write com.apple.desktopservices DSDontWriteUSBStores -bool "true"
+
 	# Apply settings
 	killall Finder
 	killall Dock
