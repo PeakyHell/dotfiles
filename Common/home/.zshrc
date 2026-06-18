@@ -72,7 +72,6 @@ ENABLE_CORRECTION="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
-	you-should-use
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 )
