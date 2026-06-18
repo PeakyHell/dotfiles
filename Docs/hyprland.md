@@ -4,9 +4,86 @@
 
 Install Hyprland and the required packages.
 
+Hyprland:
 ```
-sudo pacman -S hypridle hyprland hyprlock hyprpaper sddm egl-wayland xorg-xwayland wayland-protocols dunst pavucontrol pipewire wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent qt5-wayland qt6-wayland noto-fonts
+sudo pacman -S hyprland
+```
 
+Login manager (to launch Hyprland on startup):
+```
+sudo pacman -S sddm
+```
+
+Notification daemon:
+```
+sudo pacman -S dunst
+```
+
+Pipewire (required for screen sharing):
+```
+sudo pacman -S pipewire wireplumber
+```
+
+XDG Desktop Portal (+ file picker):
+```
+sudo pacman -S xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
+```
+
+Authentication Agent:
+```
+sudo pacman -S hyprpolkitagent
+```
+
+Qt Wayland Support:
+```
+sudo pacman -S qt5-wayland qt6-wayland
+```
+
+Fonts:
+```
+sudo pacman -S noto-fonts
+```
+
+Application launcher:
+```
+sudo pacman -S wofi
+```
+
+File manager:
+```
+sudo pacman -S dolphin
+```
+
+Status bar:
+```
+sudo pacman -S waybar
+```
+
+Clipboard:
+```
+sudo pacman -S wl-clipboard
+```
+
+
+## Install the not required but used packages
+Idle manager
+```
+sudo pacman -S hypridle
+```
+
+Lock screen
+```
+sudo pacman -S hyprlock
+```
+
+Wallpapers manager
+```
+sudo pacman -S hyprpaper
+```
+
+Sound mixer
+```
+sudo pacman -S pavucontrol
 ```
 
 
@@ -22,6 +99,20 @@ Install the following packages and drivers.
 
 ```
 sudo pacman -S libva-nvidia-driver nvidia-open nvidia-utils
+```
+
+
+## Install additional packages
+Install the following packages that are useful to fix some potential issues.
+
+Flickering in XWayland games
+```
+sudo pacman -S xorg-xwayland wayland-protocols
+```
+
+EGL - Wayland API compatibility
+```
+sudo pacman -S egl-wayland
 ```
 
 
@@ -51,7 +142,7 @@ sudo nvim /etc/mkinitcpio.conf
 And add the following to the modules array to enable Early KMS
 
 ```
-MODULES=(... nvidia nvidia_modeset nvidia_uvm nvidia_drm ...)
+MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)
 ```
 
 
@@ -85,7 +176,7 @@ nvidia-hibernate.service
 nvidia-resume.service
 ```
 
-## Start the Display Manager
+# Start the Display Manager
 
 Start sddm.
 
@@ -95,7 +186,7 @@ sudo systemctl enable --now sddm
 
 Hyprland is now accessible from sddm login.
 
-## Configure wayland
+# Configure wayland
 
 Once in Hyprland replace the config file with the custom one.
 
