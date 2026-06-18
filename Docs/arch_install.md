@@ -58,7 +58,7 @@ If you use Wi-Fi, check [iwctl](https://wiki.archlinux.org/title/Iwctl) to conne
 Verify the connection.
 
 ```
-ping -c 5 archlinux.org
+ping -c 5 ping.archlinux.org
 ```
 
 
@@ -233,17 +233,8 @@ Install the base packages to run the system properly.
 - Zsh is optional, you can remove it if Bash is enough for you.
 
 ```
-pacstrap -K /mnt base linux linux-firmware amd-ucode efibootmgr networkmanager neovim sudo zsh
+pacstrap -K /mnt base linux linux-firmware amd-ucode networkmanager neovim sudo zsh
 ```
-
-
-If you're dual booting, also install :
-
-```
-pacstrap -K /mnt dosfstools mtools
-```
-
-
 
 
 # Configure the system
@@ -408,16 +399,16 @@ bootctl install
 ```
 
 
-Create a loader configuration at `/boot/xxx/loader/loader.conf`.
+Create a loader configuration at `/boot/loader/loader.conf`.
 ```
 default arch.conf
-timeout 4
+timeout 5
 console-mode max
 editor no
 ```
 
 
-Then create the Arch entry at `/boot/xxx/loader/entries/arch.conf`
+Then create the Arch entry at `/boot/loader/entries/arch.conf`
 ```
 title Arch Linux
 linux /vmlinuz-linux
@@ -425,6 +416,7 @@ initrd /initramfs-linux.img
 options root=UUID=xxx rw
 ```
 
+Replace `xxx` with your root partition UUID. You can find it easily inside `/etc/fstab`
 
 
 ## Exit and reboot
@@ -445,31 +437,7 @@ umount -R /mnt
 
 
 
-## Dual Boot - Add Windows to Grub
-
-Edit the Grub configuration.
-
-```
-nvim /etc/default/grub
-```
-
-
-Increase the `GRUB_TIMEOUT` to 30 seconds for example to have the time to choose your OS.
-
-Then uncomment the line `#GRUB_DISABLE_OS_PROBER=false` and save the file.
-
-Install the following package.
-
-```
-sudo pacman -S os-prober
-```
-
-
-Update the Grub configuration.
-
-```
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-```
+## Dual Boot - Add Windows to system-d boot 
 
 
 
@@ -501,7 +469,7 @@ If your system doesn't boot on Grub, ensure it is selected as the Boot Manager i
 Verify the connection.
 
 ```
-ping -c 5 archlinux.org
+ping -c 5 ping.archlinux.org
 ```
 
 
