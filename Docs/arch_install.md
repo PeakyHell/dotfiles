@@ -435,6 +435,37 @@ umount -R /mnt
 ```
 
 
+# Reboot
+
+[Source](https://wiki.archlinux.org/title/Installation_guide#Reboot)
+
+And finally reboot.
+
+```
+reboot
+```
+
+
+# Post-installation
+
+[Source](https://wiki.archlinux.org/title/Installation_guide#Post-installation)
+
+## Check internet connection
+
+Verify the connection.
+
+```
+ping -c 5 ping.archlinux.org
+```
+
+
+## Install additional packages
+
+Install additional packages.
+
+```
+sudo pacman -S base-devel fastfetch git kitty man-db man-pages openssh texinfo zsh-autosuggestions zsh-completions
+```
 
 
 ## Dual Boot - Add Windows to system-d boot 
@@ -528,48 +559,6 @@ Reboot and check that everything works properly.
 ```
 sudo sbctl status
 ```
-
-
-# Reboot
-
-[Source](https://wiki.archlinux.org/title/Installation_guide#Reboot)
-
-And finally reboot.
-
-```
-reboot
-```
-
-
-### Note
-
-If your system doesn't boot on Grub, ensure it is selected as the Boot Manager in the BIOS.
-
-
-
-
-# Post-installation
-
-[Source](https://wiki.archlinux.org/title/Installation_guide#Post-installation)
-
-## Check internet connection
-
-Verify the connection.
-
-```
-ping -c 5 ping.archlinux.org
-```
-
-
-## Install additional packages
-
-Install additional packages.
-
-```
-sudo pacman -S base-devel fastfetch git kitty man-db man-pages openssh texinfo zsh-autosuggestions zsh-completions
-```
-
-
 
 
 # Hyprland installation
