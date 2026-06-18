@@ -233,7 +233,7 @@ Install the base packages to run the system properly.
 - Zsh is optional, you can remove it if Bash is enough for you.
 
 ```
-pacstrap -K /mnt base linux linux-firmware amd-ucode grub efibootmgr networkmanager neovim sudo zsh
+pacstrap -K /mnt base linux linux-firmware amd-ucode efibootmgr networkmanager neovim sudo zsh
 ```
 
 
@@ -392,20 +392,39 @@ systemctl enable NetworkManager
 ```
 
 
-## Configure Grub
+## Configure systemd-boot
 
-Enable the boot loader. Replace X with the disk name.
-
+Ensure the system is booted in UEFI mode and that UEFI variables are accessible.
 ```
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB /dev/sdX
+ls /sys/firmware/efi/efivars
+```
+
+If the directory exists, the system is booted in UEFI mode.
+
+
+Install systemd-boot to the ESP.
+```
+bootctl install
 ```
 
 
-And configure it.
+Create a loader configuration at `/boot/xxx/loader/loader.conf`.
+```
+default arch.conf
+timeout 4
+console-mode max
+editor no
+```
 
+
+Then create the Arch entry at `/boot/xxx/loader/entries/arch.conf`
 ```
-grub-mkconfig -o /boot/grub/grub.cfg
+title Arch Linux
+linux /vmlinuz-linux
+initrd /initramfs-linux.img
+options root=UUID=xxx rw
 ```
+
 
 
 ## Exit and reboot
