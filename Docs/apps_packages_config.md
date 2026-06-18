@@ -1,6 +1,18 @@
+**Description**
+
+**Installation**
+
+**Configuration**
+
+
+
 # Common
 
 ## Discord
+Install discord.
+```
+sudo pacman -S discord
+```
 
 Connect account
 
@@ -19,6 +31,10 @@ bind = $mainMod, D, exec, discord
 ```
 
 ## Fastfetch
+Install Fastfetch.
+```
+sudo pacman -S fastfetch
+```
 
 Add `fastfetch` at the end of the .zshrc file. (Done in dotfiles)
 
@@ -27,6 +43,11 @@ cat fastfetch >> ~/.zshrc
 ```
 
 ## Git
+Install Git.
+
+```
+sudo pacman -S git
+```
 
 Import the configuration files.
 
@@ -77,6 +98,10 @@ exec-once = goxlr-utility
 ```
 
 ## Kitty
+Install Kitty.
+```
+sudo pacman -S kitty
+```
 
 Import the configuration file.
 
@@ -181,9 +206,55 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 
 # Arch Linux Only
+## amd-ucode
+**Description**
+Microcode for AMD CPUs.
 
-## Conky
+**Installation**
+```
+sudo pacman -S amd-ucode
+```
 
+**Configuration**
+Nothing to do.
+
+
+## base
+**Description**
+Minimal package set to define a basic Arch Linux installation.
+
+**Installation**
+```
+sudo pacman -S base
+```
+
+**Configuration**
+Nothing to do.
+
+
+## base-devel
+**Description**
+Basic tools to build Arch Linux packages.
+
+**Installation**
+```
+sudo pacman -S base-devel
+```
+
+**Configuration**
+Nothing to do.
+
+
+## conky
+**Description**
+System monitor.
+
+**Installation**
+```
+sudo pacman -S conky
+```
+
+**Configuration**
 Import the configuration file.
 
 ```
@@ -191,8 +262,58 @@ mkdir -p ~/.config/conky
 cat Arch/home/.config/conky/conky.conf > ~/.config/conky/conky.conf
 ```
 
-## Dunst
 
+## discord
+**Description**
+Not needed
+
+**Installation**
+```
+sudo pacman -S discord
+```
+
+**Configuration**
+Add the following line to `~/.config/discord/settings.json` to be able to start it when new updates aren't available yet.
+
+```
+"SKIP_HOST_UPDATE": true
+```
+
+Add a `bind` in `hyprland.conf` (Done in dotfiles)
+
+```
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("discord"))
+```
+
+
+## dolphin
+**Description**
+File manager.
+Used by Hyprland.
+
+**Installation**
+```
+sudo pacman -S dolphin
+```
+
+**Configuration**
+Add a `variable` in `hyprland.conf` (Done in dotfiles)
+
+```
+local fileManager = "dolphin"
+```
+
+
+## dunst
+**Description**
+Notification daemon.
+
+**Installation**
+```
+sudo pacman -S dunst
+```
+
+**Configuration**
 Import the configuration file.
 
 ```
@@ -200,28 +321,107 @@ mkdir -p /etc/dunst
 cat Arch/etc/dunst/dunstrc | sudo tee /etc/dunst/dunstrc > /dev/null
 ```
 
-Add an `exec-once` in `hyprland.conf` (Done in dotfiles)
+Add an `exec-cmd` in `hyprland.conf` (Done in dotfiles)
 
 ```
-exec-once = dunst
+hl.on("hyprland.start", function () 
+  hl.exec_cmd("dunst")
+end)
 ```
+
+
+## edk2-shell
+**Description**
+UEFI Shell.
+Used to configure Arch-Windows dual boot.
+
+**Installation**
+```
+sudo pacman -S edk2-shell
+```
+
+**Configuration**
+Nothing to do. Only used during dual boot setup.
+
+
+## egl-wayland
+**Description**
+Required in order to enable compatibility between the EGL API and the Wayland protocol.
+Used for Nvidia with Hyprland.
+
+**Installation**
+```
+sudo pacman -S egl-wayland
+```
+
+**Configuration**
+Nothing to do.
+
+
+## fastfetch
+**Description**
+Terminal system information tool.
+Used in zsh.
+
+**Installation**
+```
+sudo pacman -S fastfetch
+```
+
+**Configuration**
+Add `fastfetch` at the end of the `.zshrc` file.
+Default config is enough but Fastfetch can be configured in `~/.config/fastfetch/config.jsonc`
+
+
+## git
+**Description**
+Version Control System
+
+**Installation**
+```
+sudo pacman -S git
+```
+
+**Configuration**
+Import the configuration files.
+```
+cat Common/home/.gitconfig > ~/.gitconfig
+cat Common/home/.gitignore > ~/.gitignore
+```
+
+See openssh configuration for SSH keys configuration.
+
 
 ## Hypridle
+**Description**
+Idle manager.
 
+**Installation**
+Install Hypridle.
+```
+sudo pacman -S hypridle
+```
+
+**Configuration**
 Import the configuration file.
 
 ```
-mkdir -p ~/.config/hypr
 cat Arch/home/.config/hypr/hypridle.conf > ~/.config/hypr/hypridle.conf
 ```
 
-Add an `exec-once` in `hyprland.conf` (Done in dotfiles)
+Add an `exec-cmd` in `hyprland.conf` (Done in dotfiles)
 
 ```
-exec-once = hypridle
+hl.on("hyprland.start", function () 
+  hl.exec_cmd("hypridle")
+end)
 ```
 
 ## Hyprland
+Install Hyprland.
+```
+sudo pacman -S hyprland
+```
 
 Import the configuration file.
 
@@ -230,9 +430,12 @@ mkdir -p ~/.config/hypr
 cat Arch/home/.config/hypr/hyprland.conf > ~/.config/hypr/hyprland.conf
 ```
 
-TODO ADD REST OF CONFIGURATION
+Follow the instructions in the [Hyprland Docs](hyprland.md)
 
 ## Hyprlock
+```
+sudo pacman -S hyprlock
+```
 
 Import the configuration file.
 
@@ -248,6 +451,9 @@ bind = $mainMod, escape, exec, hyprlock
 ```
 
 ## Hyprpaper
+```
+sudo pacman -S hyprpaper
+```
 
 Import the configuration files and the wallpapers.
 
@@ -264,6 +470,10 @@ exec-once = hyprpaper
 ```
 
 ## Hyprpolkitagent
+Install Hyprpolkitagent.
+```
+sudo pacman -S hyprpolkitagent
+```
 
 Add an `exec-once` in `hyprland.conf` (Done in dotfiles)
 
@@ -273,6 +483,10 @@ exec-once = systemctl --user start hyprpolkitagent
 
 
 ## libva-nvidia-driver
+Install libva-nvidia-driver.
+```
+sudo pacman -S libva-nvidia-driver
+```
 
 Add an `env` in `hyprland.conf` (Done in dotfiles)
 
@@ -289,6 +503,10 @@ sudo cat etc/pacman.conf > /etc/pacman.conf
 ```
 
 ## Reflector
+Install Reflector.
+```
+sudo pacman -S reflector
+```
 
 Backup the current mirrors list.
 
@@ -303,6 +521,10 @@ sudo reflector --verbose --latest 10 --protocol https --sort rate --save /etc/pa
 ```
 
 ## ufw
+Install ufw.
+```
+sudo pacman -S ufw
+```
 
 Enable ufw
 
@@ -341,6 +563,10 @@ SSH (v6)                   LIMIT       Anywhere (v6)
 ```
 
 ## Waybar
+Install Waybar as well as noto fonts symbols
+```
+sudo pacman -S waybar ttf-nerd-fonts-symbols ttf-noto-nerd
+```
 
 Import the configuration files.
 
@@ -357,6 +583,10 @@ exec-once = waybar
 ```
 
 ## Wofi
+Install Wofi.
+```
+sudo pacman -S wofi
+```
 
 Import the configuration file.
 
@@ -366,8 +596,13 @@ cat Arch/home/.config/wofi/style.css > ~/.config/wofi/style.css
 ```
 
 ## Yay
-
-TODO
+Install Yay.
+```
+sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
 
 
 # MacOs Only
