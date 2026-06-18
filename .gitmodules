@@ -1,3 +1,0 @@
-[submodule "Common/home/.config/nvim"]
-	path = Common/home/.config/nvim
-	url = git@github.com:PeakyHell/kickstart.nvim.git
