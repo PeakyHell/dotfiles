@@ -439,7 +439,40 @@ umount -R /mnt
 
 ## Dual Boot - Add Windows to system-d boot 
 
+First, install `edk2-shell`.
+```
+sudo pacman -S edk2-shell
+```
 
+Then copy its EFI file to `boot` so that system-d boot can detect it.
+```
+sudo cp /usr/share/edk2-shell/x64/Shell.efi /boot/shellx64.efi
+```
+
+You can now reboot and enter the UEFI shell during the system-d prompt.
+
+If the font is too big, you can resize it using `mode 80 50`
+
+List the FS aliases using the `map` command.
+
+Find the FileSystem containing the windows EFI by using the following commands.
+```
+FSX: # To access FileSystem X
+dir # To list the content of the FileSystem
+```
+
+Once found, you can exit and go back to Arch.
+
+You can now create a new system-d boot entry at `/boot/loader/entries/windows.conf` and put the following content.
+```
+title Windows
+efi /shellx64.efi
+options -nointerrupt -nomap -noversion XXXX:EFI\Microsoft\Boot\Bootmgfw.efi
+```
+
+Replace XXX with the alias previously found. (ex. HD0a66666a2, HD0b)
+
+Finally, you can reboot.
 
 
 # Reboot
