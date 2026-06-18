@@ -14,7 +14,7 @@ hl.monitor({ output = "DP-2", mode = "1920x1080@144", position = "1920x0", scale
 -- Set programs that you use
 local terminal    = "kitty"
 local fileManager = "dolphin"
-local menu        = "wofi"
+local menu        = "wofi --show drun"
 local browser     = "librewolf"
 
 
@@ -369,7 +369,7 @@ hl.window_rule({
 -- Open apps in specific workspaces
 hl.window_rule({ name = "terminal-workspace-1", workspace = "1", match = { class = "^(" .. terminal .. ")$" } })
 hl.window_rule({ name = "discord-workspace-6", workspace = "6", match = { class = "^(discord)$" } })
-hl.window_rule({ name = "browser-workspace-1", workspace = "1", match = { class = "^(" .. browser .. ")$" } })
+hl.window_rule({ name = "browser-workspace-7", workspace = "7", match = { class = "^(" .. browser .. ")$" } })
 
 -- Workspaces
 hl.workspace_rule({ workspace = "1", monitor = "DP-1", default = true })
