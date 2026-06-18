@@ -1,46 +1,3 @@
-# Common
-## GoXLR App
-
-Set the following settings.
-
-#### Mic Setup
-
-- Dynamic
-- 62dB
-
-#### Gate
-
-- Threshold : -40db
-- Attenuation : 50%
-- Attack : 10ms
-- Release : 200ms
-
-#### Equalizer
-
-- 50Hz : -7
-- 200Hz : 0
-- 500Hz : -2
-- 1.5kHz : 1
-- 3.5kHz : 1
-- 10.0kHz : -3
-
-#### Compressor
-
-- Threshold : -15dB
-- Ratio : 3.2:1
-- Attack : 2ms
-- Release : 100ms
-- Make-up Gain : 5dB
-
-### Arch Linux Specific
-
-Add an `exec-once` in `hyprland.conf` (Done in dotfiles)
-
-```
-exec-once = goxlr-utility
-```
-
-
 ## Proton VPN
 
 Connect account.
@@ -55,10 +12,6 @@ exec-once = protonvpn-app
 ```
 
 Setup keyring on first start.
-
-
-## zsh
-
 
 
 # Arch Linux Only
@@ -169,7 +122,6 @@ sudo pacman -S dunst
 **Configuration**
 Import the configuration file.
 ```
-mkdir -p /etc/dunst
 cat Arch/etc/dunst/dunstrc | sudo tee /etc/dunst/dunstrc > /dev/null
 ```
 
@@ -241,6 +193,49 @@ cat Common/home/.gitignore > ~/.gitignore
 ```
 
 See openssh configuration for SSH keys configuration.
+
+
+## goxlr-utility
+**Description**
+
+**Installation**
+```
+yay -S goxlr-utility
+```
+
+**Configuration**
+Add an `exec-cmd` in `hyprland.conf` (Done in dotfiles)
+```
+hl.on("hyprland.start", function () 
+  hl.exec_cmd("goxlr-utility")
+end)
+```
+
+Set the following settings in GoXLR.
+*Mic Setup*
+- Dynamic
+- 62dB
+
+*Gate*
+- Threshold : -40db
+- Attenuation : 50%
+- Attack : 10ms
+- Release : 200ms
+
+*Equalizer*
+- 50Hz : -7
+- 200Hz : 0
+- 500Hz : -2
+- 1.5kHz : 1
+- 3.5kHz : 1
+- 10.0kHz : -3
+
+*Compressor*
+- Threshold : -15dB
+- Ratio : 3.2:1
+- Attack : 2ms
+- Release : 100ms
+- Make-up Gain : 5dB
 
 
 ## hypridle
@@ -367,7 +362,7 @@ cat Common/home/.config/kitty/kitty.conf > ~/.config/kitty/kitty.conf
 ## lib32-nvidia-utils
 **Description**
 Nvidia drivers utilities for 32-bits apps.
-Used by Steam (and maybe something else ?).
+Needed by Steam (Proton/Wine/...).
 
 **Installation**
 ```
@@ -701,17 +696,44 @@ sudo reflector --verbose --latest 10 --protocol https --sort rate --save /etc/pa
 ```
 
 
-## sddm
+## sbctl
 **Description**
+Secure Boot key manager.
+Used to enable Secure Boot on Arch and Windows together.
 
 **Installation**
+```
+sudo pacman -S sbctl
+```
 
 **Configuration**
+Nothing to do. Only used during Secure Boot setup.
+
+
+## sddm
+**Description**
+Display manager/login manager.
+
+**Installation**
+```
+sudo pacman -S sddm
+```
+
+**Configuration**
+Import the configuration file.
+```
+cat Arch/etc/sddm.conf | sudo tee /etc/sddm.conf > /dev/null
+```
+
 
 ## spotify-launcher
 **Description**
+Spotify launcher.
 
 **Installation**
+```
+sudo pacman -S spotify-launcher
+```
 
 **Configuration**
 Connect your Spotify account.
@@ -719,8 +741,12 @@ Connect your Spotify account.
 
 ## steam
 **Description**
+Steam.
 
 **Installation**
+```
+sudo pacman -S steam
+```
 
 **Configuration**
 Connect your Steam account.
@@ -732,10 +758,15 @@ Steam > Settings > Compatibility > Proton Experimental
 
 ## sudo
 **Description**
+Gives ability to run commands as root.
 
 **Installation**
+```
+sudo pacman -S sudo
+```
 
 **Configuration**
+Nothing to do.
 
 
 ## texinfo
@@ -743,24 +774,38 @@ Steam > Settings > Compatibility > Proton Experimental
 Official GNU documentation.
 
 **Installation**
+```
+sudo pacman -S texinfo
+```
 
 **Configuration**
+Nothing to do.
 
 
 ## ttf-nerd-fonts-symbols
 **Description**
+Extra glyphs from popular fonts.
 
 **Installation**
+```
+sudo pacman -S ttf-nerd-fonts-symbols
+```
 
 **Configuration**
+Nothing to do.
 
 
 ## ttf-noto-nerd
 **Description**
+Patched Noto nerd font
 
 **Installation**
+```
+sudo pacman -S ttf-noto-nerd
+```
 
 **Configuration**
+Nothing to do.
 
 
 ## ufw
@@ -833,10 +878,16 @@ end)
 
 ## wayland-protocols
 **Description**
+Extended Wayland protocols.
+Needed by Hyprland for Nvidia to fix flickering in XWayland games.
 
 **Installation**
+```
+sudo pacman -S wayland-protocols
+```
 
 **Configuration**
+Nothing to do.
 
 
 ## wireplumber
@@ -860,10 +911,15 @@ end)
 
 ## wl-clipboard
 **Description**
+Command-line copy/paste utilities for Wayland.
 
 **Installation**
+```
+sudo pacman -S wl-clipboard
+```
 
 **Configuration**
+Nothing to do.
 
 
 ## wofi
@@ -880,36 +936,44 @@ cat Arch/home/.config/wofi/style.css > ~/.config/wofi/style.css
 ```
 
 
-## xclip
-**Description**
-
-**Installation**
-
-**Configuration**
-
-
 ## xdg-desktop-portal-gtk
 **Description**
+Portal implementing file picker.
+Needed by Hyprland.
 
 **Installation**
+```
+sudo pacman -S xdg-desktop-portal-gtk
+```
 
 **Configuration**
 
 
 ## xdg-desktop-portal-hyprland
 **Description**
+Portal implementing useful functionalities (screensharing, shortcuts, ...)
+Needed by Hyprland.
 
 **Installation**
+```
+sudo pacman -S xdg-desktop-portal-hyprland
+```
 
 **Configuration**
 
 
 ## xorg-xwayland
 **Description**
+Run X clients under Wayland.
+Needed by Hyprland for Nvidia to fix flickering in XWayland games.
 
 **Installation**
+```
+sudo pacman -S xorg-xwayland
+```
 
 **Configuration**
+Nothing to do.
 
 
 ## yay
@@ -961,6 +1025,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 Autosuggestions for zsh.
 
 **Installation**
+```
+sudo pacman -S zsh-autosuggestions
+```
 
 **Configuration**
 
@@ -970,6 +1037,9 @@ Autosuggestions for zsh.
 Command completions for zsh.
 
 **Installation**
+```
+sudo pacman -S zsh-completions
+```
 
 **Configuration**
 
