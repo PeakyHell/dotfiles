@@ -30,6 +30,7 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("systemctl --user start hyprpolkitagent")
   ht.exec_cmd("hypridle")
   ht.exec_cmd("hyprpaper")
+  ht.exec_cmd("pipewire & wireplumber & pipewire-pulse")
 end)
 
 
@@ -208,10 +209,10 @@ hl.config({
 
 hl.config({
     input = {
-        kb_layout  = "be",
+        kb_layout  = "be,us",
         kb_variant = "",
         kb_model   = "",
-        kb_options = "",
+	kb_options = "grp:alt_caps_toggle",
         kb_rules   = "",
 
         follow_mouse = 1,
