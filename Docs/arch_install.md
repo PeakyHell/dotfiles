@@ -475,6 +475,61 @@ Replace XXX with the alias previously found. (ex. HD0a66666a2, HD0b)
 Finally, you can reboot.
 
 
+## Secure Boot
+
+Ensure Secure Boot is in Setup Mode.
+```
+bootctl
+```
+
+Install sbctl to setup Secure Boot.
+```
+sudo pacman -S sbctl
+```
+
+Check the Secure Boot status from sbctl. It should be disabled.
+```
+sbctl status
+```
+
+Create keys.
+```
+sudo sbctl create-keys
+```
+
+Enroll them with Microsoft's ones.
+```
+sudo sbctl enroll-keys -m
+```
+
+Then check the Secure Boot status again.
+```
+sbctl status
+```
+
+sbctl should now be marked as installed.
+
+We now need to sign the boot files. First verify which ones.
+```
+sudo sbctl verify
+```
+
+Sign the files using the following command.
+```
+sudo sbctl verify | sed -E 's|^.* (/.+) is not signed$|sudo sbctl sign -s "\1"|e'
+```
+
+Check that everything was signed.
+```
+sudo sbctl verify
+```
+
+Reboot and check that everything works properly.
+```
+sudo sbctl status
+```
+
+
 # Reboot
 
 [Source](https://wiki.archlinux.org/title/Installation_guide#Reboot)
