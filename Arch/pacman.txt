@@ -16,7 +16,6 @@ hyprpaper
 hyprpolkitagent
 kitty
 lib32-nvidia-utils
-librewolf-bin
 libva-nvidia-driver
 linux
 linux-firmware
@@ -55,8 +54,6 @@ xclip
 xdg-desktop-portal-gtk
 xdg-desktop-portal-hyprland
 xorg-xwayland
-yay
-yay-debug
 zsh
 zsh-autosuggestions
 zsh-completions
