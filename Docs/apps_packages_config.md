@@ -957,8 +957,12 @@ Desktop integration portals.
 (General one)
 
 **Installation**
+```
+sudo pacman -S xdg-desktop-portal
+```
 
 **Configuration**
+Nothing to do (I think).
 
 
 ## xdg-desktop-portal-gtk
@@ -973,6 +977,7 @@ sudo pacman -S xdg-desktop-portal-gtk
 ```
 
 **Configuration**
+Nothing to do (I think).
 
 
 ## xdg-desktop-portal-hyprland
@@ -987,6 +992,7 @@ sudo pacman -S xdg-desktop-portal-hyprland
 ```
 
 **Configuration**
+Nothing to do (I think).
 
 
 ## xorg-xwayland
@@ -1047,18 +1053,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 ```
 
 
-## zsh-autosuggestions
-**Description**
-Autosuggestions for zsh.
-
-**Installation**
-```
-sudo pacman -S zsh-autosuggestions
-```
-
-**Configuration**
-
-
 ## zsh-completions
 **Description**
 Command completions for zsh.
@@ -1069,8 +1063,7 @@ sudo pacman -S zsh-completions
 ```
 
 **Configuration**
-
-
+Nothing to do (I think).
 
 
 # MacOs Only
