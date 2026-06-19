@@ -606,12 +606,9 @@ sudo pacman -S pipewire
 ```
 
 **Configuration**
-Add an `exec-cmd` with wireplumber and pipewire-pulse in `hyprland.conf` (Done in dotfiles)
+Ensure the pipewire service is enabled.
 ```
-exec-once = 
-hl.on("hyprland.start", function () 
-  hl.exec_cmd("pipewire & wireplumber & pipewire-pulse")
-end)
+systemctl --user status pipewire
 ```
 
 
@@ -625,12 +622,9 @@ sudo pacman -S pipewire-pulse
 ```
 
 **Configuration**
-Add an `exec-cmd` with pipewire and wireplumber in `hyprland.conf` (Done in dotfiles)
+Ensure the pipewire-pulse service is enabled.
 ```
-exec-once = 
-hl.on("hyprland.start", function () 
-  hl.exec_cmd("pipewire & wireplumber & pipewire-pulse")
-end)
+systemctl --user status pipewire-pulse
 ```
 
 
@@ -900,12 +894,9 @@ sudo pacman -S wireplumber
 ```
 
 **Configuration**
-Add an `exec-cmd` with pipewire and pipewire-pulse in `hyprland.conf` (Done in dotfiles)
+Ensure the wireplumber service is enabled.
 ```
-exec-once = 
-hl.on("hyprland.start", function () 
-  hl.exec_cmd("pipewire & wireplumber & pipewire-pulse")
-end)
+systemctl --user status wireplumber
 ```
 
 
@@ -936,10 +927,21 @@ cat Arch/home/.config/wofi/style.css > ~/.config/wofi/style.css
 ```
 
 
+## xdg-desktop-portal
+**Description**
+Desktop integration portals.
+(General one)
+
+**Installation**
+
+**Configuration**
+
+
 ## xdg-desktop-portal-gtk
 **Description**
-Portal implementing file picker.
+Portal implementing file picker .
 Needed by Hyprland.
+(Fallback one)
 
 **Installation**
 ```
@@ -953,6 +955,7 @@ sudo pacman -S xdg-desktop-portal-gtk
 **Description**
 Portal implementing useful functionalities (screensharing, shortcuts, ...)
 Needed by Hyprland.
+(Hyprland backend)
 
 **Installation**
 ```
