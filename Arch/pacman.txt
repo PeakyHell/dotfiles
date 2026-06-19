@@ -51,9 +51,9 @@ wayland-protocols
 wireplumber
 wl-clipboard
 wofi
+xdg-desktop-portal
 xdg-desktop-portal-gtk
 xdg-desktop-portal-hyprland
 xorg-xwayland
 zsh
-zsh-autosuggestions
 zsh-completions

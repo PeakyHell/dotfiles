@@ -774,6 +774,19 @@ Steam > Settings > Compatibility > Proton Experimental
 ```
 
 
+## stow
+**Description**
+Symlink manager used for dotfiles.
+
+**Installation**
+```
+sudo pacman -S stow
+```
+
+**Configuration**
+Used in the `install.sh` script to setup dotfiles.
+
+
 ## sudo
 **Description**
 Gives ability to run commands as root.
@@ -794,6 +807,19 @@ Official GNU documentation.
 **Installation**
 ```
 sudo pacman -S texinfo
+```
+
+**Configuration**
+Nothing to do.
+
+
+## tree
+**Description**
+Directory listing as tree structure.
+
+**Installation**
+```
+sudo pacman -S tree
 ```
 
 **Configuration**
