@@ -28,9 +28,9 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("waybar")
   hl.exec_cmd("dunst")
   hl.exec_cmd("systemctl --user start hyprpolkitagent")
-  ht.exec_cmd("hypridle")
-  ht.exec_cmd("hyprpaper")
-  ht.exec_cmd("pipewire & wireplumber & pipewire-pulse")
+  hl.exec_cmd("hypridle")
+  hl.exec_cmd("hyprpaper")
+  hl.exec_cmd("pipewire & wireplumber & pipewire-pulse")
 end)
 
 
