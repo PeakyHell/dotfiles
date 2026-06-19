@@ -21,12 +21,12 @@ sudo pacman -S dunst
 
 Pipewire (required for screen sharing):
 ```
-sudo pacman -S pipewire wireplumber
+sudo pacman -S pipewire pipewire-pulse wireplumber
 ```
 
 XDG Desktop Portal (+ file picker):
 ```
-sudo pacman -S xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
+sudo pacman -S xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 ```
 
 Authentication Agent:
@@ -190,4 +190,29 @@ Hyprland is now accessible from sddm login.
 
 Once in Hyprland replace the config file with the custom one.
 
-TODO : XDPH config inside Hyprland config
+For XDPH to start automatically on boot, you need to create a unit file.
+```
+systemctl --user edit --full --force hyprland-session.target
+```
+
+And put the following content inside it.
+```
+[Unit]
+Description=Hyprland session
+BindsTo=graphical-session.target
+Wants=graphical-session-pre.target
+After=graphical-session-pre.target
+PropagatesStopTo=graphical-session.target
+```
+
+Then add an autostart and an autostop in Hyprland config (Done in dotfiles).
+
+```
+hl.on("hyprland.start", function()
+    hl.exec_cmd("systemctl --user start hyprland-session.target")
+end)
+
+hl.on("hyprland.shutdown", function()
+    os.execute("systemctl --user stop hyprland-session.target && sleep 0.1")
+end)
+```
