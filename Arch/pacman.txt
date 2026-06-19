@@ -8,6 +8,7 @@ dunst
 edk2-shell
 egl-wayland
 fastfetch
+firefox
 git
 hypridle
 hyprland
@@ -50,7 +51,6 @@ wayland-protocols
 wireplumber
 wl-clipboard
 wofi
-xclip
 xdg-desktop-portal-gtk
 xdg-desktop-portal-hyprland
 xorg-xwayland

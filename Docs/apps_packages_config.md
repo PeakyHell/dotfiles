@@ -176,6 +176,24 @@ Add `fastfetch` at the end of the `.zshrc` file.
 Default config is enough but Fastfetch can be configured in `~/.config/fastfetch/config.jsonc`
 
 
+## firefox
+**Description**
+Firefox web browser
+
+**Installation**
+```
+sudo pacman -S firefox
+```
+
+**Configuration**
+Install the following plugins :
+- uBlock Origin (should already be installed)
+- SponsorBlock
+- Bitwarden
+
+Change search engine to StartPage
+
+
 ## git
 **Description**
 Version Control System
