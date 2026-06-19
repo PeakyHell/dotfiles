@@ -191,7 +191,13 @@ Install the following plugins :
 - SponsorBlock
 - Bitwarden
 
-Change search engine to StartPage
+Change search engine to StartPage.
+
+Use dark theme.
+
+Disable passwords.
+
+Block AI features.
 
 
 ## git
