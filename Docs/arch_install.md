@@ -464,7 +464,7 @@ ping -c 5 ping.archlinux.org
 Install additional packages.
 
 ```
-sudo pacman -S base-devel fastfetch git kitty man-db man-pages openssh texinfo zsh-autosuggestions zsh-completions
+sudo pacman -S base-devel fastfetch git kitty man-db man-pages openssh texinfo zsh-completions
 ```
 
 
