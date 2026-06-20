@@ -190,7 +190,7 @@ Hyprland is now accessible from sddm login.
 
 Once in Hyprland replace the config file with the custom one.
 
-For XDPH to start automatically on boot, you need to create a unit file.
+For XDPH to start automatically on boot, you need to create a unit file (Done in dotfiles).
 ```
 systemctl --user edit --full --force hyprland-session.target
 ```
