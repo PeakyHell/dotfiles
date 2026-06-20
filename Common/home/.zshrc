@@ -107,4 +107,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+eval "$(ssh-agent -s)" > /dev/null 2>&1
+
 fastfetch
