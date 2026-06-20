@@ -296,7 +296,7 @@ nvim /etc/locale.gen
 ```
 
 
-And uncomment the `fr_BE.UTF-8 UTF-8` localization.
+And uncomment the `en_US.UTF-8 UTF-8` localization.
 
 Then generate the locales.
 
@@ -312,7 +312,7 @@ nvim /etc/locale.conf
 ```
 
 
-And write `LANG=fr_BE.UTF-8` and save the file.
+And write `LANG=en_US.UTF-8` and save the file.
 
 To make the keyboard layout change persistent, edit the file.
 
