@@ -28,69 +28,72 @@ TODO
 
 
 # Files
-**Arch**
-├── **etc**
-│   ├── **dunst**
-│   │   └── dunstrc
-│   ├── pacman.conf
-│   └── sddm.conf
-└── **home**
-    ├── **conky**
-    │   └── conky.conf
-    ├── **hypr**
-    │   ├── hypridle.conf
-    │   ├── hyprland.lua
-    │   ├── hyprlock.conf
-    │   └── hyprpaper.conf
-    ├── **wallpapers**
-    │   └── city-night.png
-    ├── **waybar**
-    │   ├── config
-    │   └── style.css
-    └── **wofi**
+
+<pre>
+<strong>Arch</strong>
+├── <strong>etc</strong>
+│   ├── <strong>dunst</strong>
+│   │   └── dunstrc
+│   ├── pacman.conf
+│   └── sddm.conf
+└── <strong>home</strong>
+    ├── <strong>conky</strong>
+    │   └── conky.conf
+    ├── <strong>hypr</strong>
+    │   ├── hypridle.conf
+    │   ├── hyprland.lua
+    │   ├── hyprlock.conf
+    │   └── hyprpaper.conf
+    ├── <strong>wallpapers</strong>
+    │   └── city-night.png
+    ├── <strong>waybar</strong>
+    │   ├── config
+    │   └── style.css
+    └── <strong>wofi</strong>
         └── style.css
 
-**Common** :
-└── **home**
-    ├── **.config**
-    │   ├── **fastfetch**
-    │   │   └── config.jsonc
-    │   ├── **kitty**
-    │   │   ├── Catppuccin-Macchiato.conf
-    │   │   ├── Default.conf
-    │   │   ├── kitty.conf
-    │   │   └── Tokyo-Night.conf
-    │   └── **nvim**
-    │       ├── init.lua
-    │       ├── **lua**
-    │       │   ├── **config**
-    │       │   │   └── options.lua
-    │       │   └── **plugins**
-    │       │       └── lsp.lua
-    │       └── nvim-pack-lock.json
+<strong>Common</strong>
+└── <strong>home</strong>
+    ├── <strong>.config</strong>
+    │   ├── <strong>fastfetch</strong>
+    │   │   └── config.jsonc
+    │   ├── <strong>kitty</strong>
+    │   │   ├── Catppuccin-Macchiato.conf
+    │   │   ├── Default.conf
+    │   │   ├── kitty.conf
+    │   │   └── Tokyo-Night.conf
+    │   └── <strong>nvim</strong>
+    │       ├── init.lua
+    │       ├── <strong>lua</strong>
+    │       │   ├── <strong>config</strong>
+    │       │   │   └── options.lua
+    │       │   └── <strong>plugins</strong>
+    │       │       └── lsp.lua
+    │       └── nvim-pack-lock.json
     ├── .gitconfig
     ├── .gitignore
-    ├── **.ssh**
-    │   └── config
+    ├── <strong>.ssh</strong>
+    │   └── config
     ├── .stow-local-ignore
     └── .zshrc
 
-**Docs**
+<strong>Docs</strong>
 ├── apps_packages_config.md
 ├── arch_install.md
 ├── hyprland.md
 └── windows_install.md
 
-**MacOs**
+<strong>MacOs</strong>
 
-**Scripts**
+<strong>Scripts</strong>
 ├── arch_install.sh
 ├── arch_methods.sh
 ├── helper.sh
 ├── macos_methods.sh
 └── windows_methods.sh
 
-**Windows**
+<strong>Windows</strong>
+</pre>
 
 
 # Arch Linux Installation
