@@ -221,6 +221,7 @@ See openssh configuration for SSH keys configuration.
 
 ## goxlr-utility
 **Description**
+Open source TC-Helicon GoXLR's software.
 
 **Installation**
 ```
@@ -502,7 +503,7 @@ cat Common/home/.config/nvim/lazy-lock.json > ~/.config/nvim/lazy-lock.json
 
 ## networkmanager
 **Description**
-Network connection manager.
+Network connection manager. Provides configuration for network interfaces.
 
 **Installation**
 ```
@@ -582,8 +583,8 @@ Add the keys to Github/ssh servers.
 Set ssh directory permissions.
 ```
 chmod 700 ~/.ssh/
-chmod 600 ~/.ssh/*
-chmod 644 ~/.ssh/id_ed25519_github.pub
+chmod 600 ~/.ssh/id_*
+chmod 644 ~/.ssh/id_*.pub
 ```
 
 Test the connection to the hosts.
@@ -964,15 +965,17 @@ Nothing to do.
 
 
 ## wofi
-Install Wofi.
+**Description**
+Applications launcher.
+
+**Installation**
 ```
 sudo pacman -S wofi
 ```
 
+**Configuration**
 Import the configuration file.
-
 ```
-mkdir -p ~/.config/wofi
 cat Arch/home/.config/wofi/style.css > ~/.config/wofi/style.css
 ```
 
@@ -1008,7 +1011,8 @@ Nothing to do (I think).
 
 ## xdg-desktop-portal-hyprland
 **Description**
-Portal implementing useful functionalities (screensharing, shortcuts, ...)
+Portal implementing useful functionalities (screensharing, shortcuts, ...).
+Allow apps to communicate with the compositor through D-Bus.
 Needed by Hyprland.
 (Hyprland backend)
 
