@@ -1,28 +1,68 @@
-# dotfiles
-
 # Files
-- Arch/ : Config files for Arch Linux
-    - etc/
-        - Dunst
-        - Pacman
-        - Sddm
-    - home/.config/
-        - Conky
-        - Hypr*
-        - Wallpapers
-        - Waybar
-        - Wofi
-- Common/ : Config files both for Arch Linux and MacOs
-    - home/
-        - Kitty
-        - Neovim
-        - Ssh
-        - Git
-        - Zsh
-- Docs/ : Documentations, guides, ...
-- MacOs/ : Config files for MacOs
-- Scripts/ : Config scripts
-- Windows/ : Config files for Windows
+**Arch**
+├── **etc**
+│   ├── **dunst**
+│   │   └── dunstrc
+│   ├── pacman.conf
+│   └── sddm.conf
+└── **home**
+    ├── **conky**
+    │   └── conky.conf
+    ├── **hypr**
+    │   ├── hypridle.conf
+    │   ├── hyprland.lua
+    │   ├── hyprlock.conf
+    │   └── hyprpaper.conf
+    ├── **wallpapers**
+    │   └── city-night.png
+    ├── **waybar**
+    │   ├── config
+    │   └── style.css
+    └── **wofi**
+        └── style.css
+
+**Common** :
+└── **home**
+    ├── **.config**
+    │   ├── **fastfetch**
+    │   │   └── config.jsonc
+    │   ├── **kitty**
+    │   │   ├── Catppuccin-Macchiato.conf
+    │   │   ├── Default.conf
+    │   │   ├── kitty.conf
+    │   │   └── Tokyo-Night.conf
+    │   └── **nvim**
+    │       ├── init.lua
+    │       ├── **lua**
+    │       │   ├── **config**
+    │       │   │   └── options.lua
+    │       │   └── **plugins**
+    │       │       └── lsp.lua
+    │       └── nvim-pack-lock.json
+    ├── .gitconfig
+    ├── .gitignore
+    ├── **.ssh**
+    │   └── config
+    ├── .stow-local-ignore
+    └── .zshrc
+
+**Docs**
+├── apps_packages_config.md
+├── arch_install.md
+├── hyprland.md
+└── windows_install.md
+
+**MacOs**
+
+**Scripts**
+├── arch_install.sh
+├── arch_methods.sh
+├── helper.sh
+├── macos_methods.sh
+└── windows_methods.sh
+
+**Windows**
+
 
 # Arch Linux Installation
 
@@ -32,6 +72,9 @@
 
 View [Apps and packages configurations](Docs/apps_packages_config.md) for configuration instructions.
 
+# TO BE REMOVED
+
+---
 
 # MacOs Packages (16)
 
