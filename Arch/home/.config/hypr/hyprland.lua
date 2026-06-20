@@ -31,6 +31,7 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("hypridle")
   hl.exec_cmd("hyprpaper")
   hl.exec_cmd("systemctl --user start hyprland-session.target")
+  hl.exec_cmd("goxlr-launcher")
 end)
 
 hl.on("hyprland.shutdown", function ()
