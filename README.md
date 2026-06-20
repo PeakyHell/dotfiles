@@ -1,3 +1,32 @@
+# How To Use
+1. Start by cloning the repo wherever you want.
+```
+git clone https://github.com/PeakyHell/dotfiles.git
+```
+
+2. Ensure **stow** is installed.
+
+3. Stow the **Common** directory.
+```
+cd Common/
+stow -t "$HOME" --adopt home
+```
+
+3. Stow your platform directory.
+```
+# Arch Linux
+cd Arch/
+sudo stow -t /etc --adopt etc
+stow -t "$HOME" --adopt home
+
+# MacOs
+TODO
+
+# Windows
+TODO
+```
+
+
 # Files
 **Arch**
 ├── **etc**
