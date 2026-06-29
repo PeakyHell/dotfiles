@@ -32,6 +32,7 @@ pavucontrol
 pipewire
 pipewire-pulse
 prismlauncher
+python-nvidia-ml-py
 qt5-wayland
 qt6-wayland
 reflector

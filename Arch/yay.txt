@@ -1,3 +1,5 @@
 goxlr-utility
 librewolf-bin
+parsec-bin
+thermalright-trcc
 yay

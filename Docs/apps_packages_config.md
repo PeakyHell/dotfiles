@@ -607,6 +607,19 @@ sudo cat etc/pacman.conf > /etc/pacman.conf
 ```
 
 
+## parsec-bin
+**Description**
+Remote desktop for gaming.
+
+**Installation**
+```
+yay -S parsec-bin
+```
+
+**Configuration**
+Connect account.
+
+
 ## pavucontrol
 **Description**
 PulseAudio volume control GUI.
@@ -664,6 +677,20 @@ sudo pacman -S prismlauncher
 
 **Configuration**
 Connect your Microsoft account.
+
+
+## python-nvidia-ml-py
+**Description**
+Python bindings for the Nvidia Management Library.
+Needed by thermalright-trcc.
+
+**Installation**
+```
+sudo pacman -S python-nvidia-ml-py
+```
+
+**Configuration**
+Nothing to do.
 
 
 ## qt5-wayland
@@ -812,6 +839,20 @@ sudo pacman -S texinfo
 
 **Configuration**
 Nothing to do.
+
+
+## thermalright-trcc
+**Description**
+Directory listing as tree structure.
+
+**Installation**
+```
+yay -S thermalright-trcc
+```
+
+**Configuration**
+Ensure python-nvidia-ml-py is installed to be able to access Nvidia GPU data.
+Configure as you want.
 
 
 ## tree
