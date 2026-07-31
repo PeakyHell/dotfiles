@@ -12,10 +12,11 @@ hl.monitor({ output = "DP-2", mode = "1920x1080@144", position = "1920x0", scale
 ---------------------
 
 -- Set programs that you use
-local terminal    = "kitty"
-local fileManager = "dolphin"
-local menu        = "wofi --show drun"
-local browser     = "firefox"
+local terminal     = "kitty"
+local fileManager  = "dolphin"
+local menu         = "wofi --show drun"
+local browser      = "zen-browser"
+local browserClass = "zen"
 
 
 -------------------
@@ -214,7 +215,7 @@ hl.config({
 
 hl.config({
     input = {
-        kb_layout  = "be,us",
+        kb_layout  = "be",
         kb_variant = "",
         kb_model   = "",
 	kb_options = "grp:alt_caps_toggle",
@@ -223,6 +224,7 @@ hl.config({
         follow_mouse = 1,
 
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
+	accel_profile = "flat",
 
         touchpad = {
             natural_scroll = false,
@@ -375,7 +377,7 @@ hl.window_rule({
 -- Open apps in specific workspaces
 hl.window_rule({ name = "terminal-workspace-1", workspace = "1", match = { class = "^(" .. terminal .. ")$" } })
 hl.window_rule({ name = "discord-workspace-6", workspace = "6", match = { class = "^(discord)$" } })
-hl.window_rule({ name = "browser-workspace-7", workspace = "7", match = { class = "^(" .. browser .. ")$" } })
+hl.window_rule({ name = "browser-workspace-7", workspace = "7", match = { class = "^(" .. browserClass .. ")$" } })
 
 -- Workspaces
 hl.workspace_rule({ workspace = "1", monitor = "DP-1", default = true })
