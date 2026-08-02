@@ -14,7 +14,7 @@ hl.monitor({ output = "DP-2", mode = "1920x1080@144", position = "1920x0", scale
 -- Set programs that you use
 local terminal     = "kitty"
 local fileManager  = "dolphin"
-local menu         = "wofi --show drun"
+local menu         = "wofi --show drun --insensitive"
 local browser      = "zen-browser"
 local browserClass = "zen"
 
