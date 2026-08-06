@@ -1,5 +1,8 @@
 goxlr-utility
+heroic-games-launcher-bin
 librewolf-bin
+orca-slicer-bin
 parsec-bin
 thermalright-trcc
 yay
+zen-browser-bin
