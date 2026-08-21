@@ -33,6 +33,7 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("hyprpaper")
   hl.exec_cmd("systemctl --user start hyprland-session.target")
   hl.exec_cmd("goxlr-launcher")
+  hl.exec_cmd("trcc gui --resume")
 end)
 
 hl.on("hyprland.shutdown", function ()
