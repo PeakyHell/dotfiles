@@ -379,6 +379,7 @@ hl.window_rule({
 hl.window_rule({ name = "terminal-workspace-1", workspace = "1", match = { class = "^(" .. terminal .. ")$" } })
 hl.window_rule({ name = "discord-workspace-6", workspace = "6", match = { class = "^(discord)$" } })
 hl.window_rule({ name = "browser-workspace-7", workspace = "7", match = { class = "^(" .. browserClass .. ")$" } })
+hl.window_rule({ name = "spotify-workspace-8", workspace = "8", match = { class = "^(Spotify)$" } })
 
 -- Workspaces
 hl.workspace_rule({ workspace = "1", monitor = "DP-1", default = true })
