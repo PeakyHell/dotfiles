@@ -1,11 +1,13 @@
 amd-ucode
 base
 base-devel
+bind
 blender
 conky
 discord
 dolphin
 dosfstools
+drawio-desktop
 dunst
 edk2-shell
 egl-wayland
@@ -19,6 +21,7 @@ hyprland
 hyprlock
 hyprpaper
 hyprpolkitagent
+hyprshutdown
 kitty
 lib32-nvidia-utils
 libva-nvidia-driver
@@ -29,6 +32,7 @@ man-pages
 neovim
 networkmanager
 nfs-utils
+nmap
 noto-fonts
 nvidia-open
 nvidia-utils
@@ -43,6 +47,7 @@ qt6-wayland
 reflector
 sbctl
 sddm
+signal-desktop
 smartmontools
 spotify-launcher
 steam
@@ -53,12 +58,15 @@ tree
 ttf-nerd-fonts-symbols
 ttf-noto-nerd
 ufw
+unrar
+unzip
 veracrypt
 vlc
 vlc-plugin-ffmpeg
 waybar
 wayland-protocols
 wireplumber
+wireshark-qt
 wl-clipboard
 wofi
 xdg-desktop-portal

@@ -1,5 +1,6 @@
 goxlr-utility
 heroic-games-launcher-bin
+joplin-desktop
 librewolf-bin
 orca-slicer-bin
 parsec-bin
